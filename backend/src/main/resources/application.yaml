@@ -1,0 +1,43 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: cloudnativeteam12
+
+  datasource:
+    url: jdbc:postgresql:cloudnativeteam12
+    username: postgres
+    password: postgres
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        auto_quote_keyword: true
+        format_sql: true
+    open-in-view: true
+
+  sql:
+    init:
+      mode: always
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          authority-prefix: ""
+
+cors:
+  allowed-origins:
+    - http://localhost:3000
+
+jwt:
+  secret-key: JCDGzgGzvVT52dx1fa7eg1659lgOd15Sr7ceSCyao2q
