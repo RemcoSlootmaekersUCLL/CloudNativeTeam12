@@ -1,5 +1,6 @@
 package be.ucll.model;
 
+import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -12,23 +13,29 @@ import static java.lang.Long.sum;
 public class Workout {
 
     @Id
-    private int id;
+    private String id;
 
-    private int userId;
+    @NotNull(message = "UserId is required.")
+    private String userId;
+
+    @NotNull(message = "Workout date is required.")
     private LocalDate date;
 
+    @NotNull(message = "Exercises are required.")
     private List<WorkoutExercise> exercises;
-    public Workout(int userId, LocalDate date, List<WorkoutExercise> exercises){
+
+    protected Workout(){}
+    public Workout(String userId, LocalDate date, List<WorkoutExercise> exercises){
         setUserId(userId);
         setDate(date);
         setExercises(exercises);
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -52,5 +59,11 @@ public class Workout {
         return exercises.stream().mapToInt(WorkoutExercise::getCaloriesBurned).sum();
     }
 
+    public String getId() {
+        return this.id;
+    }
+    public void setId(String id) {
+        this.id = id;
+    }
 }
 

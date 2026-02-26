@@ -1,26 +1,32 @@
 package be.ucll.model;
 
+import jakarta.validation.constraints.Min;
+
 public class WorkoutExercise {
-    private int exerciseId;
+    private String exerciseId;
+
+    @Min(value = 0,message = "Reps must be positive.")
     private int reps;
+    @Min(value = 0,message = "Duration must be positive.")
     private int duration;
+    @Min(value = 0,message = "Calories burned must be positive.")
     private int caloriesBurned;
 
-    public WorkoutExercise() {
+    protected WorkoutExercise() {
     }
 
-    public WorkoutExercise(int exerciseId, int reps, int duration, int caloriesBurned) {
+    public WorkoutExercise(String exerciseId, int reps, int duration, int caloriesBurned) {
         setExerciseId(exerciseId);
         setReps(reps);
         setDuration(duration);
         setCaloriesBurned(caloriesBurned);
     }
 
-    public int getExerciseId() {
+    public String getExerciseId() {
         return exerciseId;
     }
 
-    public void setExerciseId(int exerciseId) {
+    public void setExerciseId(String exerciseId) {
         this.exerciseId = exerciseId;
     }
 

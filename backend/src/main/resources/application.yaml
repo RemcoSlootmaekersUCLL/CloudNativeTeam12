@@ -9,10 +9,10 @@ spring:
     mongodb:
       uri: mongodb://localhost:27017/fitnessdb
 
-  #h2:
-  #  console:
-  #    enabled: true
-  #    path: /h2-console
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
 
   security:
     oauth2:
