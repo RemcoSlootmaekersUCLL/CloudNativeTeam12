@@ -1,7 +1,14 @@
+import Header from "@/components/header";
+
+
+
+
 const Home = () => {
   return (
     <div className="text-center">
-      <h1 className="font-bold text-2xl text-gray-200">Project Setup</h1>
+      <Header></Header>
+      <h1 className="text-center font-bold p-4">Track uw fitness activiteiten.</h1>
+
     </div>
   );
 };
