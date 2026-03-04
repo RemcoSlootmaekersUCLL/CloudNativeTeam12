@@ -1,0 +1,46 @@
+package be.ucll.service;
+
+import be.ucll.dto.WorkoutExerciseResponse;
+import be.ucll.dto.WorkoutResponse;
+import be.ucll.model.Exercise;
+import be.ucll.model.Workout;
+import be.ucll.repository.ExerciseRepository;
+import be.ucll.repository.WorkoutRepository;
+import org.springframework.stereotype.Service;
+
+import javax.management.RuntimeErrorException;
+import java.util.List;
+
+@Service
+public class WorkoutService {
+
+    private final WorkoutRepository workoutRepository;
+    private final ExerciseRepository exerciseRepository;
+
+    public WorkoutService(WorkoutRepository workoutRepository, ExerciseRepository exerciseRepository) {
+        this.workoutRepository = workoutRepository;
+        this.exerciseRepository=exerciseRepository;
+    }
+
+    // DTO CONVERTER
+    private List<WorkoutResponse> convertWorkoutToDTO(List<Workout> workouts){
+        return workouts.stream().map(workout -> {
+            List<WorkoutExerciseResponse> exerciseResponses = workout.getExercises().stream().map(we -> {
+                Exercise exercise = exerciseRepository.findById(we.getExerciseId()).orElseThrow(()->new RuntimeException("Exercise with id "+ we.getExerciseId() +" does not exist."));
+                //Create and return exercises dto
+                return new WorkoutExerciseResponse(exercise.getName(), exercise.getType(), we.getReps(), we.getDuration(), we.getCaloriesBurned());}).toList();
+            // Create and return full dto response
+            return new WorkoutResponse(workout.getUserId(), workout.getDate(), exerciseResponses, workout.getTotalCaloriesBurned());}).toList();
+    }
+
+    public List<WorkoutResponse> getAllWorkouts() {
+        return convertWorkoutToDTO(workoutRepository.findAll());
+    }
+    public List<WorkoutResponse> getWorkoutsByUser(String userId) {
+        return convertWorkoutToDTO(workoutRepository.findByUserId(userId));
+    }
+
+    public Workout createWorkout(Workout workout) {
+        return workoutRepository.save(workout);
+    }
+}
