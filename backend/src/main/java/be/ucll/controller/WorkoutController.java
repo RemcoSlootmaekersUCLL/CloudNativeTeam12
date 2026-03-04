@@ -27,6 +27,11 @@ public class WorkoutController {
         return workoutService.getWorkoutsByUser(userId);
     }
 
+    @GetMapping("/{id}")
+    public WorkoutResponse getById(@PathVariable String id) {
+        return workoutService.getById(id);
+    }
+
     @PostMapping
     public Workout createWorkout(@RequestBody Workout workout) {
         return workoutService.createWorkout(workout);
