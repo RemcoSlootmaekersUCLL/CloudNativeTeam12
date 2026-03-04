@@ -1,22 +1,5 @@
 package be.ucll.integration;
 
-import be.ucll.DbInitializer;
-import be.ucll.model.Exercise;
-import be.ucll.model.Type;
-import be.ucll.model.Workout;
-import be.ucll.model.WorkoutExercise;
-import be.ucll.repository.ExerciseRepository;
-import be.ucll.repository.WorkoutRepository;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.web.reactive.server.WebTestClient;
-
-import java.time.LocalDate;
-import java.util.List;
-
 //@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 //@AutoConfigureWebTestClient
 class WorkoutIntegrationTest {

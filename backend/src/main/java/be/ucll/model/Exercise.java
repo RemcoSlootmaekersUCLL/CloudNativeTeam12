@@ -1,5 +1,6 @@
 package be.ucll.model;
 
+import be.ucll.model.enums.Type;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

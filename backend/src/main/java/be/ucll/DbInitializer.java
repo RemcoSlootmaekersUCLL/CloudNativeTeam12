@@ -1,7 +1,7 @@
 package be.ucll;
 
 import be.ucll.model.Exercise;
-import be.ucll.model.Type;
+import be.ucll.model.enums.Type;
 import be.ucll.model.Workout;
 import be.ucll.model.WorkoutExercise;
 import be.ucll.repository.ExerciseRepository;

@@ -1,6 +1,6 @@
 package be.ucll.dto;
 
-import be.ucll.model.Type;
+import be.ucll.model.enums.Type;
 
 public record WorkoutExerciseResponse (String exerciseName,
                                        Type type,
