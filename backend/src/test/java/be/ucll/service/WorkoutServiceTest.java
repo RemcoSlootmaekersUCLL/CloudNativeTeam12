@@ -58,7 +58,7 @@ class WorkoutServiceTest {
         assertThat(result).hasSize(1);
         assertThat(result.getFirst().userId()).isEqualTo("user1");
         assertThat(result.getFirst().exercises()).hasSize(1);
-        assertThat(result.getFirst().exercises().getFirst().exerciseName()).isEqualTo("Bench Press");
+        assertThat(result.getFirst().exercises().getFirst().name()).isEqualTo("Bench Press");
     }
 
     // getWorkoutsByUser
