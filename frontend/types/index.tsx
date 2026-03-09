@@ -1,30 +1,30 @@
 export type Exercises = {
-    id: number,
-    name: string,
-    type: string
-}
+  id: number;
+  name: string;
+  type: string;
+};
 
 export type Workouts = {
-    id: number,
-    userId: number,
-    date: number,
-    exercises: Exercises[]
-}
+  id: number;
+  userId: number;
+  date: number;
+  exercises: Exercises[];
+};
 
 export type Users = {
-    id: number,
-    name: string,
-    password: string,
-    age: number,
-    weight: number,
-    height: number
-}
+  id: number;
+  username: string;
+  password: string;
+  age: number;
+  weight: number;
+  height: number;
+};
 
 export type Goals = {
-    id: number,
-    name: string,
-    startDate: number,
-    endDate: number,
-    wasSuccesful: boolean,
-    userId: number
-}
+  id: number;
+  name: string;
+  startDate: number;
+  endDate: number;
+  wasSuccesful: boolean;
+  userId: number;
+};
