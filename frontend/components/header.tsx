@@ -12,8 +12,10 @@ const Header: React.FC = () => {
                 <div className="md:flex md:just-between md:mx-auto ">
                     <nav className="space-x-8 text-xl flex md:mr-auto md:ml-auto md:space-x-0" aria-label="main">
                         <Link href="/" className="px-4 py-1 text-yellow-50 rounded-lg hover:bg-yellow-600 hover:text-white transition-colors"> home </Link>
-                        <Link href='/workouts' className="px-4 py-1 text-yellow-50 rounded-lg hover:bg-yellow-600 hover:text-white transition-colors"> workouts </Link>
+                        <Link href='/users' className="px-4 py-1 text-yellow-50 rounded-lg hover:bg-yellow-600 hover:text-white transition-colors"> users </Link>
                         <Link href='/exercises' className="px-4 py-1 text-yellow-50 rounded-lg hover:bg-yellow-600 hover:text-white transition-colors"> exercises </Link>
+                        <Link href='/workouts' className="px-4 py-1 text-yellow-50 rounded-lg hover:bg-yellow-600 hover:text-white transition-colors"> workouts </Link>
+                        <Link href='/goals' className="px-4 py-1 text-yellow-50 rounded-lg hover:bg-yellow-600 hover:text-white transition-colors"> goals </Link>
                     </nav>
                 </div>
             </section>

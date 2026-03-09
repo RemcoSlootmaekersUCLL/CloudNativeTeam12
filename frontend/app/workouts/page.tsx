@@ -14,17 +14,17 @@ const getData = async () => {
 };
 
 export const metadata = {
-  title: "Workouts",
+  title: "Workouts - Fitness tracker",
 };
 
-const KlantenPage: React.FC = async () => {
+const WorkoutPage: React.FC = async () => {
   const { data, error } = await getData();
 
   return (
     <div>
       <Header />
       <main>
-        <h1 className="text-center font-bold p-4">Overzicht van alle workouts.</h1>
+        <h1 className="text-center font-bold p-4">Overview of all workouts.</h1>
         {error && (
           <div className="text-red-800" role="alert">
             {error}
@@ -39,4 +39,4 @@ const KlantenPage: React.FC = async () => {
   );
 };
 
-export default KlantenPage;
+export default WorkoutPage;

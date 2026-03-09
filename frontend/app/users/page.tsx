@@ -1,37 +1,37 @@
 import Header from "@/components/header";
-import ExerciseOverview from "@/components/exercises/exerciseOverview";
-import exerciseService from "@/services/exerciseService";
+import userService from "@/services/userService";
+import UserOverview from "@/components/users/userOverview";
 
 
 const getData = async () => {
     try {
-        const exercises = await exerciseService.getAllExercises();
+        const users = await userService.getAllUsers();
 
-        return { data: exercises, error: null };
+        return { data: users, error: null };
     } catch (error) {
         return { data: null, error: (error as Error).message };
     }
 };
 
 export const metadata = {
-    title: "Exercises - Fitness tracker",
+    title: "Users - Fitness tracker",
 };
 
-const ExercisePage: React.FC = async () => {
+const UserPage: React.FC = async () => {
     const { data, error } = await getData();
 
     return (
         <div>
             <Header />
             <main>
-                <h1 className="text-center font-bold p-4">Overview of all exercises.</h1>
+                <h1 className="text-center font-bold p-4">Overview of all users.</h1>
                 {error && (
                     <div className="text-red-800" role="alert">
                         {error}
                     </div>)}
                 {data && (<>
                     <section className="table-container-style">
-                        <ExerciseOverview exercises={data} />
+                        <UserOverview users={data} />
                     </section>
                 </>)}
             </main>
@@ -39,4 +39,4 @@ const ExercisePage: React.FC = async () => {
     );
 };
 
-export default ExercisePage;
+export default UserPage;

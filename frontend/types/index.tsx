@@ -10,3 +10,21 @@ export type Workouts = {
     date: number,
     exercises: Exercises[]
 }
+
+export type Users = {
+    id: number,
+    name: string,
+    password: string,
+    age: number,
+    weight: number,
+    height: number
+}
+
+export type Goals = {
+    id: number,
+    name: string,
+    startDate: number,
+    endDate: number,
+    wasSuccesful: boolean,
+    userId: number
+}
