@@ -54,10 +54,13 @@ public class DbInitializer {
                 new WorkoutExercise(bench.getId(), 5, 10, 100),
                 new WorkoutExercise(squat.getId(), 5, 12, 150)
         ));
+        workout1.setId("1");
 
         Workout workout2 = new Workout("user2", LocalDate.now().minusDays(1), List.of(
                 new WorkoutExercise(bike.getId(), 1, 30, 250)
         ));
+        workout2.setId("2");
+
 
         // Save workouts so they get IDs
         workoutRepository.saveAll(List.of(workout1, workout2));

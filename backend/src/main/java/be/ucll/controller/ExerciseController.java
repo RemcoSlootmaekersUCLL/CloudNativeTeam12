@@ -4,6 +4,7 @@ import be.ucll.model.Exercise;
 import be.ucll.service.ExerciseService;
 import be.ucll.service.WorkoutService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,8 +20,13 @@ public class ExerciseController {
     }
 
     @GetMapping
-    public List<Exercise> getAll(){
+    public List<Exercise> getAll() {
         return exerciseService.getAllExercises();
+    }
+
+    @GetMapping("/{id}")
+    public Exercise getExerciseById(@PathVariable String id) {
+        return exerciseService.getExerciseById(id);
     }
 
 }

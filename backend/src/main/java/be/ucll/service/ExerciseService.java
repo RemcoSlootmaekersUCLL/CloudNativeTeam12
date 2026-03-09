@@ -10,12 +10,17 @@ import java.util.List;
 public class ExerciseService {
     private final ExerciseRepository exerciseRepository;
 
-    public ExerciseService(ExerciseRepository exerciseRepository){
-        this.exerciseRepository=exerciseRepository;
+    public ExerciseService(ExerciseRepository exerciseRepository) {
+        this.exerciseRepository = exerciseRepository;
     }
 
-    public List<Exercise> getAllExercises(){
+    public List<Exercise> getAllExercises() {
         return exerciseRepository.findAll();
+    }
+
+    public Exercise getExerciseById(String id) {
+        return exerciseRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Exercise with ID '" + id + "' not found."));
     }
 
 }

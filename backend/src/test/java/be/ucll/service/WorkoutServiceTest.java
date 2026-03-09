@@ -1,5 +1,6 @@
 package be.ucll.service;
 
+import be.ucll.dto.WorkoutExerciseResponse;
 import be.ucll.dto.WorkoutResponse;
 import be.ucll.model.Exercise;
 import be.ucll.model.enums.Type;
@@ -19,6 +20,9 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
