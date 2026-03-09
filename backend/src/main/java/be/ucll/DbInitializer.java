@@ -28,10 +28,9 @@ public class DbInitializer {
         this.userRepository=userRepository;
         this.goalRepository=goalRepository;
     }
-
     @PostConstruct
     public void init() {
-        // Ja ik heb chatGPT dit laten generaten, te veel werk
+        //Ja ik heb chatGPT dit laten generaten, te veel werk
 
         // 1. Clear all existing data
         exerciseRepository.deleteAll();
@@ -46,12 +45,7 @@ public class DbInitializer {
         Exercise squat = new Exercise("Squat", Type.STRENGTH);
         Exercise deadlift = new Exercise("Deadlift", Type.STRENGTH);
         Exercise bike = new Exercise("Bike", Type.CARDIO);
-        Exercise running = new Exercise("Running", Type.CARDIO);
-        Exercise rowing = new Exercise("Rowing", Type.CARDIO);
-        bench.setId("1");
-        squat.setId("2");
-        deadlift.setId("3");
-        exerciseRepository.saveAll(List.of(bench, squat, deadlift, bike, running, rowing));
+        exerciseRepository.saveAll(List.of(bench, squat, deadlift, bike));
 
         // =====================
         // 3️⃣ Create Workouts
@@ -61,21 +55,21 @@ public class DbInitializer {
                 new WorkoutExercise(squat.getId(), 5, 12, 150)
         ));
 
-        Workout workout1 = new Workout("user1", LocalDate.now(), List.of(w1e1, w1e2));
-        workout1.setId("1");
+        Workout workout2 = new Workout("user2", LocalDate.now().minusDays(1), List.of(
+                new WorkoutExercise(bike.getId(), 1, 30, 250)
+        ));
 
         // Save workouts so they get IDs
         workoutRepository.saveAll(List.of(workout1, workout2));
 
-        Workout workout2 = new Workout("user1", LocalDate.now().minusDays(1), List.of(w2e1, w2e2));
-        workout2.setId("2");
+        // =====================
+        // 4️⃣ Create Goals
+        // =====================
+        Goal goal1 = new Goal("user1","Gain Muscle", LocalDate.now().plusMonths(3), LocalDate.now(), false);
+        Goal goal2 = new Goal("user2","Marathon Training", LocalDate.now().plusMonths(6), LocalDate.now(), false);
 
-        // Workout 3 – Mixed Day
-        WorkoutExercise w3e1 = new WorkoutExercise(deadlift.getId(), 4, 8, 180);
-        WorkoutExercise w3e2 = new WorkoutExercise(rowing.getId(), 1, 15, 120);
-
-        Workout workout3 = new Workout("user2", LocalDate.now().minusDays(2), List.of(w3e1, w3e2));
-        workout3.setId("3");
+        // Save goals so they get IDs
+        goalRepository.saveAll(List.of(goal1, goal2));
 
         // =====================
         // 5️⃣ Create and Link Users
