@@ -1,10 +1,10 @@
 package be.ucll;
 
-import be.ucll.model.Exercise;
+import be.ucll.model.*;
 import be.ucll.model.enums.Type;
-import be.ucll.model.Workout;
-import be.ucll.model.WorkoutExercise;
 import be.ucll.repository.ExerciseRepository;
+import be.ucll.repository.GoalRepository;
+import be.ucll.repository.UserRepository;
 import be.ucll.repository.WorkoutRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,24 +18,29 @@ import java.util.List;
 public class DbInitializer {
     private final WorkoutRepository workoutRepository;
     private final ExerciseRepository exerciseRepository;
-    // private final GoalRepository goalRepository;
+    private final UserRepository userRepository;
+    private final GoalRepository goalRepository;
 
     @Autowired
-    public DbInitializer(WorkoutRepository workoutRepository, ExerciseRepository exerciseRepository) {
-        this.workoutRepository = workoutRepository;
-        this.exerciseRepository = exerciseRepository;
+    public DbInitializer(WorkoutRepository workoutRepository, ExerciseRepository exerciseRepository, UserRepository userRepository, GoalRepository goalRepository){
+        this.workoutRepository=workoutRepository;
+        this.exerciseRepository=exerciseRepository;
+        this.userRepository=userRepository;
+        this.goalRepository=goalRepository;
     }
 
     @PostConstruct
     public void init() {
         // Ja ik heb chatGPT dit laten generaten, te veel werk
 
-        // Clear collections
+        // 1. Clear all existing data
         exerciseRepository.deleteAll();
         workoutRepository.deleteAll();
+        goalRepository.deleteAll();
+        userRepository.deleteAll();
 
         // =====================
-        // 1️⃣ Create Exercises
+        // 2️⃣ Create Exercises
         // =====================
         Exercise bench = new Exercise("Bench press", Type.STRENGTH);
         Exercise squat = new Exercise("Squat", Type.STRENGTH);
@@ -49,18 +54,18 @@ public class DbInitializer {
         exerciseRepository.saveAll(List.of(bench, squat, deadlift, bike, running, rowing));
 
         // =====================
-        // 2️⃣ Create Workouts
+        // 3️⃣ Create Workouts
         // =====================
-        // Workout 1 – Strength Day
-        WorkoutExercise w1e1 = new WorkoutExercise(bench.getId(), 5, 10, 100);
-        WorkoutExercise w1e2 = new WorkoutExercise(squat.getId(), 5, 12, 150);
+        Workout workout1 = new Workout("user1", LocalDate.now(), List.of(
+                new WorkoutExercise(bench.getId(), 5, 10, 100),
+                new WorkoutExercise(squat.getId(), 5, 12, 150)
+        ));
 
         Workout workout1 = new Workout("user1", LocalDate.now(), List.of(w1e1, w1e2));
         workout1.setId("1");
 
-        // Workout 2 – Cardio Day
-        WorkoutExercise w2e1 = new WorkoutExercise(bike.getId(), 1, 30, 250);
-        WorkoutExercise w2e2 = new WorkoutExercise(running.getId(), 1, 20, 200);
+        // Save workouts so they get IDs
+        workoutRepository.saveAll(List.of(workout1, workout2));
 
         Workout workout2 = new Workout("user1", LocalDate.now().minusDays(1), List.of(w2e1, w2e2));
         workout2.setId("2");
@@ -73,8 +78,19 @@ public class DbInitializer {
         workout3.setId("3");
 
         // =====================
-        // 3️⃣ Save Workouts
+        // 5️⃣ Create and Link Users
         // =====================
-        workoutRepository.saveAll(List.of(workout1, workout2, workout3));
+        User user1 = new User("IronMan88", 30, "securePass123", 85.5, 180);
+        user1.setId("user1");
+        user1.setWorkout(workout1);
+        user1.setGoal(goal1);
+
+        User user2 = new User("CardioQueen", 25, "runFast99", 60.0, 165);
+        user2.setId("user2");
+        user2.setWorkout(workout2);
+        user2.setGoal(goal2);
+
+        // Save users (this persists the references to workouts and goals)
+        userRepository.saveAll(List.of(user1, user2));
     }
 }
