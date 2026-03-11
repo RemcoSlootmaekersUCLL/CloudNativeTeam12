@@ -4,9 +4,7 @@ import be.ucll.model.Exercise;
 import be.ucll.model.Goal;
 import be.ucll.service.ExerciseService;
 import be.ucll.service.GoalService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,6 +20,11 @@ public class GoalController {
     @GetMapping
     public List<Goal> getAllGoals(){
         return goalService.getAllGoals();
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteGoalById(@PathVariable String id){
+        goalService.deleteGoalById(id);
     }
 
 }
