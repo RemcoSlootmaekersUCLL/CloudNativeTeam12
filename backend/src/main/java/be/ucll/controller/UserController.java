@@ -1,12 +1,19 @@
 package be.ucll.controller;
 
-import be.ucll.model.User;
-import be.ucll.service.UserService;
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import be.ucll.dto.LoginRequest;
+import be.ucll.dto.LoginResponse;
+import be.ucll.model.User;
+import be.ucll.service.UserService;
+
 
 @RestController
 @RequestMapping("/users")
@@ -20,5 +27,15 @@ public class UserController {
     @GetMapping
     public List<User> getAllUsers(){
         return userService.getAllUsers();
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+        try {
+            LoginResponse response = userService.login(request.getUsername(), request.getPassword());
+            return ResponseEntity.ok(response);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(400).body(e.getMessage());
+        }
     }
 }

@@ -1,13 +1,14 @@
 package be.ucll.service;
 
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import be.ucll.dto.LoginResponse;
 import be.ucll.model.User;
-import be.ucll.model.Workout;
 import be.ucll.repository.GoalRepository;
 import be.ucll.repository.UserRepository;
 import be.ucll.repository.WorkoutRepository;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class UserService {
@@ -25,5 +26,19 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public LoginResponse login(String username, String password) {
+        User user = userRepository.findByUsername(username)
+            .orElseThrow(() -> new IllegalArgumentException("Invalid username or password"));
+
+        if (!password.equals(user.getPassword())) {
+            throw new IllegalArgumentException("Invalid username or password");
+        }
+
+        LoginResponse response = new LoginResponse();
+        response.setMessage("Login successful");
+        response.setUsername(user.getUsername());
+        response.setId(user.getId());
+        return response;
+    }
 
 }
