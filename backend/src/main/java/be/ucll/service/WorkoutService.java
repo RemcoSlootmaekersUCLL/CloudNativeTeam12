@@ -7,6 +7,7 @@ import be.ucll.model.Workout;
 import be.ucll.model.WorkoutExercise;
 import be.ucll.repository.ExerciseRepository;
 import be.ucll.repository.WorkoutRepository;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -56,5 +57,15 @@ public class WorkoutService {
 
     public Workout createWorkout(Workout workout) {
         return workoutRepository.save(workout);
+    }
+
+    public Workout editWorkout(Workout changed_workout, String id) {
+        Workout old_workout=workoutRepository.findById(id).orElseThrow(()-> new RuntimeException("Workout with id " +id+ " not found."));
+        //Don't let ppl change userid of workout
+        if(!old_workout.getUserId().equals(changed_workout.getUserId())){
+            throw new RuntimeException("Cannot change user of workout");
+        }
+        changed_workout.setId(id);
+        return workoutRepository.save(changed_workout);
     }
 }

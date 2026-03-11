@@ -36,4 +36,9 @@ public class WorkoutController {
     public Workout createWorkout(@RequestBody Workout workout) {
         return workoutService.createWorkout(workout);
     }
+
+    @PutMapping("/{id}")
+    public Workout editWorkout(@RequestBody Workout workout, @PathVariable String id){
+        return workoutService.editWorkout(workout,id);
+    }
 }
