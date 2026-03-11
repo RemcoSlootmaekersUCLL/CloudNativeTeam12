@@ -5,29 +5,14 @@ spring:
   application:
     name: cloudnativeteam12
 
-  datasource:
-    url: jdbc:postgresql:cloudnativeteam12
-    username: postgres
-    password: postgres
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/fitnessdb
 
   h2:
     console:
       enabled: true
       path: /h2-console
-
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: none
-    properties:
-      hibernate:
-        auto_quote_keyword: true
-        format_sql: true
-    open-in-view: true
-
-  sql:
-    init:
-      mode: always
 
   security:
     oauth2:
