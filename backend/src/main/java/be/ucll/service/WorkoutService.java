@@ -3,9 +3,11 @@ package be.ucll.service;
 import be.ucll.dto.WorkoutExerciseResponse;
 import be.ucll.dto.WorkoutResponse;
 import be.ucll.model.Exercise;
+import be.ucll.model.User;
 import be.ucll.model.Workout;
 import be.ucll.model.WorkoutExercise;
 import be.ucll.repository.ExerciseRepository;
+import be.ucll.repository.UserRepository;
 import be.ucll.repository.WorkoutRepository;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
@@ -18,10 +20,12 @@ public class WorkoutService {
 
     private final WorkoutRepository workoutRepository;
     private final ExerciseRepository exerciseRepository;
+    private final UserRepository userRepository;
 
-    public WorkoutService(WorkoutRepository workoutRepository, ExerciseRepository exerciseRepository) {
+    public WorkoutService(WorkoutRepository workoutRepository, ExerciseRepository exerciseRepository, UserRepository userRepository) {
         this.workoutRepository = workoutRepository;
         this.exerciseRepository = exerciseRepository;
+        this.userRepository = userRepository;
     }
 
     // DTO CONVERTER
@@ -65,7 +69,15 @@ public class WorkoutService {
         if(!old_workout.getUserId().equals(changed_workout.getUserId())){
             throw new RuntimeException("Cannot change user of workout");
         }
+        //Keep id the same as before
         changed_workout.setId(id);
+
+        //Change workout in user
+        User user=userRepository.findById(changed_workout.getUserId()).orElseThrow(()->new RuntimeException("User with id " +changed_workout.getUserId()+ " not found."));
+        user.getWorkouts().removeIf(workout -> workout.getUserId().equals(old_workout.getUserId()));
+        user.setWorkout(changed_workout);
+        userRepository.save(user);
+        //Change workout
         return workoutRepository.save(changed_workout);
     }
 }
