@@ -4,9 +4,7 @@ import be.ucll.model.Exercise;
 import be.ucll.model.Goal;
 import be.ucll.service.ExerciseService;
 import be.ucll.service.GoalService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,4 +22,8 @@ public class GoalController {
         return goalService.getAllGoals();
     }
 
+    @PutMapping("/{id}")
+    public Goal editGoal(@RequestBody Goal goal, @PathVariable String id){
+        return goalService.editGoal(goal,id);
+    }
 }
