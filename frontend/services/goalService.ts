@@ -16,8 +16,27 @@ const getAllGoals = async (): Promise<Goals[]> => {
     return response.json();
 };
 
+const addGoal = async (goal: Goals): Promise<Goals[]> => {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/goals`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        cache: "no-store",
+        body: JSON.stringify(goal),
+
+    });
+
+    if (!response.ok) {
+        throw new Error('Er is iets mis gegaan.');
+    }
+
+    return response.json();
+};
+
 const goalService = {
-    getAllGoals
+    getAllGoals,
+    addGoal
 };
 
 export default goalService;

@@ -14,7 +14,7 @@ const GoalOverview: React.FC<Props> = ({ goals }) => {
                             <th className="border border-gray-300 px-4 py-2">name</th>
                             <th className="border border-gray-300 px-4 py-2">startDate</th>
                             <th className="border border-gray-300 px-4 py-2">endDate</th>
-                            <th className="border border-gray-300 px-4 py-2">wasSuccesful</th>
+                            <th className="border border-gray-300 px-4 py-2">wasSuccessful</th>
                             <th className="border border-gray-300 px-4 py-2">userId</th>
 
                         </tr>
@@ -25,7 +25,7 @@ const GoalOverview: React.FC<Props> = ({ goals }) => {
                                 <td className="border border-gray-300 px-4 py-2 text-right">{g.name}</td>
                                 <td className="border border-gray-300 px-4 py-2">{g.startDate}</td>
                                 <td className="border border-gray-300 px-4 py-2 text-right">{g.endDate}</td>
-                                <td className="border border-gray-300 px-4 py-2">{g.wasSuccesful}</td>
+                                <td className="border border-gray-300 px-4 py-2">{g.wasSuccessful ? "yes" : "no"}</td>
                                 <td className="border border-gray-300 px-4 py-2 text-right">{g.userId}</td>
                             </tr>
                         ))}
