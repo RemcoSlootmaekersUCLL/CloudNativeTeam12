@@ -3,9 +3,11 @@ package be.ucll.service;
 import be.ucll.dto.WorkoutExerciseResponse;
 import be.ucll.dto.WorkoutResponse;
 import be.ucll.model.Exercise;
+import be.ucll.model.User;
 import be.ucll.model.Workout;
 import be.ucll.model.WorkoutExercise;
 import be.ucll.repository.ExerciseRepository;
+import be.ucll.repository.UserRepository;
 import be.ucll.repository.WorkoutRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +19,12 @@ public class WorkoutService {
 
     private final WorkoutRepository workoutRepository;
     private final ExerciseRepository exerciseRepository;
+    private final UserRepository userRepository;
 
-    public WorkoutService(WorkoutRepository workoutRepository, ExerciseRepository exerciseRepository) {
+    public WorkoutService(WorkoutRepository workoutRepository, ExerciseRepository exerciseRepository, UserRepository userRepository) {
         this.workoutRepository = workoutRepository;
         this.exerciseRepository = exerciseRepository;
+        this.userRepository = userRepository;
     }
 
     // DTO CONVERTER
@@ -55,6 +59,11 @@ public class WorkoutService {
     }
 
     public Workout createWorkout(Workout workout) {
+        //Add workout to user
+        User user=userRepository.findById(workout.getUserId()).orElseThrow(()->new RuntimeException("User with id " +workout.getUserId()+ " not found."));
+        user.setWorkout(workout);
+        userRepository.save(user);
+        //Save new workout
         return workoutRepository.save(workout);
     }
 }
