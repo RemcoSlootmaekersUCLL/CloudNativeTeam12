@@ -6,7 +6,7 @@ const createWorkoutPage: React.FC = () => {
     <>
       <Header />
       <div className="flex justify-center mt-2">
-        <div>
+        <div className="w-[30%] p-2 bg-zinc-800 rounded-xl border border-gray-400">
           <h1 className="font-xl font-bold text-2xl">New Workout</h1>
           <CreateWorkout />
         </div>

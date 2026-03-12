@@ -28,3 +28,8 @@ export type Goals = {
   wasSuccesful: boolean;
   userId: number;
 };
+
+export type StatusMessage = {
+  message: string;
+  type: "succes" | "error";
+};
