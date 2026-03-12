@@ -1,18 +1,20 @@
 package be.ucll.model;
 
-import jakarta.validation.constraints.AssertTrue;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.time.LocalDate;
 
-@Document("goal")
+import org.springframework.data.annotation.Id;
+
+import com.azure.spring.data.cosmos.core.mapping.Container;
+import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
+
+import jakarta.validation.constraints.NotNull;
+
+@Container(containerName = "goal", autoCreateContainer = false)
 public class Goal {
     @Id
     private String id;
 
+    @PartitionKey
     @NotNull(message = "Goal name is required.")
     private String name;
 

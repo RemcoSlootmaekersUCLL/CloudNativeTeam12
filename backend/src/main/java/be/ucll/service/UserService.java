@@ -1,5 +1,6 @@
 package be.ucll.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -23,7 +24,9 @@ public class UserService {
     }
 
     public List<User> getAllUsers(){
-        return userRepository.findAll();
+        List<User> users = new ArrayList<>();
+        userRepository.findAll().forEach(users::add);
+        return users;
     }
 
     public LoginResponse login(String username, String password) {

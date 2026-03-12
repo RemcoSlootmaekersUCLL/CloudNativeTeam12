@@ -1,14 +1,18 @@
 package be.ucll.model;
 
+import org.springframework.data.annotation.Id;
+
+import com.azure.spring.data.cosmos.core.mapping.Container;
+import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
+
 import be.ucll.model.enums.Type;
 import jakarta.validation.constraints.NotNull;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("exercise")
+@Container(containerName = "exercise", autoCreateContainer = false)
 public class Exercise {
     @Id
     private String id;
+    @PartitionKey
     @NotNull(message = "Exercise name is required.")
     private String name;
 

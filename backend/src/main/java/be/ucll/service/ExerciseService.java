@@ -1,10 +1,12 @@
 package be.ucll.service;
 
-import be.ucll.model.Exercise;
-import be.ucll.repository.ExerciseRepository;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import be.ucll.model.Exercise;
+import be.ucll.repository.ExerciseRepository;
 
 @Service
 public class ExerciseService {
@@ -15,7 +17,9 @@ public class ExerciseService {
     }
 
     public List<Exercise> getAllExercises() {
-        return exerciseRepository.findAll();
+        List<Exercise> exercises = new ArrayList<>();
+        exerciseRepository.findAll().forEach(exercises::add);
+        return exercises;
     }
 
     public Exercise getExerciseById(String id) {

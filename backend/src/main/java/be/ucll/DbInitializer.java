@@ -1,18 +1,22 @@
 package be.ucll;
 
-import be.ucll.model.*;
+import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import be.ucll.model.Exercise;
+import be.ucll.model.Goal;
+import be.ucll.model.User;
+import be.ucll.model.Workout;
+import be.ucll.model.WorkoutExercise;
 import be.ucll.model.enums.Type;
 import be.ucll.repository.ExerciseRepository;
 import be.ucll.repository.GoalRepository;
 import be.ucll.repository.UserRepository;
 import be.ucll.repository.WorkoutRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import jakarta.annotation.PostConstruct;
-
-import java.time.LocalDate;
-import java.util.List;
 
 @Component
 public class DbInitializer {
@@ -30,13 +34,18 @@ public class DbInitializer {
     }
     @PostConstruct
     public void init() {
+        // Only seed if database is empty
+        if (workoutRepository.count() > 0) {
+            System.out.println("Database already has data, skipping initialization.");
+            return;
+        }
         //Ja ik heb chatGPT dit laten generaten, te veel werk
 
         // 1. Clear all existing data
-        exerciseRepository.deleteAll();
-        workoutRepository.deleteAll();
-        goalRepository.deleteAll();
-        userRepository.deleteAll();
+        // exerciseRepository.deleteAll();
+        // workoutRepository.deleteAll();
+        // goalRepository.deleteAll();
+        // userRepository.deleteAll();
 
         // =====================
         // 2️⃣ Create Exercises

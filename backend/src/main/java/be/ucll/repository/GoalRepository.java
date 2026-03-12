@@ -1,7 +1,8 @@
 package be.ucll.repository;
 
-import be.ucll.model.Goal;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import com.azure.spring.data.cosmos.repository.CosmosRepository;
 
-public interface GoalRepository extends MongoRepository<Goal, String> {
+import be.ucll.model.Goal;
+
+public interface GoalRepository extends CosmosRepository<Goal, String> {
 }

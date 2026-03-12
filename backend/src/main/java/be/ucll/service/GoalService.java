@@ -1,11 +1,12 @@
 package be.ucll.service;
 
-import be.ucll.model.Goal;
-import be.ucll.repository.ExerciseRepository;
-import be.ucll.repository.GoalRepository;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import be.ucll.model.Goal;
+import be.ucll.repository.GoalRepository;
 
 @Service
 public class GoalService {
@@ -16,6 +17,8 @@ public class GoalService {
     }
 
     public List<Goal> getAllGoals(){
-        return goalRepository.findAll();
+        List<Goal> goals = new ArrayList<>();
+        goalRepository.findAll().forEach(goals::add);
+        return goals;
     }
 }

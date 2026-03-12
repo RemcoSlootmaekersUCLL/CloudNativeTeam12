@@ -1,16 +1,16 @@
 package be.ucll.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import be.ucll.dto.WorkoutExerciseResponse;
 import be.ucll.dto.WorkoutResponse;
 import be.ucll.model.Exercise;
 import be.ucll.model.Workout;
-import be.ucll.model.WorkoutExercise;
 import be.ucll.repository.ExerciseRepository;
 import be.ucll.repository.WorkoutRepository;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class WorkoutService {
@@ -40,7 +40,9 @@ public class WorkoutService {
     }
 
     public List<WorkoutResponse> getAllWorkouts() {
-        return convertWorkoutToDTO(workoutRepository.findAll());
+        List<Workout> workouts = new ArrayList<>();
+        workoutRepository.findAll().forEach(workouts::add);
+        return convertWorkoutToDTO(workouts);
     }
 
     public List<WorkoutResponse> getWorkoutsByUser(String userId) {
