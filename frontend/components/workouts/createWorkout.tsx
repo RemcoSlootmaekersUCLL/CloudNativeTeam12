@@ -1,13 +1,9 @@
-type Props = {
-  userId: string;
-};
+"use client";
 
-const CreateWorkout: React.FC<Props> = ({ userId }: Props) => {
-  return (
-    <>
-      <div className="flex justify-center">Pong</div>
-    </>
-  );
+const CreateWorkout: React.FC = () => {
+  const userId = localStorage.getItem("id")!; // next will error: 'localStorage is not defined', it works tho
+
+  return <>{userId}</>;
 };
 
 export default CreateWorkout;
