@@ -27,7 +27,7 @@ const Header: React.FC = () => {
             aria-label="main"
           >
             {links.map((link) => (
-              <Link href={link.uri} className={linkClassname}>
+              <Link key={link.uri} href={link.uri} className={linkClassname}>
                 {link.dest}
               </Link>
             ))}
