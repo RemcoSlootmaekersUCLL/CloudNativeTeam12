@@ -39,7 +39,6 @@ export default function LoginForm() {
 
   return (
     <div className="bg-inherit">
-      <Header />
       <div className="flex justify-center items-center h-screen text-white">
         <div className="w-full max-w-xs">
           <h2 className="m-0 mb-6 text-[22px] font-semibold text-white">

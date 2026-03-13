@@ -7,7 +7,6 @@ export const metadata = {
 const Home = () => {
   return (
     <div className="text-center">
-      <Header></Header>
       <h1 className="text-center font-bold p-4">
         Track your fitness activities.
       </h1>

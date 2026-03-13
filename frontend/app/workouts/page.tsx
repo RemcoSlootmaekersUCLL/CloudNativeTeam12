@@ -2,7 +2,6 @@ import Header from "@/components/header";
 import workoutService from "@/services/workoutService";
 import WorkoutOverview from "@/components/workouts/workoutOverview";
 
-
 const getData = async () => {
   try {
     const workouts = await workoutService.getAllWorkouts();
@@ -22,18 +21,20 @@ const WorkoutPage: React.FC = async () => {
 
   return (
     <div>
-      <Header />
       <main>
         <h1 className="text-center font-bold p-4">Overview of all workouts.</h1>
         {error && (
           <div className="text-red-800" role="alert">
             {error}
-          </div>)}
-        {data && (<>
-          <section className="table-container-style">
-            <WorkoutOverview workouts={data} />
-          </section>
-        </>)}
+          </div>
+        )}
+        {data && (
+          <>
+            <section className="table-container-style">
+              <WorkoutOverview workouts={data} />
+            </section>
+          </>
+        )}
       </main>
     </div>
   );
