@@ -31,6 +31,9 @@ const WorkoutsOfUserPage: React.FC<Props> = async ({ params }: Props) => {
           <span className="self-center">
             <CreateWorkoutButton userId={userId} />
           </span>
+          <p className="text-sm self-center">
+            Button should be moved to profile page when we have one
+          </p>
         </div>
         <div className="mt-4 table-container-style">
           <UserWorkouts userWorkouts={workoutsByUser} />
