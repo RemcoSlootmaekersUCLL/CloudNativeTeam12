@@ -1,16 +1,19 @@
 "use client";
 
 import exerciseService from "@/services/exerciseService";
-import { Exercises, StatusMessage } from "@/types";
+import workoutService from "@/services/workoutService";
+import { Exercises, StatusMessage, WorkoutExercise, Workouts } from "@/types";
 import { useEffect, useState } from "react";
 
 const CreateWorkout: React.FC = () => {
   const [userId, setUserId] = useState<string>("");
   const [allExercises, setAllExercises] = useState<Exercises[]>([]);
   const [statusMessages, setStatusMessages] = useState<StatusMessage[]>([]);
-  const [workoutName, setWorkoutName] = useState<string>("");
   const [workoutDate, setWorkoutDate] = useState<string>("");
   const [selectedExercises, setSelectedExercises] = useState<Exercises[]>([]);
+  const [workoutExercises, setWorkoutExercises] = useState<WorkoutExercise[]>(
+    [],
+  );
 
   useEffect(() => {
     setUserId(localStorage.getItem("id")!);
@@ -25,18 +28,35 @@ const CreateWorkout: React.FC = () => {
     );
   }
 
-  function validateWorkout(
-    workoutName: string,
-    workoutDate: string,
-    exercises: Exercises[],
+  function handleWorkoutExerciseChange(
+    id: number,
+    field: keyof WorkoutExercise,
+    value: number,
   ) {
-    if (!workoutName.trim()) {
-      setStatusMessages([
-        { message: "Workout name is mandatory.", type: "error" },
-      ]);
-      return false;
-    }
+    setWorkoutExercises((prev) => {
+      const existing = prev.find((ex) => ex.exerciseId === String(id));
+      if (existing) {
+        return prev.map((ex) =>
+          ex.exerciseId === String(id) ? { ...ex, [field]: value } : ex,
+        );
+      }
+      return [
+        ...prev,
+        {
+          exerciseId: String(id),
+          reps: 0,
+          duration: 0,
+          caloriesBurned: 0,
+          [field]: value,
+        },
+      ];
+    });
+  }
 
+  function validateWorkout(
+    workoutDate: string,
+    workoutExercises: WorkoutExercise[],
+  ) {
     const timeRegex = /^\d{4}-\d{2}-\d{2}$/;
 
     if (!workoutDate.trim()) {
@@ -54,7 +74,7 @@ const CreateWorkout: React.FC = () => {
       return false;
     }
 
-    if (exercises.length == 0) {
+    if (workoutExercises.length == 0) {
       setStatusMessages([
         { message: "At least 1 exercise is mandatory.", type: "error" },
       ]);
@@ -67,28 +87,30 @@ const CreateWorkout: React.FC = () => {
     return true;
   }
 
-  // TODO: make API call to create new workout for user with {userId}
-  function createWorkout(
-    workoutName: string,
-    workoutDate: string,
-    exercises: Exercises[],
-  ) {}
+  function createWorkout() {
+    const workout = {
+      userId: userId,
+      date: Number(workoutDate),
+      exercises: workoutExercises,
+    };
+
+    workoutService
+      .createWorkout(workout)
+      .then(() =>
+        setStatusMessages([{ message: "Workout created", type: "succes" }]),
+      )
+      .catch((err) => {
+        console.error(err);
+        setStatusMessages([
+          { message: "Something went wrong..", type: "error" },
+        ]);
+      });
+  }
 
   return (
     <>
       <div>
         <form>
-          <div className="flex flex-col">
-            <label htmlFor="workoutName">Workout Name:</label>
-            <input
-              type="text"
-              id="workoutName"
-              value={workoutName}
-              onChange={(e) => setWorkoutName(e.target.value)}
-              className="text-field"
-              placeholder="Leg-day"
-            />
-          </div>
           <div className="flex flex-col">
             <label htmlFor="workoutDate">Workout Date:</label>
             <input
@@ -121,6 +143,67 @@ const CreateWorkout: React.FC = () => {
                 </label>
               ))}
             </div>
+            {selectedExercises.map((exercise) => (
+              <table key={exercise.id} className="w-full border-collapse">
+                <thead>
+                  <tr>
+                    <th colSpan={2} className="text-left p-1">
+                      {exercise.name}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="p-1">Reps</td>
+                    <td className="p-1">
+                      <input
+                        className="text-field"
+                        type="number"
+                        onChange={(e) =>
+                          handleWorkoutExerciseChange(
+                            exercise.id,
+                            "reps",
+                            Number(e.target.value),
+                          )
+                        }
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="p-1">Duration (s)</td>
+                    <td className="p-1">
+                      <input
+                        className="text-field"
+                        type="number"
+                        onChange={(e) =>
+                          handleWorkoutExerciseChange(
+                            exercise.id,
+                            "duration",
+                            Number(e.target.value),
+                          )
+                        }
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="p-1">Calories Burned</td>
+                    <td className="p-1">
+                      <input
+                        className="text-field"
+                        type="number"
+                        onChange={(e) =>
+                          handleWorkoutExerciseChange(
+                            exercise.id,
+                            "caloriesBurned",
+                            Number(e.target.value),
+                          )
+                        }
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            ))}
           </div>
           {statusMessages.length > 0 && statusMessages[0].type === "error" && (
             <p className="text-red-400">{statusMessages[0].message}</p>
@@ -129,8 +212,8 @@ const CreateWorkout: React.FC = () => {
             className="p-2 mt-4 rounded-xl bg-gradient-to-br from-blue-500 to-sky-700 border border-slate-400"
             onClick={(e) => {
               e.preventDefault();
-              if (validateWorkout(workoutName, workoutDate, selectedExercises))
-                createWorkout(workoutName, workoutDate, selectedExercises);
+              if (validateWorkout(workoutDate, workoutExercises))
+                createWorkout();
             }}
           >
             Create Workout

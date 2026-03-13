@@ -5,10 +5,17 @@ export type Exercises = {
 };
 
 export type Workouts = {
-  id: number;
-  userId: number;
+  id?: number;
+  userId: string;
   date: number;
   exercises: Exercises[];
+};
+
+export type WorkoutExercise = {
+  exerciseId: string;
+  reps: number;
+  duration: number;
+  caloriesBurned: number;
 };
 
 export type Users = {
