@@ -36,4 +36,8 @@ public class WorkoutController {
     public Workout createWorkout(@RequestBody Workout workout) {
         return workoutService.createWorkout(workout);
     }
+    @PostMapping("/user/{userId}")
+    public Workout createWorkoutByUserId(@RequestBody Workout workout, @PathVariable String userId) {
+        return workoutService.createWorkoutByUserId(workout,userId);
+    }
 }

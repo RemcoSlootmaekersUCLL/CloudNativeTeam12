@@ -59,11 +59,25 @@ public class WorkoutService {
     }
 
     public Workout createWorkout(Workout workout) {
+        //Save new workout (we do this now so that id isn't null for workout in user)
+        Workout result=workoutRepository.save(workout);
+
         //Add workout to user
         User user=userRepository.findById(workout.getUserId()).orElseThrow(()->new RuntimeException("User with id " +workout.getUserId()+ " not found."));
         user.setWorkout(workout);
         userRepository.save(user);
+        return result;
+    }
+
+    public Workout createWorkoutByUserId(Workout workout, String userId) {
+        //Check if path variable and body parameter userId are the same.
+        if (!workout.getUserId().equals(userId)){throw new RuntimeException("Given userId does not match userId of workout you're trying to create. Workout userid: "+ userId+ "!=" +workout.getUserId());}
         //Save new workout
-        return workoutRepository.save(workout);
+        Workout result=workoutRepository.save(workout);
+        //Add workout to user
+        User user=userRepository.findById(userId).orElseThrow(()->new RuntimeException("User with id " +userId+ " not found."));
+        user.setWorkout(workout);
+        userRepository.save(user);
+        return result;
     }
 }
