@@ -46,7 +46,7 @@ const CreateGoal: React.FC<props> = ({ userId }) => {
             isValid = false;
         }
         if (!timeRegex.test(endDate)) {
-            setStartDateError("EndDate is manditory.");
+            setEndDateError("EndDate is manditory.");
             isValid = false;
         }
 
@@ -115,6 +115,7 @@ const CreateGoal: React.FC<props> = ({ userId }) => {
                             id="name"
                             type="text"
                             value={name}
+                            placeholder="Your goal"
                             onChange={(event) => setName(event.target.value)}
                             className="border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue:500 block w-full p-2.5" />
                         {nameError && <p className="text-red-600 text-sm mt-1">{nameError}</p>}
@@ -133,6 +134,7 @@ const CreateGoal: React.FC<props> = ({ userId }) => {
                             id="startdate"
                             type="text"
                             value={startDate}
+                            placeholder="YYYY-MM-DD"
                             onChange={(event) => setStartDate(event.target.value)}
                             className="border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue:500 block w-full p-2.5" />
                         {startDateError && <p className="text-red-600 text-sm mt-1">{startDateError}</p>}
@@ -151,6 +153,7 @@ const CreateGoal: React.FC<props> = ({ userId }) => {
                             id="enddate"
                             type="text"
                             value={endDate}
+                            placeholder="YYYY-MM-DD"
                             onChange={(event) => setEndDate(event.target.value)}
                             className="border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue:500 block w-full p-2.5" />
                         {endDateError && <p className="text-red-600 text-sm mt-1">{endDateError}</p>}
@@ -168,9 +171,9 @@ const CreateGoal: React.FC<props> = ({ userId }) => {
                         <input
                             id="wasSuccessful"
                             type="checkbox"
-                            value={endDate}
-                            onChange={(event) => setWasSuccessful(Boolean(event.target.value))}
-                            className="border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue:500 block w-full p-2.5" />
+                            checked={wasSuccessful}
+                            onChange={(event) => setWasSuccessful(event.target.checked)}
+                            className="w-5 h-5 accent-blue-500 rounded-lg" />
                     </div>
                 </div>
                 <div className="flex gap-x-1 mt-2">

@@ -1,13 +1,17 @@
 import Header from "@/components/header";
 import goalService from "@/services/goalService";
 import GoalOverview from "@/components/goals/goalOverview";
+import userService from "@/services/userService";
 
 
 const getData = async () => {
     try {
         const goals = await goalService.getAllGoals();
+        const users = await userService.getAllUsers();
+        const userIds = users.map(u => u.id);
 
-        return { data: goals, error: null };
+
+        return { data: { goals, userIds }, error: null };
     } catch (error) {
         return { data: null, error: (error as Error).message };
     }
@@ -31,7 +35,7 @@ const GoalPage: React.FC = async () => {
                     </div>)}
                 {data && (<>
                     <section className="table-container-style">
-                        <GoalOverview goals={data} />
+                        <GoalOverview goals={data.goals} userIds={data.userIds} />
                     </section>
                 </>)}
             </main>
