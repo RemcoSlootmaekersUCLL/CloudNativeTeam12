@@ -28,6 +28,9 @@ public class UserService {
         userRepository.findAll().forEach(users::add);
         return users;
     }
+    public User getUserById(String id){
+        return userRepository.findById(id).orElseThrow(()-> new RuntimeException("User with id "+id+ " does not exist."));
+    }
 
     public LoginResponse login(String username, String password) {
         User user = userRepository.findByUsername(username)
