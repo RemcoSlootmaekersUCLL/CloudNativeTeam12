@@ -2,7 +2,6 @@ package be.ucll.controller;
 
 import be.ucll.model.Exercise;
 import be.ucll.service.ExerciseService;
-import be.ucll.service.WorkoutService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
