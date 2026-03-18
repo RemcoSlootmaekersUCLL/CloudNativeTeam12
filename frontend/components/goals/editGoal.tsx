@@ -73,7 +73,7 @@ const EditGoal: React.FC<props> = ({ goalId, goal }) => {
             name,
             startDate,
             endDate,
-            wasSuccessful: true,
+            wasSuccessful,
             userId
         };
 
