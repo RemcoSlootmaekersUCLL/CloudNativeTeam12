@@ -37,7 +37,7 @@ const UserOverview: React.FC<Props> = ({ users }) => {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table >
       )}
     </>
   );

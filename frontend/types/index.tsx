@@ -21,12 +21,12 @@ export type Users = {
 };
 
 export type Goals = {
-  id: number;
+  id:string;
   name: string;
   startDate: string;
   endDate: string;
   wasSuccessful: boolean;
-  userId: number;
+  userId: string;
 };
 
 export type StatusMessage = {

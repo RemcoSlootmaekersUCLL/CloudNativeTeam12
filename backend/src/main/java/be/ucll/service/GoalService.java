@@ -2,7 +2,6 @@ package be.ucll.service;
 
 import be.ucll.model.Goal;
 import be.ucll.model.User;
-import be.ucll.repository.ExerciseRepository;
 import be.ucll.repository.GoalRepository;
 import be.ucll.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -12,17 +11,28 @@ import java.util.List;
 @Service
 public class GoalService {
     private final GoalRepository goalRepository;
-    private final UserService userService;
     private final UserRepository userRepository;
 
-    public GoalService(GoalRepository goalRepository, UserService userService, UserRepository userRepository){
+    public GoalService(GoalRepository goalRepository,  UserRepository userRepository){
         this.goalRepository=goalRepository;
-        this.userService = userService;
         this.userRepository = userRepository;
     }
 
     public List<Goal> getAllGoals(){
         return goalRepository.findAll();
+    }
+    public Goal getGoal(String id) {
+        Goal goal = goalRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Goal met id: " + id + " bestaat niet."));
+        return goal;
+    }
+
+    public Goal createGoal(Goal goal) {
+        User user = userRepository.findById(goal.getUserId()).orElseThrow(()-> new RuntimeException("User with id "+goal.getUserId()+ " does not exist."));
+        user.setGoal(goal);
+        goalRepository.save(goal);
+        userRepository.save(user);
+        return goal;
     }
 
     //Changes every field other than id and userId
@@ -42,11 +52,5 @@ public class GoalService {
         userRepository.save(user);
         //change goal
         return goalRepository.save(changed_goal);
-    }
-
-    public Goal getGoal(String id) {
-        Goal goal = goalRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Goal met id: " + id + " bestaat niet."));
-        return goal;
     }
 }
