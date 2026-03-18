@@ -13,7 +13,7 @@ const Header: React.FC = () => {
   ];
 
   const linkClassname =
-    "mx-2 px-2 py-1 text-yellow-50 rounded-lg hover:bg-pink-200 hover:text-black transition-colors duration-300";
+    "mx-2 px-2 py-1 text-yellow-50 rounded-lg hover:bg-cyan-300/30 transition-colors duration-300";
 
   return (
     <header className="w-full bg-gradient-to-r from-green-600 to-emerald-600 py-1">
