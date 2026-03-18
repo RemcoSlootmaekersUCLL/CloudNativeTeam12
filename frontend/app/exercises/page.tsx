@@ -1,4 +1,3 @@
-import Header from "@/components/header";
 import ExerciseOverview from "@/components/exercises/exerciseOverview";
 import exerciseService from "@/services/exerciseService";
 

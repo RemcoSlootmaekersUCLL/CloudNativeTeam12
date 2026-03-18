@@ -1,4 +1,3 @@
-import Header from "@/components/header";
 import goalService from "@/services/goalService";
 import GoalOverview from "@/components/goals/goalOverview";
 import userService from "@/services/userService";
@@ -26,7 +25,6 @@ const GoalPage: React.FC = async () => {
 
     return (
         <div>
-            <Header />
             <main>
                 <h1 className="text-center font-bold p-4">Overview of all goals.</h1>
                 {error && (

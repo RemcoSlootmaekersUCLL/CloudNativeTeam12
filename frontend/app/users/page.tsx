@@ -1,4 +1,3 @@
-import Header from "@/components/header";
 import userService from "@/services/userService";
 import UserOverview from "@/components/users/userOverview";
 

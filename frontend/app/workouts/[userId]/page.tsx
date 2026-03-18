@@ -1,4 +1,3 @@
-import Header from "@/components/header";
 import workoutService from "@/services/workoutService";
 import { Workouts } from "@/types";
 import UserWorkouts from "@/components/workouts/userWorkouts";

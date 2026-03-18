@@ -1,4 +1,3 @@
-import Header from "@/components/header";
 import workoutService from "@/services/workoutService";
 import WorkoutOverview from "@/components/workouts/workoutOverview";
 

@@ -16,9 +16,9 @@ const Header: React.FC = () => {
     "mx-2 px-2 py-1 text-yellow-50 rounded-lg hover:bg-cyan-300/30 transition-colors duration-300";
 
   return (
-    <header className="w-full bg-gradient-to-r from-green-600 to-emerald-600 py-1">
+    <header className="w-full bg-gradient-to-r from-emerald-600 to-lime-400 py-1">
       <div className="flex flex-col justify-center">
-        <h1 className="text-3xl self-center font-bold bg-gradient-to-r text-transparent bg-clip-text from-blue-300 via-sky-100 to-blue-300">
+        <h1 className="text-3xl self-center font-bold bg-gradient-to-r text-transparent bg-clip-text from-blue-100 to-sky-200">
           <Link href="/">Fitness tracker</Link>
         </h1>
         <div className="md:flex md:just-between md:mx-auto">

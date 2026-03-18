@@ -1,4 +1,3 @@
-import Header from "@/components/header";
 import EditGoal from "@/components/goals/editGoal";
 import goalService from "@/services/goalService";
 
@@ -19,7 +18,6 @@ const CreateGoalPage: React.FC<Props> = async ({ params }: Props) => {
 
     return (
         <div>
-            <Header />
             <main>
                 <h1 className="text-center font-bold p-4">Edit goal {goalId}.</h1>
                 <section className="table-container-style">
