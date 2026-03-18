@@ -2,6 +2,7 @@ package be.ucll.model;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.data.annotation.Id;
 
@@ -13,7 +14,7 @@ import jakarta.validation.constraints.NotNull;
 @Container(containerName = "workout", autoCreateContainer = false)
 public class Workout {
     @Id
-    private String id;
+    private String id = UUID.randomUUID().toString();
     
     @PartitionKey
     @NotNull(message = "UserId is required.")

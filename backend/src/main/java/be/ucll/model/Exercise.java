@@ -1,5 +1,7 @@
 package be.ucll.model;
 
+import java.util.UUID;
+
 import org.springframework.data.annotation.Id;
 
 import com.azure.spring.data.cosmos.core.mapping.Container;
@@ -11,7 +13,7 @@ import jakarta.validation.constraints.NotNull;
 @Container(containerName = "exercise", autoCreateContainer = false)
 public class Exercise {
     @Id
-    private String id;
+    private String id = UUID.randomUUID().toString();
     @PartitionKey
     @NotNull(message = "Exercise name is required.")
     private String name;

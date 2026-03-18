@@ -3,6 +3,7 @@ package be.ucll.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.data.annotation.Id;
 
@@ -15,7 +16,7 @@ import jakarta.validation.constraints.NotNull;
 @Container(containerName = "users", autoCreateContainer = false)
 public class User {
     @Id
-    private String id;
+    private String id = UUID.randomUUID().toString();
     
     @PartitionKey
     @NotNull(message = "Username is required.")

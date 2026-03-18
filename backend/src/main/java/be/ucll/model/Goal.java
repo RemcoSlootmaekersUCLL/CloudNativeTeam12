@@ -1,6 +1,7 @@
 package be.ucll.model;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 import org.springframework.data.annotation.Id;
 
@@ -12,8 +13,7 @@ import jakarta.validation.constraints.NotNull;
 @Container(containerName = "goal", autoCreateContainer = false)
 public class Goal {
     @Id
-    private String id;
-
+    private String id = UUID.randomUUID().toString();
     @PartitionKey
     @NotNull(message = "Goal name is required.")
     private String name;
