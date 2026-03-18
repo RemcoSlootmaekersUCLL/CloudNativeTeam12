@@ -83,7 +83,7 @@ const EditGoal: React.FC<props> = ({ goalId, goal }) => {
                 console.log("API returned error");
                 return;
             }
-            setStatusMessage([{ message: "Goal succesfully added.", type: "success" }])
+            setStatusMessage([{ message: "Goal succesfully edited.", type: "success" }])
             setTimeout(() => {
                 router.push("/goals");
             }, 1000);

@@ -5,7 +5,7 @@ export type Exercises = {
 };
 
 export type Workouts = {
-  id: number;
+  id: string;
   userId: number;
   date: number;
   exercises: Exercises[];
@@ -21,7 +21,7 @@ export type Users = {
 };
 
 export type Goals = {
-  id:string;
+  id: string;
   name: string;
   startDate: string;
   endDate: string;

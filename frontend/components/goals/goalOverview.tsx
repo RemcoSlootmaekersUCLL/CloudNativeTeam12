@@ -45,7 +45,7 @@ const GoalOverview: React.FC<Props> = ({ goals, userIds }) => {
                             <th className="border border-gray-300 px-4 py-2">endDate</th>
                             <th className="border border-gray-300 px-4 py-2">wasSuccessful</th>
                             <th className="border border-gray-300 px-4 py-2">userId</th>
-                            <th className="border border-gray-300 px-4 py-2">edit</th>
+                            <th className="border border-gray-300 px-4 py-2">options</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -58,6 +58,7 @@ const GoalOverview: React.FC<Props> = ({ goals, userIds }) => {
                                 <td className="border border-gray-300 px-4 py-2 text-right">{g.userId}</td>
                                 <td className="border border-gray-300 px-4 py-2 text-right">
                                     <Link href={`/goals/edit/${g.id}`} className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">edit goal</Link>
+                                    <Link href={`/goals/delete/${g.id}`} className="text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">delete goal</Link>
                                 </td>
                             </tr>
                         ))}
