@@ -21,6 +21,7 @@ export type Users = {
 };
 
 export type Goals = {
+  id:string;
   name: string;
   startDate: string;
   endDate: string;
