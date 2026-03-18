@@ -23,6 +23,7 @@ spring:
 cors:
   allowed-origins:
     - http://localhost:3000
+    - http://localhost:3001
 
 jwt:
   secret-key: JCDGzgGzvVT52dx1fa7eg1659lgOd15Sr7ceSCyao2q
