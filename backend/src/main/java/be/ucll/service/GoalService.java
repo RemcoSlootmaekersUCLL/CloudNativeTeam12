@@ -43,4 +43,10 @@ public class GoalService {
         //change goal
         return goalRepository.save(changed_goal);
     }
+
+    public Goal getGoal(String id) {
+        Goal goal = goalRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Goal met id: " + id + " bestaat niet."));
+        return goal;
+    }
 }

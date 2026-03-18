@@ -22,6 +22,11 @@ public class GoalController {
         return goalService.getAllGoals();
     }
 
+    @GetMapping("/{id}")
+    public Goal getGoal(@PathVariable String id){
+        return goalService.getGoal(id);
+    }
+
     @PutMapping("/{id}")
     public Goal editGoal(@RequestBody Goal goal, @PathVariable String id){
         return goalService.editGoal(goal,id);

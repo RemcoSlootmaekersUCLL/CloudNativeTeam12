@@ -23,8 +23,13 @@ export type Users = {
 export type Goals = {
   id: number;
   name: string;
-  startDate: number;
-  endDate: number;
-  wasSuccesful: boolean;
+  startDate: string;
+  endDate: string;
+  wasSuccessful: boolean;
   userId: number;
+};
+
+export type StatusMessage = {
+  message: string;
+  type: "success" | "error";
 };
