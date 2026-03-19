@@ -6,8 +6,8 @@ export type Exercises = {
 
 export type Workouts = {
   id: string;
-  userId: number;
-  date: number;
+  userId: string;
+  date: string;
   exercises: Exercises[];
 };
 

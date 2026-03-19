@@ -38,7 +38,7 @@ public class WorkoutService {
                         we.getDuration(), we.getCaloriesBurned());
             }).toList();
             // Create and return full dto response
-            return new WorkoutResponse(workout.getUserId(), workout.getDate(), exerciseResponses,
+            return new WorkoutResponse(workout.getId(), workout.getUserId(), workout.getDate(), exerciseResponses,
                     workout.getTotalCaloriesBurned());
         }).toList();
     }

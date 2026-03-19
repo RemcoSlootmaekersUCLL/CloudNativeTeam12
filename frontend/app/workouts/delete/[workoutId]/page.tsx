@@ -3,7 +3,7 @@ import DeleteWorkout from "@/components/workouts/deleteWorkout";
 
 type Props = {
     params: Promise<{
-       workoutId: string;
+        workoutId: string;
     }>;
 };
 
