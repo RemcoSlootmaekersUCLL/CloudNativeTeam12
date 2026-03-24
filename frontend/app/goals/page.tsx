@@ -1,4 +1,3 @@
-import Header from "@/components/header";
 import goalService from "@/services/goalService";
 import GoalOverview from "@/components/goals/goalOverview";
 import userService from "@/services/userService";
@@ -18,15 +17,14 @@ const getData = async () => {
 };
 
 export const metadata = {
-    title: "Goals - Fitness tracker",
+  title: "Goals - Fitness tracker",
 };
 
 const GoalPage: React.FC = async () => {
-    const { data, error } = await getData();
+  const { data, error } = await getData();
 
     return (
         <div>
-            <Header />
             <main>
                 <h1 className="text-center font-bold p-4">Overview of all goals.</h1>
                 {error && (
