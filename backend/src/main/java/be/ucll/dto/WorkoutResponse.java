@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public record WorkoutResponse (
+        String id,
         String userId,
         LocalDate date,
         List<WorkoutExerciseResponse> exercises,

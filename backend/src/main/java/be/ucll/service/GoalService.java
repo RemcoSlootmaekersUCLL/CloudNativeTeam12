@@ -53,4 +53,15 @@ public class GoalService {
         //change goal
         return goalRepository.save(changed_goal);
     }
+
+    public void deleteGoalById(String id) {
+        //Get Goal by id
+        Goal deleted_goal= goalRepository.findById(id).orElseThrow(()->new RuntimeException("Goal with id " +id+ " not found."));
+        //Remove goal from user
+        User user=userRepository.findById(deleted_goal.getUserId()).orElseThrow(()->new RuntimeException("User with id " +deleted_goal.getUserId()+ " not found."));
+        user.getGoals().removeIf(workout -> workout.getId().equals(deleted_goal.getId()));
+        userRepository.save(user);
+        //Remove workout
+        goalRepository.delete(deleted_goal);
+    }
 }

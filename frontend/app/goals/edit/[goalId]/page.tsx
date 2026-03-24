@@ -12,7 +12,7 @@ export const metadata = {
     title: "edit goal - Fitness tracker",
 };
 
-const CreateGoalPage: React.FC<Props> = async ({ params }: Props) => {
+const EditGoalPage: React.FC<Props> = async ({ params }: Props) => {
     const { goalId } = await params;
     const goal = await goalService.getGoal(goalId);
 
@@ -28,4 +28,4 @@ const CreateGoalPage: React.FC<Props> = async ({ params }: Props) => {
     );
 };
 
-export default CreateGoalPage;
+export default EditGoalPage;
