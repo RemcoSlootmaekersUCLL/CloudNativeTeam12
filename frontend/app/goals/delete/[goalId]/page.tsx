@@ -1,4 +1,3 @@
-import Header from "@/components/header";
 import DeleteGoal from "@/components/goals/deleteGoal";
 
 type Props = {
@@ -12,7 +11,6 @@ const DeleteGoalPage: React.FC<Props> = async ({ params }: Props) => {
 
     return (
         <div>
-            <Header />
             <main>
                 <h1 className="text-center font-bold p-4">Delete goal {goalId}.</h1>
                 <section className="table-container-style">
