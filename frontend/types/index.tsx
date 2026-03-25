@@ -12,7 +12,7 @@ export type Workouts = {
 };
 
 export type Users = {
-  id: number;
+  id?: number;
   username: string;
   password: string;
   age: number;
