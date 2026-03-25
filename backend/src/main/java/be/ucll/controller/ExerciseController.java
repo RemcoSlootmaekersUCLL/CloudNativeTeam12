@@ -2,6 +2,7 @@ package be.ucll.controller;
 
 import be.ucll.model.Exercise;
 import be.ucll.service.ExerciseService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 public class ExerciseController {
     private final ExerciseService exerciseService;
 
+    @Autowired
     public ExerciseController(ExerciseService exerciseService) {
         this.exerciseService = exerciseService;
     }

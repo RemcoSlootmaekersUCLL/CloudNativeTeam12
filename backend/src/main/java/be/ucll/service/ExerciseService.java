@@ -48,7 +48,7 @@ public class ExerciseService {
         workoutRepository.saveAll(workouts);
 
         //Update workout in users as well
-        List<User> users=userRepository.findAll();
+        List<User> users= (List<User>) userRepository.findAll();
         users.forEach(user ->
                 user.getWorkouts().forEach(workout ->
                         workout.getExercises().removeIf(e -> e.getExerciseId().equals(id))
