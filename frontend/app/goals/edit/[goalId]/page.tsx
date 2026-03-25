@@ -1,4 +1,3 @@
-import Header from "@/components/header";
 import EditGoal from "@/components/goals/editGoal";
 import goalService from "@/services/goalService";
 
@@ -13,13 +12,12 @@ export const metadata = {
     title: "edit goal - Fitness tracker",
 };
 
-const CreateGoalPage: React.FC<Props> = async ({ params }: Props) => {
+const EditGoalPage: React.FC<Props> = async ({ params }: Props) => {
     const { goalId } = await params;
     const goal = await goalService.getGoal(goalId);
 
     return (
         <div>
-            <Header />
             <main>
                 <h1 className="text-center font-bold p-4">Edit goal {goalId}.</h1>
                 <section className="table-container-style">
@@ -30,4 +28,4 @@ const CreateGoalPage: React.FC<Props> = async ({ params }: Props) => {
     );
 };
 
-export default CreateGoalPage;
+export default EditGoalPage;

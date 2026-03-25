@@ -2,10 +2,7 @@ package be.ucll.controller;
 
 import be.ucll.model.Exercise;
 import be.ucll.service.ExerciseService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,4 +25,8 @@ public class ExerciseController {
         return exerciseService.getExerciseById(id);
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteExerciseById(@PathVariable String id) {
+        exerciseService.deleteExerciseById(id);
+    }
 }

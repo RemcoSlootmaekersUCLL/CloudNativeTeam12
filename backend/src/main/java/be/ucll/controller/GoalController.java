@@ -33,4 +33,9 @@ public class GoalController {
     public Goal editGoal(@RequestBody Goal goal, @PathVariable String id){
         return goalService.editGoal(goal,id);
     }
+    @DeleteMapping("/{id}")
+    public void deleteGoalById(@PathVariable String id){
+        goalService.deleteGoalById(id);
+    }
+
 }
