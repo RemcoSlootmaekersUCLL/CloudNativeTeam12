@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Header from "@/components/header";
 
 export const metadata: Metadata = {
   title: "Cloud Native Team 12",
@@ -13,8 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="min-h-screen">
-        <main>{children}</main>
+      <body className="">
+        <Header />
+        <main className="min-h-screen bg-mist-500/90">{children}</main>
       </body>
     </html>
   );

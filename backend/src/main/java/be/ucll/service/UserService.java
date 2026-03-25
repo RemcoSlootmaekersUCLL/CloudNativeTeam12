@@ -2,6 +2,8 @@ package be.ucll.service;
 
 import java.util.List;
 
+import be.ucll.model.Goal;
+import be.ucll.model.Workout;
 import org.springframework.stereotype.Service;
 
 import be.ucll.dto.LoginResponse;
@@ -25,6 +27,9 @@ public class UserService {
     public List<User> getAllUsers(){
         return userRepository.findAll();
     }
+    public User getUserById(String id){
+        return userRepository.findById(id).orElseThrow(()-> new RuntimeException("User with id "+id+ " does not exist."));
+    }
 
     public LoginResponse login(String username, String password) {
         User user = userRepository.findByUsername(username)
@@ -39,6 +44,18 @@ public class UserService {
         response.setUsername(user.getUsername());
         response.setId(user.getId());
         return response;
+    }
+
+
+    public void deleteUserById(String id){
+        //Check if user exists
+        if(!userRepository.existsById(id)){throw new RuntimeException("User with id " +id+ " not found.");}
+        //Delete linked workouts
+        workoutRepository.deleteAll(workoutRepository.findByUserId(id));
+        //Delete linked goals
+        goalRepository.deleteAll(goalRepository.findByUserId(id));
+        //Remove workout
+        userRepository.deleteById(id);
     }
 
 }

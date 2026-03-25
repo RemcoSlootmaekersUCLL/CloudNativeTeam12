@@ -38,7 +38,7 @@ public class WorkoutService {
                         we.getDuration(), we.getCaloriesBurned());
             }).toList();
             // Create and return full dto response
-            return new WorkoutResponse(workout.getUserId(), workout.getDate(), exerciseResponses,
+            return new WorkoutResponse(workout.getId(), workout.getUserId(), workout.getDate(), exerciseResponses,
                     workout.getTotalCaloriesBurned());
         }).toList();
     }
@@ -79,5 +79,16 @@ public class WorkoutService {
         user.setWorkout(workout);
         userRepository.save(user);
         return result;
+    }
+
+    public void deleteWorkoutById(String id) {
+        //Get Workout by id
+        Workout deleted_workout= workoutRepository.findById(id).orElseThrow(()->new RuntimeException("Workout with id " +id+ " not found."));
+        //Remove workout from user
+        User user=userRepository.findById(deleted_workout.getUserId()).orElseThrow(()->new RuntimeException("User with id " +deleted_workout.getUserId()+ " not found."));
+        user.getWorkouts().removeIf(workout -> workout.getId().equals(deleted_workout.getId()));
+        userRepository.save(user);
+        //Remove workout
+        workoutRepository.delete(deleted_workout);
     }
 }

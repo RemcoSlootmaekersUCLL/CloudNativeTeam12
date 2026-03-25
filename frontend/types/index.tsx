@@ -5,9 +5,9 @@ export type Exercises = {
 };
 
 export type Workouts = {
-  id?: number;
+  id: string;
   userId: string;
-  date: number;
+  date: string;
   exercises: Exercises[];
 };
 
@@ -28,15 +28,16 @@ export type Users = {
 };
 
 export type Goals = {
-  id: number;
+  id: string;
   name: string;
-  startDate: number;
-  endDate: number;
-  wasSuccesful: boolean;
-  userId: number;
+  startDate: string;
+  endDate: string;
+  wasSuccessful: boolean;
+  userId: string;
 };
 
 export type StatusMessage = {
   message: string;
-  type: "succes" | "error";
+  type: "success" | "error";
 };
+

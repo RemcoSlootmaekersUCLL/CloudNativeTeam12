@@ -1,4 +1,5 @@
 import { Users } from "@/types";
+import Link from "next/link";
 
 type Props = {
   users: Users[];
@@ -16,6 +17,7 @@ const UserOverview: React.FC<Props> = ({ users }) => {
               <th className="border border-gray-300 px-4 py-2">age</th>
               <th className="border border-gray-300 px-4 py-2">weight</th>
               <th className="border border-gray-300 px-4 py-2">height</th>
+              <th className="border border-gray-300 px-4 py-2">options</th>
             </tr>
           </thead>
           <tbody>
@@ -34,10 +36,13 @@ const UserOverview: React.FC<Props> = ({ users }) => {
                 <td className="border border-gray-300 px-4 py-2 text-right">
                   {u.height}
                 </td>
+                <td>
+                  <Link href={`/users/delete/${u.id}`} className="text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">delete user</Link>
+                </td>
               </tr>
             ))}
           </tbody>
-        </table>
+        </table >
       )}
     </>
   );

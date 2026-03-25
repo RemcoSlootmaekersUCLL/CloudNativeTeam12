@@ -21,16 +21,16 @@ public class Goal {
 
     private LocalDate endDate;
 
-    private boolean was_successful;
+    private boolean wasSuccessful;
     private String userId;
 
     protected Goal(){}
-    public Goal(String userId,String name, LocalDate endDate, LocalDate startDate, boolean was_successful) {
+    public Goal(String userId,String name, LocalDate endDate, LocalDate startDate, boolean wasSuccessful) {
         setUserId(userId);
         setName(name);
         setStartDate(startDate);
         setEndDate(endDate);
-        setWas_successful(was_successful);
+        setWasSuccessful(wasSuccessful);
     }
 
     public String getId() {
@@ -65,12 +65,12 @@ public class Goal {
         this.endDate = endDate;
     }
 
-    public boolean isWas_successful() {
-        return was_successful;
+    public boolean isWasSuccessful() {
+        return wasSuccessful;
     }
 
-    public void setWas_successful(boolean was_successful) {
-        this.was_successful = was_successful;
+    public void setWasSuccessful(boolean wasSuccessful) {
+        this.wasSuccessful = wasSuccessful;
     }
 
     public String getUserId() {

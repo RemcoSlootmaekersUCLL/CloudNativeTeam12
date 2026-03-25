@@ -1,4 +1,3 @@
-import Header from "@/components/header";
 import workoutService from "@/services/workoutService";
 import { Workouts } from "@/types";
 import UserWorkouts from "@/components/workouts/userWorkouts";
@@ -22,7 +21,6 @@ const WorkoutsOfUserPage: React.FC<Props> = async ({ params }: Props) => {
 
   return (
     <div>
-      <Header />
       <main>
         <div className="flex flex-col justify-center">
           <h1 className="text-center font-bold p-4">

@@ -32,12 +32,13 @@ public class WorkoutController {
         return workoutService.getById(id);
     }
 
-    @PostMapping
-    public Workout createWorkout(@RequestBody Workout workout) {
-        return workoutService.createWorkout(workout);
-    }
     @PostMapping("/user/{userId}")
     public Workout createWorkoutByUserId(@RequestBody Workout workout, @PathVariable String userId) {
-        return workoutService.createWorkoutByUserId(workout,userId);
+        return workoutService.createWorkoutByUserId(workout, userId);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteWorkoutById(@PathVariable String id) {
+        workoutService.deleteWorkoutById(id);
     }
 }

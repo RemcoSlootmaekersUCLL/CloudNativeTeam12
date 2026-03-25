@@ -73,7 +73,9 @@ public class DbInitializer {
         // 4️⃣ Create Goals
         // =====================
         Goal goal1 = new Goal("user1","Gain Muscle", LocalDate.now().plusMonths(3), LocalDate.now(), false);
+        goal1.setId("goal1");
         Goal goal2 = new Goal("user2","Marathon Training", LocalDate.now().plusMonths(6), LocalDate.now(), false);
+        goal2.setId("goal2");
 
         // Save goals so they get IDs
         goalRepository.saveAll(List.of(goal1, goal2));

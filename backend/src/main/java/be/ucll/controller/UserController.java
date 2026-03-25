@@ -3,11 +3,7 @@ package be.ucll.controller;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import be.ucll.dto.LoginRequest;
 import be.ucll.dto.LoginResponse;
@@ -37,5 +33,9 @@ public class UserController {
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(400).body(e.getMessage());
         }
+    }
+    @DeleteMapping("/{id}")
+    public void deleteUserById(@PathVariable String id){
+        userService.deleteUserById(id);
     }
 }
