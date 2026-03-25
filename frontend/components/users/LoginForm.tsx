@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import userService from "@/services/userService";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
   const [username, setUsername] = useState("");
@@ -8,6 +9,7 @@ export default function LoginForm() {
   const [loginErrorMessage, setLoginErrroMessage] = useState("");
   const [usernameError, setUsernameError] = useState<string | null>(null);
   const [passwordError, setPasswordError] = useState<string | null>(null);
+  const router = useRouter();
 
   const validateLogin = (): boolean => {
     let result = true;
@@ -30,6 +32,7 @@ export default function LoginForm() {
 
     try {
       userService.loginUser(username, password);
+      router.push("/users");
     } catch (error) {
       setLoginErrroMessage("error");
       console.log(error);
