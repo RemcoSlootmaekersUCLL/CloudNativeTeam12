@@ -3,6 +3,7 @@ package be.ucll.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import be.ucll.repository.WorkoutRepository;
 import org.springframework.stereotype.Service;
 
 import be.ucll.model.Exercise;
@@ -10,10 +11,6 @@ import be.ucll.model.User;
 import be.ucll.model.Workout;
 import be.ucll.repository.ExerciseRepository;
 import be.ucll.repository.UserRepository;
-import be.ucll.repository.WorkoutRepository;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class ExerciseService {

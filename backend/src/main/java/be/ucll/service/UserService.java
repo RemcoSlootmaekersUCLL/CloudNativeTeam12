@@ -3,15 +3,13 @@ package be.ucll.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import be.ucll.model.Goal;
-import be.ucll.model.Workout;
+import be.ucll.repository.GoalRepository;
+import be.ucll.repository.UserRepository;
+import be.ucll.repository.WorkoutRepository;
 import org.springframework.stereotype.Service;
 
 import be.ucll.dto.LoginResponse;
 import be.ucll.model.User;
-import be.ucll.repository.GoalRepository;
-import be.ucll.repository.UserRepository;
-import be.ucll.repository.WorkoutRepository;
 
 @Service
 public class UserService {

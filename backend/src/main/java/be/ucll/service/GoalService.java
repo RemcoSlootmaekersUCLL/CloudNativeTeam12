@@ -3,12 +3,13 @@ package be.ucll.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import be.ucll.repository.GoalRepository;
+import be.ucll.repository.UserRepository;
+
 import org.springframework.stereotype.Service;
 
 import be.ucll.model.Goal;
 import be.ucll.model.User;
-import be.ucll.repository.GoalRepository;
-import be.ucll.repository.UserRepository;
 
 @Service
 public class GoalService {
@@ -26,9 +27,8 @@ public class GoalService {
         return goals;
     }
     public Goal getGoal(String id) {
-        Goal goal = goalRepository.findById(id)
+        return goalRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Goal met id: " + id + " bestaat niet."));
-        return goal;
     }
 
     public Goal createGoal(Goal goal) {
