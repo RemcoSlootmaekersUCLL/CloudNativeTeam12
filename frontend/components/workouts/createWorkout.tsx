@@ -3,6 +3,7 @@
 import exerciseService from "@/services/exerciseService";
 import workoutService from "@/services/workoutService";
 import { Exercises, StatusMessage, WorkoutExercise, Workouts } from "@/types";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const CreateWorkout: React.FC = () => {
@@ -14,6 +15,7 @@ const CreateWorkout: React.FC = () => {
   const [workoutExercises, setWorkoutExercises] = useState<WorkoutExercise[]>(
     [],
   );
+  const router = useRouter()
 
   useEffect(() => {
     setUserId(localStorage.getItem("id")!);
@@ -57,7 +59,7 @@ const CreateWorkout: React.FC = () => {
     workoutDate: string,
     workoutExercises: WorkoutExercise[],
   ) {
-    const timeRegex = /^\d{4}-\d{2}-\d{2}$/;
+    const timeRegex = /^(?:(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/;
 
     if (!workoutDate.trim()) {
       setStatusMessages([
@@ -67,7 +69,7 @@ const CreateWorkout: React.FC = () => {
     } else if (!timeRegex.test(workoutDate)) {
       setStatusMessages([
         {
-          message: "Workout time is incorrectly formatted: YYYY-MM-DD.",
+          message: "Date is wrongly formatted or is not a valid date.",
           type: "error",
         },
       ]);
@@ -82,22 +84,24 @@ const CreateWorkout: React.FC = () => {
     }
 
     setStatusMessages([
-      { message: "Proceeding to create workout...", type: "succes" },
+      { message: "Creating workout...", type: "succes" },
     ]);
     return true;
   }
 
   function createWorkout() {
+    setStatusMessages([])
+
     const workout = {
       userId: userId,
-      date: Number(workoutDate),
+      date: workoutDate,
       exercises: workoutExercises,
     };
 
     workoutService
       .createWorkout(workout)
       .then(() =>
-        setStatusMessages([{ message: "Workout created", type: "succes" }]),
+        setStatusMessages([{ message: "Workout created, proceeding to workouts page..", type: "succes" }]),
       )
       .catch((err) => {
         console.error(err);
@@ -105,6 +109,7 @@ const CreateWorkout: React.FC = () => {
           { message: "Something went wrong..", type: "error" },
         ]);
       });
+      setTimeout(() => router.push("/workouts"), 3000)
   }
 
   return (
