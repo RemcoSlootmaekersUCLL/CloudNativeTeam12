@@ -34,8 +34,8 @@ const getWorkoutsFromUser = async (id: string): Promise<Workouts[]> => {
   return response.json();
 };
 
-const createWorkout = async (workout: any) => {
-  const res = await fetch(`${API_URL}/workouts`, {
+const createWorkoutByUserId = async (workout: any, userId: string) => {
+  const res = await fetch(`${API_URL}/workouts/user/${userId}`, {
     method: "POST",
     body: JSON.stringify(workout),
     headers: {
@@ -43,7 +43,7 @@ const createWorkout = async (workout: any) => {
     },
     cache: "no-store",
   });
-
+  console.log(res.text);
   if (!res.ok) throw new Error("Something went wrong.");
 
   const data = res.json();
@@ -73,6 +73,7 @@ const deleteWorkout = async (id: string) => {
 const workoutService = {
   getAllWorkouts,
   getWorkoutsFromUser,
+  createWorkoutByUserId,
   deleteWorkout,
 };
 

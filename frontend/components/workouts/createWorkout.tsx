@@ -15,7 +15,7 @@ const CreateWorkout: React.FC = () => {
   const [workoutExercises, setWorkoutExercises] = useState<WorkoutExercise[]>(
     [],
   );
-  const router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
     setUserId(localStorage.getItem("id")!);
@@ -83,14 +83,12 @@ const CreateWorkout: React.FC = () => {
       return false;
     }
 
-    setStatusMessages([
-      { message: "Creating workout...", type: "succes" },
-    ]);
+    setStatusMessages([{ message: "Creating workout...", type: "success" }]);
     return true;
   }
 
   function createWorkout() {
-    setStatusMessages([])
+    setStatusMessages([]);
 
     const workout = {
       userId: userId,
@@ -99,17 +97,22 @@ const CreateWorkout: React.FC = () => {
     };
 
     workoutService
-      .createWorkout(workout)
-      .then(() =>
-        setStatusMessages([{ message: "Workout created, proceeding to workouts page..", type: "succes" }]),
-      )
+      .createWorkoutByUserId(workout, userId)
+      .then(() => {
+        setStatusMessages([
+          {
+            message: "Workout created, proceeding to workouts page..",
+            type: "success",
+          },
+        ]);
+        setTimeout(() => router.push("/workouts"), 3000);
+      })
       .catch((err) => {
         console.error(err);
         setStatusMessages([
           { message: "Something went wrong..", type: "error" },
         ]);
       });
-      setTimeout(() => router.push("/workouts"), 3000)
   }
 
   return (
@@ -223,9 +226,10 @@ const CreateWorkout: React.FC = () => {
           >
             Create Workout
           </button>
-          {statusMessages.length > 0 && statusMessages[0].type === "succes" && (
-            <p className="text-green-500">{statusMessages[0].message}</p>
-          )}
+          {statusMessages.length > 0 &&
+            statusMessages[0].type === "success" && (
+              <p className="text-green-500">{statusMessages[0].message}</p>
+            )}
         </form>
       </div>
     </>
