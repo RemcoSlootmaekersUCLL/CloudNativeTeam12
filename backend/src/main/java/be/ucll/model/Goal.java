@@ -12,9 +12,10 @@ import jakarta.validation.constraints.NotNull;
 
 @Container(containerName = "goal", autoCreateContainer = false)
 public class Goal {
+    @PartitionKey
     @Id
     private String id = UUID.randomUUID().toString();
-    @PartitionKey
+
     @NotNull(message = "Goal name is required.")
     private String name;
 

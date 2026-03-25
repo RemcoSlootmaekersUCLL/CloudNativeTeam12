@@ -13,10 +13,10 @@ import jakarta.validation.constraints.NotNull;
 
 @Container(containerName = "workout", autoCreateContainer = false)
 public class Workout {
+    @PartitionKey
     @Id
     private String id = UUID.randomUUID().toString();
-    
-    @PartitionKey
+
     @NotNull(message = "UserId is required.")
     private String userId;
 
