@@ -36,9 +36,10 @@ public class ExerciseService {
     }
 
     public void deleteExerciseById(String id) {
+        //Get the exercise
+        Exercise exercise=exerciseRepository.findById(id).orElseThrow(() -> new RuntimeException("Exercise with ID '" + id + "' not found."));
         //Delete exercise from workouts
         List<Workout> workouts = workoutRepository.findByExercisesExerciseId(id);
-
         workouts.forEach(workout ->
             workout.getExercises().removeIf(workoutExercise -> workoutExercise.getExerciseId().equals(id))
         );
@@ -54,6 +55,6 @@ public class ExerciseService {
         userRepository.saveAll(users);
 
         //Delete exercise
-        exerciseRepository.deleteById(id);
+        exerciseRepository.delete(exercise);
     }
 }
