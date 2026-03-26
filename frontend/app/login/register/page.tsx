@@ -26,7 +26,7 @@ const RegisterPage: React.FC = async () => {
             {
                 data && (<>
                     <section className="table-container-style">
-                        <RegisterForm userNames={data} />
+                        <RegisterForm usernames={data.userNames} />
                     </section>
                 </>)
             }

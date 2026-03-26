@@ -26,17 +26,20 @@ const RegisterForm: React.FC<Props> = ({ usernames }) => {
 
 
     const validate = (): boolean => {
+        setUsernameError(null);
+        setPasswordError(null);
+        setAgeError(null);
+        setWeightError(null);
+        setHeightError(null);
         let result = true;
         if (username.trim() === "") {
             setUsernameError("Username cannot be empty");
             result = false;
         }
-        // for (const existingusername of usernames) {
-        //     if (username == existingusername) {
-        //         setUsernameError("Username already in use");
-        //         result = false;
-        //     }
-        // }
+        if (usernames.includes(username)) {
+            setUsernameError("Username already in use");
+            result = false;
+        }
         if (password.trim() === "") {
             setPasswordError("password cannot be empty");
             result = false;
@@ -109,7 +112,7 @@ const RegisterForm: React.FC<Props> = ({ usernames }) => {
                         REGISTER
                     </h2>
                     <form onSubmit={handleSubmit}>
-                        <label className="block text-[13px] text-gray-600 mb-1">
+                        <label className="block text-[13px] mb-1">
                             Username
                         </label>
                         <input
@@ -120,7 +123,7 @@ const RegisterForm: React.FC<Props> = ({ usernames }) => {
                             className="w-full px-3 py-[9px] rounded-md border border-gray-300 text-sm mb-4 box-border outline-none focus:border-gray-400"
                         />
                         {usernameError && <p className="text-red-600 text-sm mt-1">{usernameError}</p>}
-                        <label className="block text-[13px] text-gray-600 mb-1">
+                        <label className="block text-[13px] mb-1">
                             Password
                         </label>
                         <input
