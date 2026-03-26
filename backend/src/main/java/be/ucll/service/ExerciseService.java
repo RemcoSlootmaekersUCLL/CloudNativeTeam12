@@ -52,4 +52,9 @@ public class ExerciseService {
         //Delete exercise
         exerciseRepository.deleteById(id);
     }
+
+    public Exercise createExercise(Exercise exercise) {
+        exerciseRepository.save(exercise);
+        return exercise;
+    }
 }
