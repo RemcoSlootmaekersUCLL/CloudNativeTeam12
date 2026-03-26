@@ -1,6 +1,5 @@
 import CreateExercise from "@/components/exercises/createExercise";
 
-
 export const metadata = {
     title: "create exercise - Fitness tracker",
 };

@@ -30,7 +30,10 @@ const CreateExercise: React.FC = () => {
             isValid = false;
         }
 
-
+        if (!type.trim()) {
+            setTypeError("Please select a type.");
+            isValid = false;
+        }
 
         return isValid;
     };
