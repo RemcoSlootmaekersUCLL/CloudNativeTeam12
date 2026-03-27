@@ -1,6 +1,7 @@
 import workoutService from "@/services/workoutService";
 import { Workouts } from "@/types";
 import UserWorkouts from "@/components/workouts/userWorkouts";
+import CreateWorkoutButton from "@/components/ui/createWorkoutButton";
 
 type Props = {
   params: Promise<{
@@ -21,12 +22,20 @@ const WorkoutsOfUserPage: React.FC<Props> = async ({ params }: Props) => {
   return (
     <div>
       <main>
-        <h1 className="text-center font-bold p-4">
-          Workouts by user {userId}.
-        </h1>
-        <section className="table-container-style">
+        <div className="flex flex-col justify-center">
+          <h1 className="text-center font-bold p-4">
+            Workouts by user {userId}.
+          </h1>
+          <span className="self-center">
+            <CreateWorkoutButton userId={userId} />
+          </span>
+          <p className="text-sm self-center">
+            Button should be moved to profile page when we have one
+          </p>
+        </div>
+        <div className="mt-4 table-container-style">
           <UserWorkouts userWorkouts={workoutsByUser} />
-        </section>
+        </div>
       </main>
     </div>
   );

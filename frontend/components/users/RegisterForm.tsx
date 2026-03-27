@@ -44,15 +44,15 @@ const RegisterForm: React.FC<Props> = ({ usernames }) => {
             setPasswordError("password cannot be empty");
             result = false;
         }
-        if (age == 0) {
+        if (age <= 0) {
             setAgeError("age must be positive and larger than 0");
             result = false;
         }
-        if (weight == 0) {
+        if (weight <= 0) {
             setWeightError("weight must be positive and larger than 0");
             result = false;
         }
-        if (height == 0) {
+        if (height <= 0) {
             setHeightError("height must be positive and larger than 0");
             result = false;
         }
