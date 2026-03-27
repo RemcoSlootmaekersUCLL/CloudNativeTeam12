@@ -96,7 +96,7 @@ const CreateExercise: React.FC = () => {
                             id="name"
                             type="text"
                             value={name}
-                            placeholder="Your goal"
+                            placeholder="Your exercise"
                             onChange={(event) => setName(event.target.value)}
                             className="border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue:500 block w-full p-2.5" />
                         {nameError && <p className="text-red-600 text-sm mt-1">{nameError}</p>}
