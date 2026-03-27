@@ -42,9 +42,13 @@ public class DbInitializer {
         // 2️⃣ Create Exercises
         // =====================
         Exercise bench = new Exercise("Bench press", Type.STRENGTH);
+        bench.setId("ex1");
         Exercise squat = new Exercise("Squat", Type.STRENGTH);
+        squat.setId("ex2");
         Exercise deadlift = new Exercise("Deadlift", Type.STRENGTH);
+        deadlift.setId("ex3");
         Exercise bike = new Exercise("Bike", Type.CARDIO);
+        bike.setId("ex4");
         exerciseRepository.saveAll(List.of(bench, squat, deadlift, bike));
 
         // =====================

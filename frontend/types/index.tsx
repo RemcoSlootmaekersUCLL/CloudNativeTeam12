@@ -1,5 +1,5 @@
 export type Exercises = {
-  id?: number;
+  id: string;
   name: string;
   type: string;
 };
@@ -11,8 +11,15 @@ export type Workouts = {
   exercises: Exercises[];
 };
 
+export type WorkoutExercise = {
+  exerciseId: string;
+  reps: number;
+  duration: number;
+  caloriesBurned: number;
+};
+
 export type Users = {
-  id?: number;
+  id?: string;
   username: string;
   password: string;
   age: number;
@@ -33,3 +40,4 @@ export type StatusMessage = {
   message: string;
   type: "success" | "error";
 };
+
