@@ -1,5 +1,5 @@
 export type Exercises = {
-  id: number;
+  id: string;
   name: string;
   type: string;
 };
@@ -19,7 +19,7 @@ export type WorkoutExercise = {
 };
 
 export type Users = {
-  id: number;
+  id?: string;
   username: string;
   password: string;
   age: number;

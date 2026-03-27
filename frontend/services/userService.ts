@@ -50,26 +50,44 @@ const loginUser = async (username: string, password: string) => {
 };
 
 const deleteUser = async (id: string) => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/${id}`, {
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        cache: "no-store",
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    cache: "no-store",
 
-    });
+  });
 
-    if (!response.ok) {
-        throw new Error('Er is iets mis gegaan.');
-    }
+  if (!response.ok) {
+    throw new Error('Er is iets mis gegaan.');
+  }
 
-    return true;
+  return true;
+};
+
+const registerUser = async (user: Users) => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/users/register`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(user),
+    },
+  );
+
+  if (!response.ok) {
+    throw new Error('Er is iets mis gegaan.');
+  }
+
+  return true;
 };
 
 const userService = {
   getAllUsers,
   loginUser,
-  deleteUser
+  deleteUser,
+  registerUser
 };
 
 export default userService;

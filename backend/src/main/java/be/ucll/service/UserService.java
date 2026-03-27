@@ -45,7 +45,16 @@ public class UserService {
         response.setId(user.getId());
         return response;
     }
-
+    public User register(User user) {
+        //Check if username already exists
+        if(userRepository.findByUsername(user.getUsername()).isPresent()){
+            throw new IllegalArgumentException("Username already taken.");
+        }
+        //Save user and return with other password
+        userRepository.save(user);
+        user.setPassword("*******************");
+        return user;
+    }
 
     public void deleteUserById(String id){
         //Check if user exists
@@ -57,5 +66,4 @@ public class UserService {
         //Remove workout
         userRepository.deleteById(id);
     }
-
 }
