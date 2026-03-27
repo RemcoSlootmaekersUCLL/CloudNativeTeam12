@@ -16,7 +16,8 @@ public class ExerciseService {
     private final WorkoutRepository workoutRepository;
     private final UserRepository userRepository;
 
-    public ExerciseService(ExerciseRepository exerciseRepository, WorkoutRepository workoutRepository, UserRepository userRepository) {
+    public ExerciseService(ExerciseRepository exerciseRepository, WorkoutRepository workoutRepository,
+            UserRepository userRepository) {
         this.exerciseRepository = exerciseRepository;
         this.workoutRepository = workoutRepository;
         this.userRepository = userRepository;
@@ -32,24 +33,20 @@ public class ExerciseService {
     }
 
     public void deleteExerciseById(String id) {
-        //Delete exercise from workouts
+        // Delete exercise from workouts
         List<Workout> workouts = workoutRepository.findByExercisesExerciseId(id);
 
-        workouts.forEach(workout ->
-            workout.getExercises().removeIf(workoutExercise -> workoutExercise.getExerciseId().equals(id))
-        );
+        workouts.forEach(workout -> workout.getExercises()
+                .removeIf(workoutExercise -> workoutExercise.getExerciseId().equals(id)));
         workoutRepository.saveAll(workouts);
 
-        //Update workout in users as well
-        List<User> users=userRepository.findAll();
-        users.forEach(user ->
-                user.getWorkouts().forEach(workout ->
-                        workout.getExercises().removeIf(e -> e.getExerciseId().equals(id))
-                )
-        );
+        // Update workout in users as well
+        List<User> users = userRepository.findAll();
+        users.forEach(user -> user.getWorkouts()
+                .forEach(workout -> workout.getExercises().removeIf(e -> e.getExerciseId().equals(id))));
         userRepository.saveAll(users);
 
-        //Delete exercise
+        // Delete exercise
         exerciseRepository.deleteById(id);
     }
 
