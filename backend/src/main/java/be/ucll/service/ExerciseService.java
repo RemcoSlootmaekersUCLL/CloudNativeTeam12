@@ -49,9 +49,12 @@ public class ExerciseService {
         // Delete exercise
         exerciseRepository.deleteById(id);
     }
-
-    public Exercise createExercise(Exercise exercise) {
-        exerciseRepository.save(exercise);
-        return exercise;
+    
+    public Exercise createExercise(Exercise new_exercise) {
+        //Check if exercise already exists
+        exerciseRepository.findExerciseByName(new_exercise.getName())
+                .ifPresent(s-> {throw new RuntimeException("Exercise with name: "+new_exercise.getName()+" already exists.");});
+        //Save new Exercise
+        return exerciseRepository.save(new_exercise);
     }
 }
