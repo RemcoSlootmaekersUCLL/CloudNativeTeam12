@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 import be.ucll.model.Exercise;
 import be.ucll.model.User;
 import be.ucll.model.Workout;
-import be.ucll.repository.ExerciseRepository;
 import be.ucll.repository.UserRepository;
+import be.ucll.repository.ExerciseRepository;
 
 @Service
 public class ExerciseService {
