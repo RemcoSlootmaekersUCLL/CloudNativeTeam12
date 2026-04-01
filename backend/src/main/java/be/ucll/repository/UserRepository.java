@@ -9,4 +9,5 @@ import be.ucll.model.User;
 public interface UserRepository extends CosmosRepository<User, String> {
     List<User> findAll();
     Optional<User>findByUsername(String username);
+    Optional<User>findById(String id);
 }

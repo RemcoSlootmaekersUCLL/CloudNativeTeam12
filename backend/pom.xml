@@ -118,6 +118,13 @@
             <groupId>com.azure</groupId>
             <artifactId>azure-identity</artifactId>
         </dependency>
+        <!--Azure functions dependency-->
+        <dependency>
+             <groupId>org.springframework.cloud</groupId>
+             <artifactId>spring-cloud-function-adapter-azure</artifactId>
+             <version>4.0.0</version>
+        </dependency>
+
 
         <!-- Testing -->
         <dependency>
@@ -144,6 +151,11 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.microsoft.azure</groupId>
+                <artifactId>azure-functions-maven-plugin</artifactId>
+                <version>1.22.0</version>
             </plugin>
         </plugins>
     </build>
