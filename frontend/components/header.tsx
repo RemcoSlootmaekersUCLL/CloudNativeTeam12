@@ -1,26 +1,41 @@
-'use client';
+"use client";
 
 import Link from "next/link";
 
 const Header: React.FC = () => {
-    return (
-        <header className="w-full md:items-center bg-gradient-to-br from-yellow-300 via-amber-500 to-orange-700 border-b">
-            <section className="flex justify-between flex-col w-full p-4 text-center">
-                <h1 className="text-3xl font-bold text-orange-900">
-                    <a href="/">Fitness tracker</a>
-                </h1>
-                <div className="md:flex md:just-between md:mx-auto ">
-                    <nav className="space-x-8 text-xl flex md:mr-auto md:ml-auto md:space-x-0" aria-label="main">
-                        <Link href="/" className="px-4 py-1 text-yellow-50 rounded-lg hover:bg-yellow-600 hover:text-white transition-colors"> home </Link>
-                        <Link href='/users' className="px-4 py-1 text-yellow-50 rounded-lg hover:bg-yellow-600 hover:text-white transition-colors"> users </Link>
-                        <Link href='/exercises' className="px-4 py-1 text-yellow-50 rounded-lg hover:bg-yellow-600 hover:text-white transition-colors"> exercises </Link>
-                        <Link href='/workouts' className="px-4 py-1 text-yellow-50 rounded-lg hover:bg-yellow-600 hover:text-white transition-colors"> workouts </Link>
-                        <Link href='/goals' className="px-4 py-1 text-yellow-50 rounded-lg hover:bg-yellow-600 hover:text-white transition-colors"> goals </Link>
-                    </nav>
-                </div>
-            </section>
-        </header>
-    );
+  const links = [
+    { dest: "Home", uri: "/" },
+    { dest: "Users", uri: "/users" },
+    { dest: "Exercises", uri: "/exercises" },
+    { dest: "Workouts", uri: "/workouts" },
+    { dest: "Goals", uri: "/goals" },
+    { dest: "Login", uri: "/login" },
+  ];
+
+  const linkClassname =
+    "mx-2 px-2 py-1 text-yellow-50 rounded-lg hover:bg-cyan-300/30 transition-colors duration-300";
+
+  return (
+    <header className="w-full bg-gradient-to-r from-emerald-600 to-lime-400 py-1">
+      <div className="flex flex-col justify-center">
+        <h1 className="text-3xl self-center font-bold bg-gradient-to-r text-transparent bg-clip-text from-blue-100 to-sky-200">
+          <Link href="/">Fitness tracker</Link>
+        </h1>
+        <div className="md:flex md:just-between md:mx-auto">
+          <nav
+            className="space-x-8 text-xl flex md:mx-auto md:space-x-0"
+            aria-label="main"
+          >
+            {links.map((link) => (
+              <Link key={link.uri} href={link.uri} className={linkClassname}>
+                {link.dest}
+              </Link>
+            ))}
+          </nav>
+        </div>
+      </div>
+    </header>
+  );
 };
 
 export default Header;
