@@ -34,6 +34,11 @@ public class UserController {
             return ResponseEntity.status(400).body(e.getMessage());
         }
     }
+    @PostMapping("/register")
+    public User register(@RequestBody User user) {
+        return userService.register(user);
+    }
+
     @DeleteMapping("/{id}")
     public void deleteUserById(@PathVariable String id){
         userService.deleteUserById(id);

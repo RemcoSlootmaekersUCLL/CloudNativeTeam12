@@ -51,7 +51,8 @@ public class User {
     }
 
     public String getBMI(){
-        double bmi=weight/(height*height);
+        double heightInMeters= (double) height /100;
+        double bmi=weight/(heightInMeters*heightInMeters);
 
         double underweightThreshold;
         double normalMax;

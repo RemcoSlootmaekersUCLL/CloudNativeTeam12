@@ -41,7 +41,7 @@ export default function LoginForm() {
 
   return (
     <div className="bg-inherit">
-      <div className="flex justify-center items-center h-screen text-white">
+      <div className="flex justify-center items-center pt-8 pb-10 text-white">
         <div className="w-full max-w-xs">
           <h2 className="m-0 mb-6 text-[22px] font-semibold text-white">
             LOGIN
@@ -79,6 +79,7 @@ export default function LoginForm() {
             <div>CardioQueen : runFast99</div>
             <div>{loginErrorMessage}</div>
           </form>
+          <Link href="/login/register" className="block mt-5 w-full text-white bg-emerald-600 hover:bg-emerald-800 rounded-lg text-sm px-5 py-2.5 text-center">Register user</Link>
         </div>
       </div>
     </div>
