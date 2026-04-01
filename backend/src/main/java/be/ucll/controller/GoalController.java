@@ -38,4 +38,9 @@ public class GoalController {
         goalService.deleteGoalById(id);
     }
 
+    @GetMapping("/user/{userId}")
+    public List<Goal> getGoalsFromUser(@PathVariable String userId){
+        return goalService.getGoalsFromUser(userId);
+    }
+
 }

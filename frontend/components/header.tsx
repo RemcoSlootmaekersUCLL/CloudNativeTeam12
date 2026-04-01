@@ -1,8 +1,15 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const Header: React.FC = () => {
+  const [userId, setUserId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const id = localStorage.getItem("id");
+    setUserId(id);
+  }, []);
   const links = [
     { dest: "Home", uri: "/" },
     { dest: "Users", uri: "/users" },
@@ -10,6 +17,8 @@ const Header: React.FC = () => {
     { dest: "Workouts", uri: "/workouts" },
     { dest: "Goals", uri: "/goals" },
     { dest: "Login", uri: "/login" },
+    ...(userId ? [{ dest: "Profile", uri: `/profile/${userId}` }] : []),
+
   ];
 
   const linkClassname =

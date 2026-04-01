@@ -2,8 +2,12 @@
 import { useState } from "react";
 import userService from "@/services/userService";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
+  const router = useRouter();
+
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginErrorMessage, setLoginErrroMessage] = useState("");
@@ -23,14 +27,23 @@ export default function LoginForm() {
     return result;
   };
 
-  const handleLoginUser = (event: React.FormEvent) => {
+  const handleLoginUser = async (event: React.FormEvent) => {
     event.preventDefault();
     setLoginErrroMessage("");
 
     if (!validateLogin()) return;
 
     try {
-      userService.loginUser(username, password);
+      const data = await userService.loginUser(username, password);
+
+      if ("id" in data) {
+        setTimeout(() => {
+          router.push(`/profile/${data.id}`);
+        }, 1000);
+      } else {
+        setLoginErrroMessage(data.message || "Login failed");
+      }
+
     } catch (error) {
       setLoginErrroMessage("error");
       console.log(error);

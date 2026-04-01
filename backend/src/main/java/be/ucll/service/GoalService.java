@@ -1,5 +1,6 @@
 package be.ucll.service;
 
+import be.ucll.dto.WorkoutResponse;
 import be.ucll.model.Goal;
 import be.ucll.model.User;
 import be.ucll.repository.GoalRepository;
@@ -63,5 +64,9 @@ public class GoalService {
         userRepository.save(user);
         //Remove workout
         goalRepository.delete(deleted_goal);
+    }
+
+    public List<Goal> getGoalsFromUser(String userId) {
+            return goalRepository.findByUserId(userId);
     }
 }
