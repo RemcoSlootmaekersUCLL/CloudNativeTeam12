@@ -2,6 +2,7 @@
 import { useState } from "react";
 import userService from "@/services/userService";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function LoginForm() {
   const [username, setUsername] = useState("");
@@ -29,6 +30,8 @@ export default function LoginForm() {
     setLoginErrroMessage("");
 
     if (!validateLogin()) return;
+    sessionStorage.setItem("username", username);
+    window.dispatchEvent(new Event("session-change")); // Update Header PLEASE
 
     try {
       userService.loginUser(username, password);
@@ -79,7 +82,12 @@ export default function LoginForm() {
             <div>CardioQueen : runFast99</div>
             <div>{loginErrorMessage}</div>
           </form>
-          <Link href="/login/register" className="block mt-5 w-full text-white bg-emerald-600 hover:bg-emerald-800 rounded-lg text-sm px-5 py-2.5 text-center">Register user</Link>
+          <Link
+            href="/login/register"
+            className="block mt-5 w-full text-white bg-emerald-600 hover:bg-emerald-800 rounded-lg text-sm px-5 py-2.5 text-center"
+          >
+            Register user
+          </Link>
         </div>
       </div>
     </div>

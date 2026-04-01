@@ -50,17 +50,19 @@ const loginUser = async (username: string, password: string) => {
 };
 
 const deleteUser = async (id: string) => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/${id}`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/users/${id}`,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      cache: "no-store",
     },
-    cache: "no-store",
-
-  });
+  );
 
   if (!response.ok) {
-    throw new Error('Er is iets mis gegaan.');
+    throw new Error("Er is iets mis gegaan.");
   }
 
   return true;
@@ -77,17 +79,23 @@ const registerUser = async (user: Users) => {
   );
 
   if (!response.ok) {
-    throw new Error('Er is iets mis gegaan.');
+    throw new Error("Er is iets mis gegaan.");
   }
 
   return true;
 };
 
+const logout = () => {
+  sessionStorage.removeItem("username");
+  sessionStorage.removeItem("id");
+};
+
 const userService = {
   getAllUsers,
   loginUser,
+  logout,
   deleteUser,
-  registerUser
+  registerUser,
 };
 
 export default userService;
