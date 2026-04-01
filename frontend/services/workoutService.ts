@@ -65,12 +65,13 @@ const createWorkoutByUserId = async (workout: any, userId: string) => {
   return data;
 };
 
-const editWorkout = async (workout: any, userId: string) => {
-  const res = await fetch(`${API_URL}/workouts/user/${userId}`, {
-    method: "POST",
+const editWorkout = async (workout: any, workoutId: string) => {
+  const res = await fetch(`${API_URL}/workouts/${workoutId}`, {
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
+    body: JSON.stringify(workout),
     cache: "no-store",
   });
   if (!res.ok) throw new Error("Couldn't update workout.");

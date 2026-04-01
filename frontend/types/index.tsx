@@ -2,6 +2,9 @@ export type Exercises = {
   id?: string;
   name: string;
   type: string;
+  reps?: number;
+  duration?: number;
+  caloriesBurned?: number;
 };
 
 export type Workouts = {
@@ -9,6 +12,7 @@ export type Workouts = {
   userId: string;
   date: string;
   exercises: Exercises[];
+  totalCaloriesBurned?: number;
 };
 
 export type WorkoutExercise = {
@@ -40,4 +44,3 @@ export type StatusMessage = {
   message: string;
   type: "success" | "error";
 };
-

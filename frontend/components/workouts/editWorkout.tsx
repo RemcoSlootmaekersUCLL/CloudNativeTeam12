@@ -3,7 +3,7 @@
 import exerciseService from "@/services/exerciseService";
 import workoutService from "@/services/workoutService";
 import { Exercises, StatusMessage, WorkoutExercise, Workouts } from "@/types";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 type Props = {
@@ -26,9 +26,16 @@ const EditWorkout: React.FC<Props> = ({ userId, workoutId }: Props) => {
     workoutService
       .getById(workoutId)
       .then((data: Workouts) => {
-        console.log(data);
         setWorkoutDate(data.date);
         setSelectedExercises(data.exercises);
+        setWorkoutExercises(
+          data.exercises.map((ex) => ({
+            exerciseId: String(ex.id),
+            reps: ex.reps ?? 0,
+            duration: ex.duration ?? 0,
+            caloriesBurned: ex.caloriesBurned ?? 0,
+          })),
+        );
       })
       .catch((err) => console.error(err));
     if (!sessionStorage.getItem("id")) return;
@@ -109,7 +116,7 @@ const EditWorkout: React.FC<Props> = ({ userId, workoutId }: Props) => {
     };
 
     workoutService
-      .editWorkout(workout, userId)
+      .editWorkout(workout, workoutId)
       .then(() => {
         setStatusMessages([
           { message: "Succesfully edited workout.", type: "success" },
@@ -150,7 +157,7 @@ const EditWorkout: React.FC<Props> = ({ userId, workoutId }: Props) => {
                   type="checkbox"
                   className="peer hidden"
                   checked={selectedExercises.some(
-                    (ex) => ex.id === exercise.id,
+                    (ex) => ex.name === exercise.name,
                   )}
                   onChange={() => handleChange(exercise)}
                 />
@@ -182,6 +189,7 @@ const EditWorkout: React.FC<Props> = ({ userId, workoutId }: Props) => {
                           Number(e.target.value),
                         )
                       }
+                      placeholder={exercise.reps?.toString()}
                     />
                   </td>
                 </tr>
@@ -198,6 +206,7 @@ const EditWorkout: React.FC<Props> = ({ userId, workoutId }: Props) => {
                           Number(e.target.value),
                         )
                       }
+                      placeholder={exercise.duration?.toString()}
                     />
                   </td>
                 </tr>
@@ -214,6 +223,7 @@ const EditWorkout: React.FC<Props> = ({ userId, workoutId }: Props) => {
                           Number(e.target.value),
                         )
                       }
+                      placeholder={exercise.caloriesBurned?.toString()}
                     />
                   </td>
                 </tr>
