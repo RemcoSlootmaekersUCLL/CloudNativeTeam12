@@ -21,6 +21,12 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <functionResourceGroup>CNE-GROEP12-DB</functionResourceGroup>
+        <functionAppServicePlan>CNE-GROEP12-DB-PLAN</functionAppServicePlan>
+        <functionAppName>cne-groep12-functions</functionAppName>
+        <functionRegion>germanywestcentral</functionRegion>
+        <functionPricingTier>Y1</functionPricingTier>
     </properties>
 
 <dependencies>
@@ -149,15 +155,50 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
                 <groupId>com.microsoft.azure</groupId>
                 <artifactId>azure-functions-maven-plugin</artifactId>
                 <version>1.22.0</version>
+                <configuration>
+                    <resourceGroup>${functionResourceGroup}</resourceGroup>
+                    <appName>${functionAppName}</appName>
+                    <region>${functionAppRegion}</region>
+                    <appServicePlanName>${functionAppServicePlanName}</appServicePlanName>
+                    <pricingTier>${functionPricingTier}</pricingTier>
+
+                    <hostJson>${project.basedir}/src/main/azure/host.json</hostJson>
+                    <localSettingsJson>${project.basedir}/src/main/azure/local.settings.json</localSettingsJson>
+
+                    <runtime>
+                        <os>linux</os>
+                        <javaVersion>17</javaVersion>
+                    </runtime>
+                    <appSettings>
+                        <!-- Run Azure Function from package file by default -->
+                        <property>
+                            <name>FUNCTIONS_EXTENSION_VERSION</name>
+                            <value>~4</value>
+                        </property>
+                    </appSettings>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>package-functions</id>
+                        <goals>
+                            <goal>package</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <classifier>original</classifier>
+                </configuration>
             </plugin>
         </plugins>
     </build>
+
+
 
 </project>
