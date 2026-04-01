@@ -2,7 +2,7 @@
 
 import exerciseService from "@/services/exerciseService";
 import workoutService from "@/services/workoutService";
-import { Exercises, StatusMessage, WorkoutExercise, Workouts } from "@/types";
+import { Exercises, StatusMessage, WorkoutExercise } from "@/types";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -31,21 +31,21 @@ const CreateWorkout: React.FC = () => {
   }
 
   function handleWorkoutExerciseChange(
-    id: number,
+    id: string,
     field: keyof WorkoutExercise,
     value: number,
   ) {
     setWorkoutExercises((prev) => {
-      const existing = prev.find((ex) => ex.exerciseId === String(id));
+      const existing = prev.find((ex) => ex.exerciseId === id);
       if (existing) {
         return prev.map((ex) =>
-          ex.exerciseId === String(id) ? { ...ex, [field]: value } : ex,
+          ex.exerciseId === id ? { ...ex, [field]: value } : ex,
         );
       }
       return [
         ...prev,
         {
-          exerciseId: String(id),
+          exerciseId: id,
           reps: 0,
           duration: 0,
           caloriesBurned: 0,
@@ -169,7 +169,7 @@ const CreateWorkout: React.FC = () => {
                         type="number"
                         onChange={(e) =>
                           handleWorkoutExerciseChange(
-                            exercise.id,
+                            String(exercise.id),
                             "reps",
                             Number(e.target.value),
                           )
@@ -185,7 +185,7 @@ const CreateWorkout: React.FC = () => {
                         type="number"
                         onChange={(e) =>
                           handleWorkoutExerciseChange(
-                            exercise.id,
+                            String(exercise.id),
                             "duration",
                             Number(e.target.value),
                           )
@@ -201,7 +201,7 @@ const CreateWorkout: React.FC = () => {
                         type="number"
                         onChange={(e) =>
                           handleWorkoutExerciseChange(
-                            exercise.id,
+                            String(exercise.id),
                             "caloriesBurned",
                             Number(e.target.value),
                           )
