@@ -32,6 +32,7 @@ const Header: React.FC = () => {
     userService.logout();
     window.dispatchEvent(new Event("session-change"));
   };
+
   const linkClassname =
     "mx-2 px-2 py-1 text-yellow-50 rounded-lg hover:bg-cyan-300/30 transition-colors duration-300";
 
@@ -47,7 +48,7 @@ const Header: React.FC = () => {
             aria-label="main"
           >
             {links.map((link) => (
-              <Link key={link.uri} href={link.uri} className={linkClassname}>
+              <Link key={link.dest} href={link.uri} className={linkClassname}>
                 {link.dest}
               </Link>
             ))}

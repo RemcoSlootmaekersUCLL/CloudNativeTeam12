@@ -40,8 +40,8 @@ const loginUser = async (username: string, password: string) => {
     const data: LoginResponse = await response.json();
 
     if (response.ok) {
-      localStorage.setItem("username", data.username);
-      localStorage.setItem("id", data.id);
+      sessionStorage.setItem("username", data.username);
+      sessionStorage.setItem("id", data.id);
       return data;
     }
   } catch (error: any) {
@@ -86,8 +86,8 @@ const registerUser = async (user: Users) => {
 };
 
 const logout = () => {
-  localStorage.removeItem("username");
-  localStorage.removeItem("id");
+  sessionStorage.removeItem("username");
+  sessionStorage.removeItem("id");
 };
 
 const userService = {
