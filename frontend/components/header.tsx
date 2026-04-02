@@ -34,7 +34,7 @@ const Header: React.FC = () => {
   };
 
   const linkClassname =
-    "mx-2 px-2 py-1 text-black rounded-lg hover:bg-gray-400/20 transition-colors duration-300 font-family-plus-jakarta-sans";
+    "mx-2 px-2 py-1 text-black rounded-lg hover:bg-gray-800/20 transition-colors duration-300 font-family-plus-jakarta-sans";
 
   return (
     <div className="bg-mist-300">
