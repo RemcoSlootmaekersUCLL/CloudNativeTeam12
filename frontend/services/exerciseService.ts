@@ -33,28 +33,9 @@ const deleteExercise = async (id: string) => {
     return true;
 };
 
-const addExercise = async (exercise: Exercises): Promise<Exercises[]> => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/exercises`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        cache: "no-store",
-        body: JSON.stringify(exercise),
-
-    });
-
-    if (!response.ok) {
-        throw new Error('Er is iets mis gegaan.');
-    }
-
-    return response.json();
-};
-
 const exerciseService = {
     getAllExercises,
-    deleteExercise,
-    addExercise
+    deleteExercise
 };
 
 export default exerciseService;

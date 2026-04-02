@@ -9,5 +9,4 @@ import java.util.Optional;
 public interface ExerciseRepository extends CosmosRepository<Exercise, String> {
     @Override
     Optional<Exercise> findById(String id);
-    Optional<Exercise> findExerciseByName(String name);
 }

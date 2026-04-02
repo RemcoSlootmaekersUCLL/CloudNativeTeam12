@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import be.ucll.model.Exercise;
 import be.ucll.model.User;
 import be.ucll.model.Workout;
-import be.ucll.repository.ExerciseRepository;
 import be.ucll.repository.UserRepository;
 import be.ucll.repository.ExerciseRepository;
 
@@ -57,13 +56,5 @@ public class ExerciseService {
 
         //Delete exercise
         exerciseRepository.delete(exercise);
-    }
-
-    public Exercise createExercise(Exercise new_exercise) {
-        //Check if exercise already exists
-        exerciseRepository.findExerciseByName(new_exercise.getName())
-                .ifPresent(s-> {throw new RuntimeException("Exercise with name: "+new_exercise.getName()+" already exists.");});
-        //Save new Exercise
-        return exerciseRepository.save(new_exercise);
     }
 }

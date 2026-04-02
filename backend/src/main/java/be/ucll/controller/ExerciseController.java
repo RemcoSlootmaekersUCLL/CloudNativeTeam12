@@ -33,9 +33,4 @@ public class ExerciseController {
     public void deleteExerciseById(@PathVariable String id) {
         exerciseService.deleteExerciseById(id);
     }
-
-    @PostMapping
-    public Exercise createExercise(@RequestBody Exercise exercise) {
-        return exerciseService.createExercise(exercise);
-    }
 }
