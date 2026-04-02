@@ -100,7 +100,7 @@ class WorkoutServiceTest {
         when(workoutRepository.save(workout)).thenReturn(workout);
         when(userRepository.findById("user1")).thenReturn(Optional.ofNullable(user));
 
-        Workout result = workoutService.createWorkout(workout);
+        Workout result = workoutService.createWorkoutByUserId(workout,"user1");
 
         assertThat(result).isEqualTo(workout);
         verify(workoutRepository).save(workout);
