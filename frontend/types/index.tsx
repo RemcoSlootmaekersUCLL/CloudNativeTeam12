@@ -1,5 +1,5 @@
 export type Exercises = {
-  id: string;
+  id?: string;
   name: string;
   type: string;
 };

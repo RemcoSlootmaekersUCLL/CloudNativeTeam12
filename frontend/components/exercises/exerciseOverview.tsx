@@ -9,6 +9,9 @@ type Props = {
 const ExerciseOverview: React.FC<Props> = ({ exercises }) => {
     return (
         <>
+            <div className="flex justify-center my-4">
+                <Link href={`/exercises/create`} className="justify-center text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Create exercise</Link>
+            </div>
             {exercises && (
                 <table className="min-w-full border-collapse border border-gray-300">
                     <thead className="bg-black-100">
