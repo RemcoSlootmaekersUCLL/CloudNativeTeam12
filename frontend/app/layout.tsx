@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="">
         <Header />
-        <main className="min-h-screen bg-mist-500/90">{children}</main>
+        <main className="min-h-screen bg-mist-500/50">{children}</main>
       </body>
     </html>
   );
