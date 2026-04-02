@@ -32,16 +32,14 @@ export default function LoginForm() {
     setPasswordError(null);
 
     if (!validateLogin()) return;
-    sessionStorage.setItem("username", username);
-    window.dispatchEvent(new Event("session-change")); // Update Header PLEASE
-
+    
     const result = await userService.loginUser(username, password);
 
     if (!result || !("username" in result)) {
       setLoginErrroMessage((result as any)?.message ?? "Something went wrong");
       return;
     }
-
+    sessionStorage.setItem("username", username);    
     window.dispatchEvent(new Event("session-change"));
     router.push("/users");
   };
