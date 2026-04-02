@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-white text-black">
       <div className="flex border-b border-gray-100">
-        <section className="py-20 px-8">
+        <section className="py-20 px-8 ml-43">
           <p className="text-xs uppercase tracking-widest text-gray-400 mb-4">
             Your personal fitness companion
           </p>
