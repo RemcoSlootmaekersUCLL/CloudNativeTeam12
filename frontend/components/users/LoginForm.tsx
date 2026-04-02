@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import userService from "@/services/userService";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export default function LoginForm() {
@@ -9,6 +10,7 @@ export default function LoginForm() {
   const [loginErrorMessage, setLoginErrroMessage] = useState("");
   const [usernameError, setUsernameError] = useState<string | null>(null);
   const [passwordError, setPasswordError] = useState<string | null>(null);
+  const router = useRouter();
 
   const validateLogin = (): boolean => {
     let result = true;
@@ -23,18 +25,23 @@ export default function LoginForm() {
     return result;
   };
 
-  const handleLoginUser = (event: React.FormEvent) => {
+  const handleLoginUser = async (event: React.FormEvent) => {
     event.preventDefault();
     setLoginErrroMessage("");
+    setUsernameError(null);
+    setPasswordError(null);
 
     if (!validateLogin()) return;
 
-    try {
-      userService.loginUser(username, password);
-    } catch (error) {
-      setLoginErrroMessage("error");
-      console.log(error);
+    const result = await userService.loginUser(username, password);
+
+    if (!result || !("username" in result)) {
+      setLoginErrroMessage((result as any)?.message ?? "Something went wrong");
+      return;
     }
+
+    window.dispatchEvent(new Event("session-change"));
+    router.push("/users");
   };
 
   return (
@@ -77,7 +84,12 @@ export default function LoginForm() {
             <div>CardioQueen : runFast99</div>
             <div>{loginErrorMessage}</div>
           </form>
-          <Link href="/login/register" className="block mt-5 w-full text-white bg-emerald-600 hover:bg-emerald-800 rounded-lg text-sm px-5 py-2.5 text-center">Register user</Link>
+          <Link
+            href="/login/register"
+            className="block mt-5 w-full text-white bg-emerald-600 hover:bg-emerald-800 rounded-lg text-sm px-5 py-2.5 text-center"
+          >
+            Register user
+          </Link>
         </div>
       </div>
     </div>
