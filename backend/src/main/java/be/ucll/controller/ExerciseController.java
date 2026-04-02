@@ -29,13 +29,13 @@ public class ExerciseController {
         return exerciseService.getExerciseById(id);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteExerciseById(@PathVariable String id) {
-        exerciseService.deleteExerciseById(id);
-    }
-
     @PostMapping
     public Exercise createExercise(@RequestBody Exercise exercise) {
         return exerciseService.createExercise(exercise);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteExerciseById(@PathVariable String id) {
+        exerciseService.deleteExerciseById(id);
     }
 }
