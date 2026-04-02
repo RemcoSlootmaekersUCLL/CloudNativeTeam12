@@ -25,21 +25,25 @@ export default function LoginForm() {
     return result;
   };
 
-  const handleLoginUser = (event: React.FormEvent) => {
+  const handleLoginUser = async (event: React.FormEvent) => {
     event.preventDefault();
     setLoginErrroMessage("");
+    setUsernameError(null);
+    setPasswordError(null);
 
     if (!validateLogin()) return;
     sessionStorage.setItem("username", username);
     window.dispatchEvent(new Event("session-change")); // Update Header PLEASE
 
-    try {
-      userService.loginUser(username, password);
-      router.push("/users");
-    } catch (error) {
-      setLoginErrroMessage("error");
-      console.log(error);
+    const result = await userService.loginUser(username, password);
+
+    if (!result || !("username" in result)) {
+      setLoginErrroMessage((result as any)?.message ?? "Something went wrong");
+      return;
     }
+
+    window.dispatchEvent(new Event("session-change"));
+    router.push("/users");
   };
 
   return (

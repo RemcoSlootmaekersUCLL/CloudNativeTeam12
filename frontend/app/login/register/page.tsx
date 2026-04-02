@@ -1,6 +1,10 @@
 import RegisterForm from "@/components/users/RegisterForm";
 import userService from "@/services/userService";
 
+export const metadata = {
+    title: "register - Fitness tracker",
+};
+
 const getData = async () => {
     try {
         const users = await userService.getAllUsers();
@@ -12,6 +16,7 @@ const getData = async () => {
         return { data: null, error: (error as Error).message };
     }
 };
+
 const RegisterPage: React.FC = async () => {
     const { data, error } = await getData();
 
