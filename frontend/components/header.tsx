@@ -39,9 +39,9 @@ const Header: React.FC = () => {
   return (
     <div className="bg-mist-300">
       <div className="ml-40 mr-40 ">
-        <header className="w-full to-lime-400 py-1 pb-5">
+        <header className="w-full to-lime-400 py-1">
           <div className="flex flex-row items-center justify-between">
-            <div className="w-40">
+            <div className="p-4">
               <h1 className="text-3xl font-bold bg-gradient-to-r text-transparent bg-clip-text from-black to-gray-400">
                 <Link href="/">Fitness tracker</Link>
               </h1>
