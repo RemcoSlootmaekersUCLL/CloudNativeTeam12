@@ -26,7 +26,7 @@ public class GoalService {
         goalRepository.findAll().forEach(goals::add);
         return goals;
     }
-    public Goal getGoal(String id) {
+    public Goal getGoalById(String id) {
         return goalRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Goal met id: " + id + " bestaat niet."));
     }

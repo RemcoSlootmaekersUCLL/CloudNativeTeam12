@@ -10,7 +10,7 @@ const getAllGoals = async (): Promise<Goals[]> => {
     });
 
     if (!response.ok) {
-        throw new Error('Er is iets mis gegaan.');
+        throw new Error('Er is iets mis gegaan. goal 1');
     }
 
     return response.json();
@@ -28,7 +28,7 @@ const addGoal = async (goal: Goals): Promise<Goals[]> => {
     });
 
     if (!response.ok) {
-        throw new Error('Er is iets mis gegaan.');
+        throw new Error('Er is iets mis gegaan. goal 2');
     }
 
     return response.json();
@@ -46,7 +46,7 @@ const editGoal = async (goal: Goals, id: string): Promise<Goals[]> => {
     });
 
     if (!response.ok) {
-        throw new Error('Er is iets mis gegaan.');
+        throw new Error('Er is iets mis gegaan. goal 3');
     }
 
     return response.json();
@@ -63,7 +63,7 @@ const getGoal = async (id: string): Promise<Goals> => {
     });
 
     if (!response.ok) {
-        throw new Error('Er is iets mis gegaan.');
+        throw new Error('Er is iets mis gegaan. goal 4');
     }
 
     return response.json();
@@ -80,7 +80,7 @@ const deleteGoal = async (id: string) => {
     });
 
     if (!response.ok) {
-        throw new Error('Er is iets mis gegaan.');
+        throw new Error('Er is iets mis gegaan. goal 5');
     }
 
     return true;

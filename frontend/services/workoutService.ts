@@ -12,7 +12,7 @@ const getAllWorkouts = async (): Promise<Workouts[]> => {
   });
 
   if (!response.ok) {
-    throw new Error("Er is iets mis gegaan.");
+    throw new Error("Er is iets mis gegaan. workout 1");
   }
 
   return response.json();
@@ -28,7 +28,7 @@ const getWorkoutsFromUser = async (id: string): Promise<Workouts[]> => {
   });
 
   if (!response.ok) {
-    throw new Error("Er is iets mis gegaan.");
+    throw new Error("Er is iets mis gegaan. workout 2");
   }
 
   return response.json();
@@ -64,7 +64,7 @@ const deleteWorkout = async (id: string) => {
   );
 
   if (!response.ok) {
-    throw new Error("Er is iets mis gegaan.");
+    throw new Error("Er is iets mis gegaan. workout 3");
   }
 
   return true;

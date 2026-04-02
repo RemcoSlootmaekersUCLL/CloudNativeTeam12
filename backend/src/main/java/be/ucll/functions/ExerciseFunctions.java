@@ -13,10 +13,11 @@ import org.springframework.stereotype.Component;
 @Component // Registers class as Spring-managed bean, and allows injections for the service
 public class ExerciseFunctions {
     private final ExerciseService exerciseService;
-
+    private final String baseRoutePath="exercises";
     public ExerciseFunctions(ExerciseService exerciseService){
         this.exerciseService=exerciseService;
     }
+
     //GET
     @FunctionName("getAllExercises")
     public HttpResponseMessage getAllExercises(
@@ -24,7 +25,7 @@ public class ExerciseFunctions {
                     name = "request",
                     methods = {HttpMethod.GET},
                     authLevel = AuthorizationLevel.ANONYMOUS,
-                    route = "exercises"
+                    route = baseRoutePath
             )
             HttpRequestMessage request) {
         try {
@@ -39,7 +40,7 @@ public class ExerciseFunctions {
                     name = "request",
                     methods = {HttpMethod.GET},
                     authLevel = AuthorizationLevel.ANONYMOUS,
-                    route = "exercises/{id}"
+                    route = baseRoutePath+"/{id}"
             )
             HttpRequestMessage request,
             @BindingName("id") String id,
@@ -57,7 +58,7 @@ public class ExerciseFunctions {
                     name = "request",
                     methods = {HttpMethod.POST},
                     authLevel = AuthorizationLevel.ANONYMOUS,
-                    route = "exercises"
+                    route = baseRoutePath
             )
             HttpRequestMessage<Exercise> request) {
         try {
@@ -73,7 +74,7 @@ public class ExerciseFunctions {
                     name = "request",
                     methods = {HttpMethod.DELETE},
                     authLevel = AuthorizationLevel.ANONYMOUS,
-                    route = "exercises/{id}"
+                    route = baseRoutePath+"/{id}"
             )
             HttpRequestMessage request,
             @BindingName("id") String id) {
@@ -84,5 +85,4 @@ public class ExerciseFunctions {
             return ResponseUtil.error(request, e.getMessage());
         }
     }
-
 }

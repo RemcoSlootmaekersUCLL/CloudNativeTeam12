@@ -16,7 +16,7 @@ const getAllUsers = async (): Promise<Users[]> => {
   });
 
   if (!response.ok) {
-    throw new Error("Er is iets mis gegaan.");
+    throw new Error("Er is iets mis gegaan. user 1");
   }
 
   return response.json();
@@ -62,7 +62,7 @@ const deleteUser = async (id: string) => {
   );
 
   if (!response.ok) {
-    throw new Error("Er is iets mis gegaan.");
+    throw new Error("Er is iets mis gegaan. user 2");
   }
 
   return true;
@@ -79,7 +79,7 @@ const registerUser = async (user: Users) => {
   );
 
   if (!response.ok) {
-    throw new Error("Er is iets mis gegaan.");
+    throw new Error("Er is iets mis gegaan. user 3");
   }
 
   return true;

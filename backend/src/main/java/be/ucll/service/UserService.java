@@ -59,12 +59,12 @@ public class UserService {
 
     public void deleteUserById(String id){
         //Check if user exists
-        if(!userRepository.existsById(id)){throw new RuntimeException("User with id " +id+ " not found.");}
+        User user=userRepository.findById(id).orElseThrow(()->new RuntimeException("User with id " +id+ " not found."));
         //Delete linked workouts
         workoutRepository.deleteAll(workoutRepository.findByUserId(id));
         //Delete linked goals
         goalRepository.deleteAll(goalRepository.findByUserId(id));
         //Remove workout
-        userRepository.deleteById(id);
+        userRepository.delete(user);
     }
 }

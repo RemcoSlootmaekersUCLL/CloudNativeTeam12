@@ -21,8 +21,8 @@ public class GoalController {
         return goalService.getAllGoals();
     }
     @GetMapping("/{id}")
-    public Goal getGoal(@PathVariable String id){
-        return goalService.getGoal(id);
+    public Goal getGoalById(@PathVariable String id){
+        return goalService.getGoalById(id);
     }
     @PostMapping
     public Goal createGoal(@RequestBody Goal goal){
