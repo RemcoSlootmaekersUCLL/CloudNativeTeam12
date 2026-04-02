@@ -154,6 +154,17 @@
 
     <build>
         <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Start-Class>be.ucll.FitnessHealthTrackingApplication</Start-Class>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>com.microsoft.azure</groupId>
                 <artifactId>azure-functions-maven-plugin</artifactId>
@@ -193,7 +204,7 @@
                 <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <classifier>original</classifier>
+                    <mainClass>be.ucll.FitnessHealthTrackingApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>
