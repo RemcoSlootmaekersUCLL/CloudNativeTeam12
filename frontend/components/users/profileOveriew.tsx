@@ -22,7 +22,6 @@ const ProfileOverview: React.FC<Props> = ({ user, workouts, goals }) => {
                             <th className="border border-gray-300 px-4 py-2">weight</th>
                             <th className="border border-gray-300 px-4 py-2">height</th>
                             <th className="border border-gray-300 px-4 py-2">BMI</th>
-                            <th className="border border-gray-300 px-4 py-2">options</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,7 +31,7 @@ const ProfileOverview: React.FC<Props> = ({ user, workouts, goals }) => {
                                 {user.username}
                             </td>
                             <td className="border border-gray-300 px-4 py-2">
-                                {user.password}
+                                {"*".repeat(user.password.length)}
                             </td>
                             <td className="border border-gray-300 px-4 py-2 text-right">
                                 {user.age}
@@ -42,10 +41,6 @@ const ProfileOverview: React.FC<Props> = ({ user, workouts, goals }) => {
                                 {user.height}
                             </td>
                             <td className="border border-gray-300 px-4 py-2">{user.bmi}</td>
-
-                            <td>
-                                <Link href={`/users/delete/${user.id}`} className="text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">delete user</Link>
-                            </td>
                         </tr>
                     </tbody>
                 </table >
