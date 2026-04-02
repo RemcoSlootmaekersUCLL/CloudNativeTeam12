@@ -24,10 +24,10 @@ public class ExerciseController {
         return exerciseService.getAllExercises();
     }
 
-//    @GetMapping("/{id}")
-//    public Exercise getExerciseById(@PathVariable String id) {
-//        return exerciseService.getExerciseById(id);
-//    }
+    @GetMapping("/{id}")
+    public Exercise getExerciseById(@PathVariable String id) {
+        return exerciseService.getExerciseById(id);
+    }
 
     @DeleteMapping("/{id}")
     public void deleteExerciseById(@PathVariable String id) {
