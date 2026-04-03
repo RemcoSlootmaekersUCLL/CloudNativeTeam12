@@ -28,7 +28,7 @@ export type Users = {
 };
 
 export type Goals = {
-  id: string;
+  id?: string;
   name: string;
   startDate: string;
   endDate: string;
@@ -40,4 +40,3 @@ export type StatusMessage = {
   message: string;
   type: "success" | "error";
 };
-
