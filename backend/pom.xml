@@ -25,7 +25,7 @@
         <functionResourceGroup>CNE-GROEP12-DB</functionResourceGroup>
         <functionAppServicePlan>CNE-GROEP12-DB-PLAN</functionAppServicePlan>
         <functionAppName>cne-groep12-functions</functionAppName>
-        <functionRegion>germanywestcentral</functionRegion>
+        <functionAppRegion>germanywestcentral</functionAppRegion>
         <functionPricingTier>Y1</functionPricingTier>
     </properties>
 
@@ -181,7 +181,7 @@
 
                     <runtime>
                         <os>linux</os>
-                        <javaVersion>17</javaVersion>
+                        <javaVersion>21</javaVersion>
                     </runtime>
                     <appSettings>
                         <!-- Run Azure Function from package file by default -->
