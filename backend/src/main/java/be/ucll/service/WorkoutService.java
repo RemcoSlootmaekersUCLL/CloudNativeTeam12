@@ -35,7 +35,7 @@ public class WorkoutService {
                 Exercise exercise = exerciseRepository.findById(we.getExerciseId()).orElseThrow(
                         () -> new RuntimeException("Exercise with id " + we.getExerciseId() + " does not exist."));
                 // Create and return exercises dto
-                return new WorkoutExerciseResponse(exercise.getName(), exercise.getType(), we.getReps(),
+                return new WorkoutExerciseResponse(exercise.getId(),exercise.getName(), exercise.getType(), we.getReps(),
                         we.getDuration(), we.getCaloriesBurned());
             }).toList();
             // Create and return full dto response
