@@ -9,7 +9,7 @@ type Props = {
 
 const ProfileOverview: React.FC<Props> = ({ user, workouts, goals }) => {
   const createButton =
-    "text-white bg-blue-700 hover:scale-102 duration-300 rounded-2xl p-2 text-center";
+    "text-white bg-blue-700 border border-black hover:scale-102 duration-300 rounded-2xl p-2 text-center";
   return (
     <>
       <div className="ml-4">

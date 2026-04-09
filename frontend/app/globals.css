@@ -69,7 +69,6 @@ body {
   color: white;
   border: 1px solid #222;
   border-radius: 16px;
-  text-shadow: 2px 2px 1px #000000;
 }
 
 .delete-button {
@@ -78,5 +77,4 @@ body {
   color: white;
   border: 1px solid #222;
   border-radius: 16px;
-  text-shadow: 2px 2px 1px #000000;
 }
