@@ -9,6 +9,7 @@ import be.ucll.model.WorkoutExercise;
 import be.ucll.repository.ExerciseRepository;
 import be.ucll.repository.UserRepository;
 import be.ucll.repository.WorkoutRepository;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class WorkoutService {
                 Exercise exercise = exerciseRepository.findById(we.getExerciseId()).orElseThrow(
                         () -> new RuntimeException("Exercise with id " + we.getExerciseId() + " does not exist."));
                 // Create and return exercises dto
-                return new WorkoutExerciseResponse(exercise.getName(), exercise.getType(), we.getReps(),
+                return new WorkoutExerciseResponse(exercise.getId(),exercise.getName(), exercise.getType(), we.getReps(),
                         we.getDuration(), we.getCaloriesBurned());
             }).toList();
             // Create and return full dto response
@@ -90,5 +91,23 @@ public class WorkoutService {
         userRepository.save(user);
         //Remove workout
         workoutRepository.delete(deleted_workout);
+    }
+
+    public Workout editWorkout(Workout changed_workout, String id) {
+        Workout old_workout=workoutRepository.findById(id).orElseThrow(()-> new RuntimeException("Workout with id " +id+ " not found."));
+        //Don't let ppl change userid of workout
+        if(!old_workout.getUserId().equals(changed_workout.getUserId())){
+            throw new RuntimeException("Cannot change user of workout");
+        }
+        //Keep id the same as before
+        changed_workout.setId(id);
+
+        //Change workout in user
+        User user=userRepository.findById(changed_workout.getUserId()).orElseThrow(()->new RuntimeException("User with id " +changed_workout.getUserId()+ " not found."));
+        user.getWorkouts().removeIf(workout -> workout.getUserId().equals(old_workout.getUserId()));
+        user.setWorkout(changed_workout);
+        userRepository.save(user);
+        //Change workout
+        return workoutRepository.save(changed_workout);
     }
 }

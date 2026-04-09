@@ -18,6 +18,20 @@ const getAllWorkouts = async (): Promise<Workouts[]> => {
   return response.json();
 };
 
+const getById = async (id: string) => {
+  const res = await fetch(`${API_URL}/workouts/${id}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    cache: "no-store",
+  });
+
+  if (!res.ok) throw new Error("Couldn't get workout.");
+
+  return res.json();
+};
+
 const getWorkoutsFromUser = async (id: string): Promise<Workouts[]> => {
   const response = await fetch(`${API_URL}/workouts/user/${id}`, {
     method: "GET",
@@ -28,7 +42,7 @@ const getWorkoutsFromUser = async (id: string): Promise<Workouts[]> => {
   });
 
   if (!response.ok) {
-    throw new Error("Er is iets mis gegaan.");
+    throw new Error("Something went wrong.");
   }
 
   return response.json();
@@ -51,6 +65,20 @@ const createWorkoutByUserId = async (workout: any, userId: string) => {
   return data;
 };
 
+const editWorkout = async (workout: any, workoutId: string) => {
+  const res = await fetch(`${API_URL}/workouts/${workoutId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(workout),
+    cache: "no-store",
+  });
+  if (!res.ok) throw new Error("Couldn't update workout.");
+
+  return res.json();
+};
+
 const deleteWorkout = async (id: string) => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/workouts/${id}`,
@@ -64,7 +92,7 @@ const deleteWorkout = async (id: string) => {
   );
 
   if (!response.ok) {
-    throw new Error("Er is iets mis gegaan.");
+    throw new Error("Something went wrong.");
   }
 
   return true;
@@ -72,8 +100,10 @@ const deleteWorkout = async (id: string) => {
 
 const workoutService = {
   getAllWorkouts,
+  getById,
   getWorkoutsFromUser,
   createWorkoutByUserId,
+  editWorkout,
   deleteWorkout,
 };
 
