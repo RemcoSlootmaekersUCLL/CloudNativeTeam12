@@ -67,12 +67,16 @@ body {
   padding: 8px;
   background-color: rgb(83, 83, 213);
   color: white;
+  border: 1px solid #222;
   border-radius: 16px;
+  text-shadow: 2px 2px 1px #000000;
 }
 
 .delete-button {
   padding: 8px;
   background-color: rgb(135, 14, 32);
   color: white;
+  border: 1px solid #222;
   border-radius: 16px;
+  text-shadow: 2px 2px 1px #000000;
 }

@@ -101,13 +101,13 @@ const ProfileOverview: React.FC<Props> = ({ user, workouts, goals }) => {
                   <td className="py-2 flex gap-2">
                     <Link
                       href={`/goals/edit/${goal.id}`}
-                      className="edit-button"
+                      className="edit-button hover:scale-102 duration-300"
                     >
                       Edit goal
                     </Link>
                     <Link
                       href={`/goals/delete/${goal.id}`}
-                      className="delete-button"
+                      className="delete-button hover:scale-102 duration-300"
                     >
                       Delete goal
                     </Link>
