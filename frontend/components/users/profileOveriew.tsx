@@ -72,6 +72,14 @@ const ProfileOverview: React.FC<Props> = ({ user, workouts, goals }) => {
                       </div>
                     ))}
                   </td>
+                  <td>
+                    <Link
+                      href={`/workouts/${user.id}/edit/${workout.id}`}
+                      className={createButton}
+                    >
+                      Edit Workout
+                    </Link>
+                  </td>
                 </tr>
               ))}
             </tbody>
