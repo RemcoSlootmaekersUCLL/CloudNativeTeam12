@@ -10,10 +10,10 @@ const Header: React.FC = () => {
 
   const links = [
     { dest: "Home", uri: "/" },
-    { dest: "Users", uri: "/users" },
+    ...(loggedIn ? [] : [{ dest: "Users", uri: "/users" }]),
     { dest: "Exercises", uri: "/exercises" },
     { dest: "Workouts", uri: "/workouts" },
-    { dest: "Goals", uri: "/goals" },
+    ...(loggedIn ? [] : [{ dest: "Goals", uri: "/goals" }]),
     ...(loggedIn
       ? [{ dest: "Profile", uri: `/profile/${sessionStorage.getItem("id")}` }]
       : []),
