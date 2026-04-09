@@ -42,11 +42,21 @@ const EditWorkout: React.FC<Props> = ({ userId, workoutId }: Props) => {
   }, []);
 
   function handleChange(exercise: Exercises) {
+    const isSelected = selectedExercises.some(
+      (ex) => ex.name === exercise.name,
+    );
+
     setSelectedExercises((prev) =>
-      prev.some((ex) => ex.id === exercise.id)
-        ? prev.filter((ex) => ex.id !== exercise.id)
+      isSelected
+        ? prev.filter((ex) => ex.name !== exercise.name)
         : [...prev, exercise],
     );
+
+    if (isSelected) {
+      setWorkoutExercises((prev) =>
+        prev.filter((ex) => ex.exerciseId !== exercise.id),
+      );
+    }
   }
 
   function handleWorkoutExerciseChange(
