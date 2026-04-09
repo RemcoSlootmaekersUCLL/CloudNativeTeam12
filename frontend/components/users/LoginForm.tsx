@@ -41,7 +41,7 @@ export default function LoginForm() {
     }
 
     window.dispatchEvent(new Event("session-change"));
-    router.push("/users");
+    router.push(`/profile/${result.id}`);
   };
 
   return (

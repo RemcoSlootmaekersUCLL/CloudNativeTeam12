@@ -86,12 +86,29 @@ const deleteGoal = async (id: string) => {
     return true;
 };
 
+const getGoalsFromUser = async (userId: string): Promise<Goals[]> => {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/goals/user/${userId}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        cache: "no-store",
+    });
+
+    if (!response.ok) {
+        throw new Error('Er is iets mis gegaan.');
+    }
+
+    return response.json();
+};
+
 const goalService = {
     getAllGoals,
     editGoal,
     getGoal,
     addGoal,
-    deleteGoal
+    deleteGoal,
+    getGoalsFromUser
 };
 
 export default goalService;
