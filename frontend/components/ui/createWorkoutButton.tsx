@@ -9,7 +9,7 @@ type Props = {
 const CreateWorkoutButton: React.FC<Props> = ({ userId }: Props) => {
   const router = useRouter();
 
-  const loggedInUserId = localStorage.getItem("id");
+  const loggedInUserId = sessionStorage.getItem("id");
 
   return (
     loggedInUserId &&
