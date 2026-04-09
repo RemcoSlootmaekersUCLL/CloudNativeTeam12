@@ -8,6 +8,8 @@ type Props = {
 };
 
 const ProfileOverview: React.FC<Props> = ({ user, workouts, goals }) => {
+  const createButton =
+    "text-white bg-blue-700 hover:scale-102 duration-300 rounded-2xl p-2 text-center";
   return (
     <>
       <div className="ml-4">
@@ -45,7 +47,12 @@ const ProfileOverview: React.FC<Props> = ({ user, workouts, goals }) => {
       </div>
 
       <div className="mt-4 ml-4">
-        <h2 className="font-bold text-lg">Your Workouts</h2>
+        <div className="flex gap-2 items-center mb-1">
+          <h2 className="font-bold text-lg">Your Workouts</h2>
+          <Link href={`/workouts/${user.id}/create`} className={createButton}>
+            Create Workout
+          </Link>
+        </div>
         {workouts ? (
           <table className="userWorkoutsTable">
             <thead>
@@ -77,7 +84,12 @@ const ProfileOverview: React.FC<Props> = ({ user, workouts, goals }) => {
       </div>
 
       <div className="ml-4 mt-4">
-        <h2 className="font-bold text-lg">Your Goals</h2>
+        <div className="flex gap-2 items-center mb-1">
+          <h2 className="font-bold text-lg">Your Goals</h2>
+          <Link href={`/goals/create/${user.id}`} className={createButton}>
+            Create Goal
+          </Link>
+        </div>
         {goals ? (
           <table className="userGoalsTable">
             <thead>
