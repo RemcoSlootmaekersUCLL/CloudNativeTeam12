@@ -1,25 +1,40 @@
 "use client";
 
+import userService from "@/services/userService";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const Header: React.FC = () => {
-  const [userId, setUserId] = useState<string | null>(null);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const id = localStorage.getItem("id");
-    setUserId(id);
-  }, []);
   const links = [
     { dest: "Home", uri: "/" },
     { dest: "Users", uri: "/users" },
     { dest: "Exercises", uri: "/exercises" },
     { dest: "Workouts", uri: "/workouts" },
     { dest: "Goals", uri: "/goals" },
-    { dest: "Login", uri: "/login" },
-    ...(userId ? [{ dest: "Profile", uri: `/profile/${userId}` }] : []),
-
+    ...(loggedIn
+      ? [{ dest: "Profile", uri: `/profile/${sessionStorage.getItem("id")}` }]
+      : []),
   ];
+
+  useEffect(() => {
+    const sync = () => {
+      const username = sessionStorage.getItem("username");
+      setLoggedIn(!!username);
+      setLoading(false);
+    };
+
+    sync();
+    window.addEventListener("session-change", sync);
+    return () => window.removeEventListener("session-change", sync);
+  }, []);
+
+  const handleLogout = () => {
+    userService.logout();
+    window.dispatchEvent(new Event("session-change"));
+  };
 
   const linkClassname =
     "mx-2 px-2 py-1 text-yellow-50 rounded-lg hover:bg-cyan-300/30 transition-colors duration-300";
@@ -36,10 +51,24 @@ const Header: React.FC = () => {
             aria-label="main"
           >
             {links.map((link) => (
-              <Link key={link.uri} href={link.uri} className={linkClassname}>
+              <Link key={link.dest} href={link.uri} className={linkClassname}>
                 {link.dest}
               </Link>
             ))}
+            {!loading &&
+              (loggedIn ? (
+                <Link
+                  className={linkClassname}
+                  href="/login"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </Link>
+              ) : (
+                <Link className={linkClassname} href="/login">
+                  Login
+                </Link>
+              ))}
           </nav>
         </div>
       </div>

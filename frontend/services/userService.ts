@@ -42,27 +42,28 @@ const loginUser = async (username: string, password: string) => {
     if (!response.ok) {
       return { message: data || "Login failed" };
     }
-    localStorage.setItem("username", data.username);
-    localStorage.setItem("id", data.id);
+    sessionStorage.setItem("username", data.username);
+    sessionStorage.setItem("id", data.id);
     return data;
-
   } catch (error: any) {
     return { message: error.message };
   }
 };
 
 const deleteUser = async (id: string) => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/${id}`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/users/${id}`,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      cache: "no-store",
     },
-    cache: "no-store",
-
-  });
+  );
 
   if (!response.ok) {
-    throw new Error('Er is iets mis gegaan.');
+    throw new Error("Er is iets mis gegaan.");
   }
 
   return true;
@@ -79,20 +80,23 @@ const registerUser = async (user: Users) => {
   );
 
   if (!response.ok) {
-    throw new Error('Er is iets mis gegaan.');
+    throw new Error("Er is iets mis gegaan.");
   }
 
   return true;
 };
 
 const getUserById = async (id: string): Promise<Users> => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/${id}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/users/${id}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      cache: "no-store",
     },
-    cache: "no-store",
-  });
+  );
 
   if (!response.ok) {
     throw new Error("Er is iets mis gegaan.");
@@ -101,12 +105,18 @@ const getUserById = async (id: string): Promise<Users> => {
   return response.json();
 };
 
+const logout = () => {
+  sessionStorage.removeItem("username");
+  sessionStorage.removeItem("id");
+};
+
 const userService = {
   getAllUsers,
   loginUser,
+  logout,
   deleteUser,
   registerUser,
-  getUserById
+  getUserById,
 };
 
 export default userService;

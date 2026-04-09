@@ -18,7 +18,7 @@ const CreateWorkout: React.FC = () => {
   const router = useRouter();
 
   useEffect(() => {
-    setUserId(localStorage.getItem("id")!);
+    setUserId(sessionStorage.getItem("id")!);
     exerciseService.getAllExercises().then((data) => setAllExercises(data));
   }, []);
 
