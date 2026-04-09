@@ -4,7 +4,6 @@ import userService from "@/services/userService";
 import workoutService from "@/services/workoutService";
 import Link from "next/link";
 
-
 type Props = {
   params: Promise<{
     userId: string;
@@ -23,7 +22,6 @@ const getData = async (userId: string) => {
     const workouts = await workoutService.getWorkoutsFromUser(userId);
     const goals = await goalService.getGoalsFromUser(userId);
 
-
     return { data: { user, workouts, goals }, error: null };
   } catch (error) {
     return { data: null, error: (error as Error).message };
@@ -41,7 +39,7 @@ const UserPage: React.FC<Props> = async ({ params }: Props) => {
   return (
     <div>
       <main>
-        <h1 className="text-center font-bold p-4">your profile</h1>
+        <h1 className="text-center text-2xl font-bold p-4">Your Profile</h1>
         {error && (
           <div className="text-red-800" role="alert">
             {error}
@@ -50,7 +48,11 @@ const UserPage: React.FC<Props> = async ({ params }: Props) => {
         {data && data.user != null && (
           <>
             <section className="table-container-style">
-              <ProfileOverview user={data.user} workouts={data.workouts} goals={data.goals} />
+              <ProfileOverview
+                user={data.user}
+                workouts={data.workouts}
+                goals={data.goals}
+              />
             </section>
           </>
         )}
@@ -58,7 +60,12 @@ const UserPage: React.FC<Props> = async ({ params }: Props) => {
           <>
             <section className="flex flex-col max-width-100 justify-center items-center px-4">
               <h1>Please login first</h1>
-              <Link href="/login" className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Go to login page</Link>
+              <Link
+                href="/login"
+                className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+              >
+                Go to login page
+              </Link>
             </section>
           </>
         )}
