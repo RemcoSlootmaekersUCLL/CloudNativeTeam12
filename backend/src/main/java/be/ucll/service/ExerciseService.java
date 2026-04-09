@@ -1,7 +1,11 @@
 package be.ucll.service;
 
 import be.ucll.model.Exercise;
+import be.ucll.model.User;
+import be.ucll.model.Workout;
 import be.ucll.repository.ExerciseRepository;
+import be.ucll.repository.UserRepository;
+import be.ucll.repository.WorkoutRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,9 +13,14 @@ import java.util.List;
 @Service
 public class ExerciseService {
     private final ExerciseRepository exerciseRepository;
+    private final WorkoutRepository workoutRepository;
+    private final UserRepository userRepository;
 
-    public ExerciseService(ExerciseRepository exerciseRepository) {
+    public ExerciseService(ExerciseRepository exerciseRepository, WorkoutRepository workoutRepository,
+            UserRepository userRepository) {
         this.exerciseRepository = exerciseRepository;
+        this.workoutRepository = workoutRepository;
+        this.userRepository = userRepository;
     }
 
     public List<Exercise> getAllExercises() {
@@ -23,4 +32,29 @@ public class ExerciseService {
                 .orElseThrow(() -> new RuntimeException("Exercise with ID '" + id + "' not found."));
     }
 
+    public void deleteExerciseById(String id) {
+        // Delete exercise from workouts
+        List<Workout> workouts = workoutRepository.findByExercisesExerciseId(id);
+
+        workouts.forEach(workout -> workout.getExercises()
+                .removeIf(workoutExercise -> workoutExercise.getExerciseId().equals(id)));
+        workoutRepository.saveAll(workouts);
+
+        // Update workout in users as well
+        List<User> users = userRepository.findAll();
+        users.forEach(user -> user.getWorkouts()
+                .forEach(workout -> workout.getExercises().removeIf(e -> e.getExerciseId().equals(id))));
+        userRepository.saveAll(users);
+
+        // Delete exercise
+        exerciseRepository.deleteById(id);
+    }
+    
+    public Exercise createExercise(Exercise new_exercise) {
+        //Check if exercise already exists
+        exerciseRepository.findExerciseByName(new_exercise.getName())
+                .ifPresent(s-> {throw new RuntimeException("Exercise with name: "+new_exercise.getName()+" already exists.");});
+        //Save new Exercise
+        return exerciseRepository.save(new_exercise);
+    }
 }

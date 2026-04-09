@@ -42,9 +42,13 @@ public class DbInitializer {
         // 2️⃣ Create Exercises
         // =====================
         Exercise bench = new Exercise("Bench press", Type.STRENGTH);
+        bench.setId("ex1");
         Exercise squat = new Exercise("Squat", Type.STRENGTH);
+        squat.setId("ex2");
         Exercise deadlift = new Exercise("Deadlift", Type.STRENGTH);
+        deadlift.setId("ex3");
         Exercise bike = new Exercise("Bike", Type.CARDIO);
+        bike.setId("ex4");
         exerciseRepository.saveAll(List.of(bench, squat, deadlift, bike));
 
         // =====================
@@ -69,7 +73,9 @@ public class DbInitializer {
         // 4️⃣ Create Goals
         // =====================
         Goal goal1 = new Goal("user1","Gain Muscle", LocalDate.now().plusMonths(3), LocalDate.now(), false);
+        goal1.setId("goal1");
         Goal goal2 = new Goal("user2","Marathon Training", LocalDate.now().plusMonths(6), LocalDate.now(), false);
+        goal2.setId("goal2");
 
         // Save goals so they get IDs
         goalRepository.saveAll(List.of(goal1, goal2));

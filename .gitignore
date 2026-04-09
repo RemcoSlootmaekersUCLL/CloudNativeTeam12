@@ -17,3 +17,5 @@ next-env.d.ts
 # back-end
 target/
 .idea/
+*.properties
+backend/src/main/azure/local.settings.json

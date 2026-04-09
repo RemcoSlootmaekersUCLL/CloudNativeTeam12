@@ -1,4 +1,5 @@
 import { Exercises } from "@/types";
+import Link from "next/link";
 
 type Props = {
     exercises: Exercises[];
@@ -8,12 +9,16 @@ type Props = {
 const ExerciseOverview: React.FC<Props> = ({ exercises }) => {
     return (
         <>
+            <div className="flex justify-center my-4">
+                <Link href={`/exercises/create`} className="justify-center text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Create exercise</Link>
+            </div>
             {exercises && (
                 <table className="min-w-full border-collapse border border-gray-300">
                     <thead className="bg-black-100">
                         <tr>
                             <th className="border border-gray-300 px-4 py-2">name</th>
                             <th className="border border-gray-300 px-4 py-2">type</th>
+                            <th className="border border-gray-300 px-4 py-2">options</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -21,6 +26,9 @@ const ExerciseOverview: React.FC<Props> = ({ exercises }) => {
                             <tr key={i} className="">
                                 <td className="border border-gray-300 px-4 py-2 text-right">{e.name}</td>
                                 <td className="border border-gray-300 px-4 py-2">{e.type}</td>
+                                <td>
+                                    <Link href={`/exercises/delete/${e.id}`} className="text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">delete exercise</Link>
+                                </td>
                             </tr>
                         ))}
                     </tbody>

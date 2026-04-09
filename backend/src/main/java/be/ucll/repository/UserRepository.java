@@ -1,7 +1,10 @@
 package be.ucll.repository;
 
-import be.ucll.model.User;
+import java.util.Optional;
+
 import org.springframework.data.mongodb.repository.MongoRepository;
 
+import be.ucll.model.User;
 public interface UserRepository extends MongoRepository<User, String> {
+    Optional<User>findByUsername(String username);
 }
