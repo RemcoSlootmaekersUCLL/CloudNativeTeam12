@@ -23,15 +23,25 @@ export type WorkoutExercise = {
 };
 
 export type Users = {
-  [x: string]: Users;
   id?: string;
   username: string;
   password: string;
   age: number;
   weight: number;
   height: number;
-  bmi: number;
+  bmi?: number;
 };
+
+// export type Users = {
+//   [x: string]: Users;
+//   id?: string;
+//   username: string;
+//   password: string;
+//   age: number;
+//   weight: number;
+//   height: number;
+//   bmi?: number;
+// };
 
 export type Goals = {
   id?: string;
