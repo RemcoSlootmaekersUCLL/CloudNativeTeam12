@@ -24,6 +24,10 @@ public class UserController {
     public List<User> getAllUsers(){
         return userService.getAllUsers();
     }
+    @GetMapping("/{id}")
+    public User getUserById(@PathVariable String id){
+        return userService.getUserById(id);
+    }
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
@@ -43,10 +47,4 @@ public class UserController {
     public void deleteUserById(@PathVariable String id){
         userService.deleteUserById(id);
     }
-
-    @GetMapping("/{id}")
-    public User getUserById(@PathVariable String id){
-        return userService.getUserById(id);
-    }
-
 }

@@ -56,7 +56,22 @@ public class GoalFunctions {
             return ResponseUtil.error(request,  e.getMessage());
         }
     }
-
+    @FunctionName("getGoalsFromUser")
+    public HttpResponseMessage getGoalsFromUser(
+            @HttpTrigger(
+                    name = "request",
+                    methods = {HttpMethod.GET},
+                    authLevel = AuthorizationLevel.ANONYMOUS,
+                    route = baseRoutePath+"/user/{userId}"
+            )
+            HttpRequestMessage request,
+            @BindingName("userId") String userId) {
+        try {
+            return ResponseUtil.ok(request, goalService.getGoalsFromUser(userId));
+        } catch (Exception e) {
+            return ResponseUtil.error(request,  e.getMessage());
+        }
+    }
     //POST
     @FunctionName("createGoal")
     public HttpResponseMessage createGoal(

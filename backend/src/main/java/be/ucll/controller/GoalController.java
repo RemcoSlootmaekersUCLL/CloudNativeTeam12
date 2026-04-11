@@ -24,6 +24,11 @@ public class GoalController {
     public Goal getGoalById(@PathVariable String id){
         return goalService.getGoalById(id);
     }
+    @GetMapping("/user/{userId}")
+    public List<Goal> getGoalsFromUser(@PathVariable String userId){
+        return goalService.getGoalsFromUser(userId);
+    }
+
     @PostMapping
     public Goal createGoal(@RequestBody Goal goal){
         return goalService.createGoal(goal);
@@ -33,14 +38,9 @@ public class GoalController {
     public Goal editGoal(@RequestBody Goal goal, @PathVariable String id){
         return goalService.editGoal(goal,id);
     }
+
     @DeleteMapping("/{id}")
     public void deleteGoalById(@PathVariable String id){
         goalService.deleteGoalById(id);
     }
-
-    @GetMapping("/user/{userId}")
-    public List<Goal> getGoalsFromUser(@PathVariable String userId){
-        return goalService.getGoalsFromUser(userId);
-    }
-
 }

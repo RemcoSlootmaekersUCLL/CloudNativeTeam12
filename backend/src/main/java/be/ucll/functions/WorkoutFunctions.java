@@ -1,5 +1,6 @@
 package be.ucll.functions;
 
+import be.ucll.model.Goal;
 import be.ucll.model.Workout;
 import be.ucll.service.WorkoutService;
 import be.ucll.util.ResponseUtil;
@@ -83,6 +84,26 @@ public class WorkoutFunctions {
             // Deserialize input and get Workout
             Workout workout = ResponseUtil.fromJson(body, Workout.class);
             return ResponseUtil.ok(request, workoutService.createWorkoutByUserId(workout,userId));
+        } catch (Exception e) {
+            return ResponseUtil.error(request,  e.getMessage());
+        }
+    }
+    //PUT
+    @FunctionName("editWorkout")
+    public HttpResponseMessage editWorkout(
+            @HttpTrigger(
+                    name = "request",
+                    methods = {HttpMethod.PUT},
+                    authLevel = AuthorizationLevel.ANONYMOUS,
+                    route = baseRoutePath+"/{id}"
+            )
+            HttpRequestMessage<Optional<String>> request,@BindingName("id") String id) {
+        try {
+            // Get body
+            String body = request.getBody().orElseThrow(() -> new RuntimeException("Missing body"));
+            // Deserialize input and get Workout
+            Workout workout = ResponseUtil.fromJson(body, Workout.class);
+            return ResponseUtil.ok(request, workoutService.editWorkout(workout,id));
         } catch (Exception e) {
             return ResponseUtil.error(request,  e.getMessage());
         }
