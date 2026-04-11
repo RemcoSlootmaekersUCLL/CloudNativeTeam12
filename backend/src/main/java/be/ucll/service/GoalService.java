@@ -1,6 +1,5 @@
 package be.ucll.service;
 
-import be.ucll.dto.WorkoutResponse;
 import be.ucll.model.Goal;
 import be.ucll.model.User;
 import java.util.ArrayList;
