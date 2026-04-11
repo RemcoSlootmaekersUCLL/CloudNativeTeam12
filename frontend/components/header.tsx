@@ -37,42 +37,47 @@ const Header: React.FC = () => {
   };
 
   const linkClassname =
-    "mx-2 px-2 py-1 text-yellow-50 rounded-lg hover:bg-cyan-300/30 transition-colors duration-300";
+    "mx-2 px-2 py-1 text-black rounded-lg hover:bg-gray-800/20 transition-colors duration-300 font-family-plus-jakarta-sans";
 
   return (
-    <header className="w-full bg-gradient-to-r from-emerald-600 to-lime-400 py-1">
-      <div className="flex flex-col justify-center">
-        <h1 className="text-3xl self-center font-bold bg-gradient-to-r text-transparent bg-clip-text from-blue-100 to-sky-200">
-          <Link href="/">Fitness tracker</Link>
-        </h1>
-        <div className="md:flex md:just-between md:mx-auto">
-          <nav
-            className="space-x-8 text-xl flex md:mx-auto md:space-x-0"
-            aria-label="main"
-          >
-            {links.map((link) => (
-              <Link key={link.dest} href={link.uri} className={linkClassname}>
-                {link.dest}
-              </Link>
-            ))}
-            {!loading &&
-              (loggedIn ? (
-                <Link
-                  className={linkClassname}
-                  href="/login"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </Link>
-              ) : (
-                <Link className={linkClassname} href="/login">
-                  Login
+    <div className="bg-mist-300">
+      <div className="ml-40 mr-40 ">
+        <header className="w-full to-lime-400 py-1">
+          <div className="flex flex-row items-center justify-between">
+            <div className="p-4">
+              <h1 className="text-3xl font-bold bg-gradient-to-r text-transparent bg-clip-text from-black to-gray-400">
+                <Link href="/">Fitness tracker</Link>
+              </h1>
+            </div>
+
+            <nav className="flex text-xl" aria-label="main">
+              {links.map((link) => (
+                <Link key={link.dest} href={link.uri} className={linkClassname}>
+                  {link.dest}
                 </Link>
               ))}
-          </nav>
-        </div>
+            </nav>
+            <div className="w-40 flex justify-end">
+              <nav className="text-xl w-24" aria-label="auth">
+                {loggedIn ? (
+                  <Link
+                    className={linkClassname}
+                    href="/login"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </Link>
+                ) : (
+                  <Link className={linkClassname} href="/login">
+                    Login
+                  </Link>
+                )}
+              </nav>
+            </div>
+          </div>
+        </header>
       </div>
-    </header>
+    </div>
   );
 };
 

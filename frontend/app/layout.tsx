@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "@/styles/globals.css";
 import Header from "@/components/header";
 
 export const metadata: Metadata = {
@@ -19,6 +19,7 @@ export default function RootLayout({
         <main className="min-h-screen bg-[rgb(238,238,238)] text-black">
           {children}
         </main>
+        {/* <main className="min-h-screen bg-mist-500/50">{children}</main> */}
       </body>
     </html>
   );
