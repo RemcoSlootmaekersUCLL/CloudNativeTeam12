@@ -14,9 +14,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="">
+      <body>
         <Header />
-        <main className="min-h-screen bg-mist-500/90">{children}</main>
+        <main className="min-h-screen bg-[rgb(238,238,238)] text-black">
+          {children}
+        </main>
       </body>
     </html>
   );

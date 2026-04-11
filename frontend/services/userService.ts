@@ -39,11 +39,12 @@ const loginUser = async (username: string, password: string) => {
 
     const data: LoginResponse = await response.json();
 
-    if (response.ok) {
-      sessionStorage.setItem("username", data.username);
-      sessionStorage.setItem("id", data.id);
-      return data;
+    if (!response.ok) {
+      return { message: data || "Login failed" };
     }
+    sessionStorage.setItem("username", data.username);
+    sessionStorage.setItem("id", data.id);
+    return data;
   } catch (error: any) {
     return { message: error.message };
   }
@@ -85,6 +86,25 @@ const registerUser = async (user: Users) => {
   return true;
 };
 
+const getUserById = async (id: string): Promise<Users> => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/users/${id}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      cache: "no-store",
+    },
+  );
+
+  if (!response.ok) {
+    throw new Error("Er is iets mis gegaan.");
+  }
+
+  return response.json();
+};
+
 const logout = () => {
   sessionStorage.removeItem("username");
   sessionStorage.removeItem("id");
@@ -96,6 +116,7 @@ const userService = {
   logout,
   deleteUser,
   registerUser,
+  getUserById,
 };
 
 export default userService;

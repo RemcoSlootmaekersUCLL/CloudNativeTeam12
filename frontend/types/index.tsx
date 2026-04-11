@@ -2,6 +2,9 @@ export type Exercises = {
   id?: string;
   name: string;
   type: string;
+  reps?: number;
+  duration?: number;
+  caloriesBurned?: number;
 };
 
 export type Workouts = {
@@ -9,6 +12,7 @@ export type Workouts = {
   userId: string;
   date: string;
   exercises: Exercises[];
+  totalCaloriesBurned?: number;
 };
 
 export type WorkoutExercise = {
@@ -19,12 +23,14 @@ export type WorkoutExercise = {
 };
 
 export type Users = {
+  [x: string]: Users;
   id?: string;
   username: string;
   password: string;
   age: number;
   weight: number;
   height: number;
+  bmi: number;
 };
 
 export type Goals = {

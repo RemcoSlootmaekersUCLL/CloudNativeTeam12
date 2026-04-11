@@ -41,7 +41,7 @@ export default function LoginForm() {
     }
     sessionStorage.setItem("username", username);    
     window.dispatchEvent(new Event("session-change"));
-    router.push("/users");
+    router.push(`/profile/${result.id}`);
   };
 
   return (
