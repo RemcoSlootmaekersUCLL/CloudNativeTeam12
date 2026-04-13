@@ -32,7 +32,7 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
         try {
-            LoginResponse response = userService.login(request.getUsername(), request.getPassword());
+            LoginResponse response = userService.login(request.username(), request.password());
             return ResponseEntity.ok(response);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(400).body(e.getMessage());
