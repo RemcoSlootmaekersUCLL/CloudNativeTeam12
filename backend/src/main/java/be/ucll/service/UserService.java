@@ -40,11 +40,7 @@ public class UserService {
             throw new IllegalArgumentException("Invalid username or password");
         }
 
-        LoginResponse response = new LoginResponse();
-        response.setMessage("Login successful");
-        response.setUsername(user.getUsername());
-        response.setId(user.getId());
-        return response;
+        return new LoginResponse(user.getId(),"Login successful",user.getUsername());
     }
     public User register(User user) {
         //Check if username already exists
