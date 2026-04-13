@@ -34,6 +34,10 @@ public class WorkoutService {
             List<WorkoutExerciseResponse> exerciseResponses = workout.getExercises().stream().map(we -> {
                 Exercise exercise = exerciseRepository.findById(we.getExerciseId()).orElseThrow(
                         () -> new RuntimeException("Exercise with id " + we.getExerciseId() + " does not exist."));
+                //Check illegal state of Reps|Duration|CaloriesBurned
+                if(we.getReps()<=0 ||  we.getDuration()<=0 ||  we.getCaloriesBurned()<=0){
+                    throw new IllegalArgumentException("Reps, duration and calories burned must be bigger than 0.");
+                }
                 // Create and return exercises dto
                 return new WorkoutExerciseResponse(exercise.getId(),exercise.getName(), exercise.getType(), we.getReps(),
                         we.getDuration(), we.getCaloriesBurned());
