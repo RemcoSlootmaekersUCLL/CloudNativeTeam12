@@ -18,6 +18,5 @@ frontend/.env
 # back-end
 target/
 .idea/
-*.properties
 backend/src/main/azure/local.settings.json
 backend/src/main/resources/application.yaml
