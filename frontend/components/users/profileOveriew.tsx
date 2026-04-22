@@ -9,7 +9,7 @@ type Props = {
 
 const ProfileOverview: React.FC<Props> = ({ user, workouts, goals }) => {
   const createButton =
-    "text-white bg-blue-700 border border-black hover:scale-102 duration-300 rounded-2xl p-2 text-center";
+    "justify-center text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center";
   return (
     <>
       <div className="ml-4">
@@ -121,13 +121,13 @@ const ProfileOverview: React.FC<Props> = ({ user, workouts, goals }) => {
                   <td className="py-2 flex gap-2">
                     <Link
                       href={`/goals/edit/${goal.id}`}
-                      className="edit-button hover:scale-102 duration-300"
+                      className={createButton}
                     >
                       Edit goal
                     </Link>
                     <Link
                       href={`/goals/delete/${goal.id}`}
-                      className="delete-button hover:scale-102 duration-300"
+                      className="text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                     >
                       Delete goal
                     </Link>
