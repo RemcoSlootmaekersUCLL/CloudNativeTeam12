@@ -2,11 +2,10 @@ package be.ucll.controller;
 
 import be.ucll.model.Exercise;
 import be.ucll.service.ExerciseService;
-import be.ucll.service.WorkoutService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.microsoft.azure.functions.annotation.FunctionName;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.function.context.FunctionCatalog;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,6 +14,7 @@ import java.util.List;
 public class ExerciseController {
     private final ExerciseService exerciseService;
 
+    @Autowired
     public ExerciseController(ExerciseService exerciseService) {
         this.exerciseService = exerciseService;
     }
@@ -29,4 +29,13 @@ public class ExerciseController {
         return exerciseService.getExerciseById(id);
     }
 
+    @PostMapping
+    public Exercise createExercise(@RequestBody Exercise exercise) {
+        return exerciseService.createExercise(exercise);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteExerciseById(@PathVariable String id) {
+        exerciseService.deleteExerciseById(id);
+    }
 }

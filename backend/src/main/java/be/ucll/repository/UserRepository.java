@@ -1,7 +1,13 @@
 package be.ucll.repository;
 
-import be.ucll.model.User;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import java.util.List;
+import java.util.Optional;
 
-public interface UserRepository extends MongoRepository<User, String> {
+import com.azure.spring.data.cosmos.repository.CosmosRepository;
+
+import be.ucll.model.User;
+public interface UserRepository extends CosmosRepository<User, String> {
+    List<User> findAll();
+    Optional<User>findByUsername(String username);
+    Optional<User>findById(String id);
 }

@@ -1,19 +1,21 @@
 package be.ucll.model;
 
-import jakarta.validation.constraints.NotNull;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
-import static java.lang.Long.sum;
+import org.springframework.data.annotation.Id;
 
-@Document("workout")
+import com.azure.spring.data.cosmos.core.mapping.Container;
+import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
+
+import jakarta.validation.constraints.NotNull;
+
+@Container(containerName = "workout", autoCreateContainer = false)
 public class Workout {
-
+    @PartitionKey
     @Id
-    private String id;
+    private String id = UUID.randomUUID().toString();
 
     @NotNull(message = "UserId is required.")
     private String userId;

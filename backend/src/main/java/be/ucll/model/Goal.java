@@ -1,17 +1,20 @@
 package be.ucll.model;
 
-import jakarta.validation.constraints.AssertTrue;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.time.LocalDate;
+import java.util.UUID;
 
-@Document("goal")
+import org.springframework.data.annotation.Id;
+
+import com.azure.spring.data.cosmos.core.mapping.Container;
+import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
+
+import jakarta.validation.constraints.NotNull;
+
+@Container(containerName = "goal", autoCreateContainer = false)
 public class Goal {
+    @PartitionKey
     @Id
-    private String id;
+    private String id = UUID.randomUUID().toString();
 
     @NotNull(message = "Goal name is required.")
     private String name;
@@ -21,16 +24,16 @@ public class Goal {
 
     private LocalDate endDate;
 
-    private boolean was_successful;
+    private boolean wasSuccessful;
     private String userId;
 
     protected Goal(){}
-    public Goal(String userId,String name, LocalDate endDate, LocalDate startDate, boolean was_successful) {
+    public Goal(String userId,String name, LocalDate endDate, LocalDate startDate, boolean wasSuccessful) {
         setUserId(userId);
         setName(name);
         setStartDate(startDate);
         setEndDate(endDate);
-        setWas_successful(was_successful);
+        setWasSuccessful(wasSuccessful);
     }
 
     public String getId() {
@@ -65,12 +68,12 @@ public class Goal {
         this.endDate = endDate;
     }
 
-    public boolean isWas_successful() {
-        return was_successful;
+    public boolean isWasSuccessful() {
+        return wasSuccessful;
     }
 
-    public void setWas_successful(boolean was_successful) {
-        this.was_successful = was_successful;
+    public void setWasSuccessful(boolean wasSuccessful) {
+        this.wasSuccessful = wasSuccessful;
     }
 
     public String getUserId() {

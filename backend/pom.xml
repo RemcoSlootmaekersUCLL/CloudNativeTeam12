@@ -21,6 +21,12 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <functionResourceGroup>CNE-GROEP12-DB</functionResourceGroup>
+        <functionAppServicePlan>CNE-GROEP12-DB-PLAN</functionAppServicePlan>
+        <functionAppName>cne-groep12-functions</functionAppName>
+        <functionAppRegion>germanywestcentral</functionAppRegion>
+        <functionPricingTier>Y1</functionPricingTier>
     </properties>
 
 <dependencies>
@@ -68,12 +74,16 @@
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <dependency>
+        <!-- <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongodb-driver-bom</artifactId>
             <version>5.5.1</version>
             <type>pom</type>
             <scope>import</scope>
+        </dependency> -->
+        <dependency>
+            <groupId>com.azure</groupId>
+            <artifactId>azure-spring-data-cosmos</artifactId>
         </dependency>
 
 
@@ -109,6 +119,18 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
+        <!--Azure package-->
+        <dependency>
+            <groupId>com.azure</groupId>
+            <artifactId>azure-identity</artifactId>
+        </dependency>
+        <!--Azure functions dependency-->
+        <dependency>
+             <groupId>org.springframework.cloud</groupId>
+             <artifactId>spring-cloud-function-adapter-azure</artifactId>
+             <version>4.0.0</version>
+        </dependency>
+
 
         <!-- Testing -->
         <dependency>
@@ -118,13 +140,76 @@
         </dependency>
     </dependencies>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.azure.spring</groupId>
+                <artifactId>spring-cloud-azure-dependencies</artifactId>
+                <version>5.10.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <build>
         <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Start-Class>be.ucll.FitnessHealthTrackingApplication</Start-Class>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.microsoft.azure</groupId>
+                <artifactId>azure-functions-maven-plugin</artifactId>
+                <version>1.22.0</version>
+                <configuration>
+                    <resourceGroup>${functionResourceGroup}</resourceGroup>
+                    <appName>${functionAppName}</appName>
+                    <region>${functionAppRegion}</region>
+                    <appServicePlanName>${functionAppServicePlanName}</appServicePlanName>
+                    <pricingTier>${functionPricingTier}</pricingTier>
+
+                    <hostJson>${project.basedir}/src/main/azure/host.json</hostJson>
+                    <localSettingsJson>${project.basedir}/src/main/azure/local.settings.json</localSettingsJson>
+
+                    <runtime>
+                        <os>linux</os>
+                        <javaVersion>21</javaVersion>
+                    </runtime>
+                    <appSettings>
+                        <!-- Run Azure Function from package file by default -->
+                        <property>
+                            <name>FUNCTIONS_EXTENSION_VERSION</name>
+                            <value>~4</value>
+                        </property>
+                    </appSettings>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>package-functions</id>
+                        <goals>
+                            <goal>package</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>be.ucll.FitnessHealthTrackingApplication</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>
+
+
 
 </project>

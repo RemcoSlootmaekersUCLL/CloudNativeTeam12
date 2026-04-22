@@ -1,12 +1,13 @@
 package be.ucll.service;
 
-import be.ucll.dto.WorkoutExerciseResponse;
 import be.ucll.dto.WorkoutResponse;
 import be.ucll.model.Exercise;
+import be.ucll.model.User;
 import be.ucll.model.enums.Type;
 import be.ucll.model.Workout;
 import be.ucll.model.WorkoutExercise;
 import be.ucll.repository.ExerciseRepository;
+import be.ucll.repository.UserRepository;
 import be.ucll.repository.WorkoutRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,9 +21,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -32,6 +30,8 @@ class WorkoutServiceTest {
     private WorkoutRepository workoutRepository;
 
     @Mock
+    private UserRepository userRepository;
+    @Mock
     private ExerciseRepository exerciseRepository;
 
     @InjectMocks
@@ -39,11 +39,14 @@ class WorkoutServiceTest {
 
     private Workout workout;
     private Exercise exercise;
+    private User user;
 
     @BeforeEach
     void setUp() {
         exercise = new Exercise("Bench Press", Type.STRENGTH);
         exercise.setId("ex1");
+        user=new User("user",18,"*****",2837377,100);
+        user.setId("user1");
 
         WorkoutExercise workoutExercise = new WorkoutExercise("ex1", 5, 10, 100);
 
@@ -95,8 +98,9 @@ class WorkoutServiceTest {
     @Test
     void createWorkout_shouldSaveWorkout() {
         when(workoutRepository.save(workout)).thenReturn(workout);
+        when(userRepository.findById("user1")).thenReturn(Optional.ofNullable(user));
 
-        Workout result = workoutService.createWorkout(workout);
+        Workout result = workoutService.createWorkoutByUserId(workout,"user1");
 
         assertThat(result).isEqualTo(workout);
         verify(workoutRepository).save(workout);

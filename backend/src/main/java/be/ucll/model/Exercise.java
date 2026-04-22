@@ -1,14 +1,21 @@
 package be.ucll.model;
 
+import java.util.UUID;
+
+import org.springframework.data.annotation.Id;
+
+import com.azure.spring.data.cosmos.core.mapping.Container;
+import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
+
 import be.ucll.model.enums.Type;
 import jakarta.validation.constraints.NotNull;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("exercise")
+@Container(containerName = "exercise", autoCreateContainer = false)
 public class Exercise {
+    @PartitionKey
     @Id
-    private String id;
+    private String id = UUID.randomUUID().toString();
+
     @NotNull(message = "Exercise name is required.")
     private String name;
 

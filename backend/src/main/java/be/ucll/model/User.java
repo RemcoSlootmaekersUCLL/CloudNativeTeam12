@@ -1,18 +1,23 @@
 package be.ucll.model;
 
 
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
-@Document("user")
+import org.springframework.data.annotation.Id;
+
+import com.azure.spring.data.cosmos.core.mapping.Container;
+import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
+
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+
+@Container(containerName = "users", autoCreateContainer = false)
 public class User {
+    @PartitionKey
     @Id
-    private String id;
+    private String id = UUID.randomUUID().toString();
 
     @NotNull(message = "Username is required.")
     private String username;
@@ -46,7 +51,8 @@ public class User {
     }
 
     public String getBMI(){
-        double bmi=weight/(height*height);
+        double heightInMeters= (double) height /100;
+        double bmi=weight/(heightInMeters*heightInMeters);
 
         double underweightThreshold;
         double normalMax;
