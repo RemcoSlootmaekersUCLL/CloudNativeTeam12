@@ -57,13 +57,6 @@ jobs:
           mvn clean package -DskipTests
           popd
 
-      - name: Remove WEBSITE_RUN_FROM_PACKAGE
-        run: |
-          az functionapp config appsettings delete \
-          --name ${{ env.AZURE_FUNCTIONAPP_NAME }} \
-          --resource-group ${{ env.AZURE_RESOURCE_GROUP }} \
-          --setting-names WEBSITE_RUN_FROM_PACKAGE
-
       - name: "Run Azure Functions Action"
         uses: Azure/functions-action@v1
         id: fa
