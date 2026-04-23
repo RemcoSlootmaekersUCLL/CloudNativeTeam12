@@ -2,11 +2,10 @@
 name: Deploy Frontend to Azure Web App (publish profile)
 
 on:
-  pull_request:
-    branches:
-      - main
+  push:
+    branches: ["main"]
     paths:
-      - "frontend/**"
+      - "backend/**"
 
 env:
   AZURE_WEBAPP_NAME: CNE-GROEP12-WEB-APP # Set this to your application's name
