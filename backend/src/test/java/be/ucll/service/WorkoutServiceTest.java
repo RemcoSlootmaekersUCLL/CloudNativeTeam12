@@ -45,7 +45,7 @@ class WorkoutServiceTest {
     void setUp() {
         exercise = new Exercise("Bench Press", Type.STRENGTH);
         exercise.setId("ex1");
-        user=new User("user",18,"*****",2837377,100);
+        user = new User("user", 18, "*****", 2837377, 100);
         user.setId("user1");
 
         WorkoutExercise workoutExercise = new WorkoutExercise("ex1", 5, 10, 100);
@@ -63,9 +63,9 @@ class WorkoutServiceTest {
         List<WorkoutResponse> result = workoutService.getAllWorkouts();
 
         assertThat(result).hasSize(1);
-        assertThat(result.getFirst().userId()).isEqualTo("user1");
-        assertThat(result.getFirst().exercises()).hasSize(1);
-        assertThat(result.getFirst().exercises().getFirst().name()).isEqualTo("Bench Press");
+        assertThat(result.getFirst().getUserId()).isEqualTo("user1");
+        assertThat(result.getFirst().getExercises()).hasSize(1);
+        assertThat(result.getFirst().getExercises().getFirst().getName()).isEqualTo("Bench Press");
     }
 
     // getWorkoutsByUser
@@ -77,7 +77,7 @@ class WorkoutServiceTest {
         List<WorkoutResponse> result = workoutService.getWorkoutsByUser("user1");
 
         assertThat(result).hasSize(1);
-        assertThat(result.getFirst().userId()).isEqualTo("user1");
+        assertThat(result.getFirst().getUserId()).isEqualTo("user1");
 
         verify(workoutRepository).findByUserId("user1");
     }
@@ -100,7 +100,7 @@ class WorkoutServiceTest {
         when(workoutRepository.save(workout)).thenReturn(workout);
         when(userRepository.findById("user1")).thenReturn(Optional.ofNullable(user));
 
-        Workout result = workoutService.createWorkoutByUserId(workout,"user1");
+        Workout result = workoutService.createWorkoutByUserId(workout, "user1");
 
         assertThat(result).isEqualTo(workout);
         verify(workoutRepository).save(workout);
