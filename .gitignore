@@ -21,3 +21,4 @@ target/
 backend/src/main/azure/local.settings.json
 backend/src/main/resources/application.yaml
 backend/src/main/resources/application.properties
+backend\src\main\resources\application-dev.properties
