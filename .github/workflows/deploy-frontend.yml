@@ -2,7 +2,7 @@
 name: Deploy Frontend to Azure Web App (publish profile)
 
 on:
-  push:
+  pull_request:
     branches:
       - main
     paths:
