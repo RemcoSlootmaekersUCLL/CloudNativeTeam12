@@ -26,8 +26,10 @@ public class Workout {
     @NotNull(message = "Exercises are required.")
     private List<WorkoutExercise> exercises;
 
-    protected Workout(){}
-    public Workout(String userId, LocalDate date, List<WorkoutExercise> exercises){
+    protected Workout() {
+    }
+
+    public Workout(String userId, LocalDate date, List<WorkoutExercise> exercises) {
         setUserId(userId);
         setDate(date);
         setExercises(exercises);
@@ -64,8 +66,8 @@ public class Workout {
     public String getId() {
         return this.id;
     }
+
     public void setId(String id) {
         this.id = id;
     }
 }
-

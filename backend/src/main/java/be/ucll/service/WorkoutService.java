@@ -2,6 +2,7 @@ package be.ucll.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -42,13 +43,12 @@ public class WorkoutService {
                 }
                 // Create and return exercises dto
                 return new WorkoutExerciseResponse(exercise.getId(), exercise.getName(), exercise.getType(),
-                        we.getReps(),
-                        we.getDuration(), we.getCaloriesBurned());
-            }).toList();
+                        we.getReps(), we.getDuration(), we.getCaloriesBurned());
+            }).collect(Collectors.toList());
             // Create and return full dto response
             return new WorkoutResponse(workout.getId(), workout.getUserId(), workout.getDate(), exerciseResponses,
                     workout.getTotalCaloriesBurned());
-        }).toList();
+        }).collect(Collectors.toList());
     }
 
     @Cacheable("workouts")
@@ -65,11 +65,12 @@ public class WorkoutService {
         return convertWorkoutToDTO(workoutRepository.findByUserId(userId));
     }
 
+    // also updated for redis problem with list.of() so using new arraylist
     public WorkoutResponse getById(String id) {
-        return convertWorkoutToDTO(
-                List.of(workoutRepository.findById(id)
-                        .orElseThrow(() -> new RuntimeException("Workout with ID '" + id + "' not found."))))
-                .getFirst();
+        List<Workout> list = new ArrayList<>();
+        list.add(workoutRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Workout with ID '" + id + "' not found.")));
+        return convertWorkoutToDTO(list).getFirst();
     }
 
     @CacheEvict(value = "workouts", allEntries = true)
