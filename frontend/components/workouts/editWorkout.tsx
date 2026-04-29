@@ -150,7 +150,7 @@ const EditWorkout: React.FC<Props> = ({ userId, workoutId }: Props) => {
   };
 
   return (
-    <div>
+    <div className="p-3 border-3 border-black   bg-gray-400 rounded-3xl">
       <form>
         <div className="flex flex-col">
           <label htmlFor="workoutDate">Workout Date:</label>
@@ -198,7 +198,7 @@ const EditWorkout: React.FC<Props> = ({ userId, workoutId }: Props) => {
                   <td className="p-1">Reps</td>
                   <td className="p-1">
                     <input
-                      className="text-field"
+                      className="text-field placeholder-white"
                       type="number"
                       onChange={(e) =>
                         handleWorkoutExerciseChange(
@@ -215,7 +215,7 @@ const EditWorkout: React.FC<Props> = ({ userId, workoutId }: Props) => {
                   <td className="p-1">Duration (s)</td>
                   <td className="p-1">
                     <input
-                      className="text-field"
+                      className="text-field placeholder-white"
                       type="number"
                       onChange={(e) =>
                         handleWorkoutExerciseChange(
@@ -232,7 +232,7 @@ const EditWorkout: React.FC<Props> = ({ userId, workoutId }: Props) => {
                   <td className="p-1">Calories Burned</td>
                   <td className="p-1">
                     <input
-                      className="text-field"
+                      className="text-field placeholder-white"
                       type="number"
                       onChange={(e) =>
                         handleWorkoutExerciseChange(
