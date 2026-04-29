@@ -79,7 +79,7 @@ const CreateGoal: React.FC<props> = ({ userId }) => {
             }
             setStatusMessage([{ message: "Goal succesfully added.", type: "success" }])
             setTimeout(() => {
-                router.push("/goals");
+                router.push(`/profile/${userId}`);
             }, 1000);
         } catch (error) {
             setStatusMessage([{ message: (error as Error).message, type: "error" }])
