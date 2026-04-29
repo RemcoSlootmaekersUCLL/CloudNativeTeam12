@@ -67,7 +67,7 @@ const CreateExercise: React.FC = () => {
         }
     };
     return (
-        <div className="max-w-sm m-auto">
+        <div className="max-w-sm m-auto p-3 border-3 border-black   bg-gray-400 rounded-3xl">
             {statusMessages.length > 0 && (
                 <div className="row">
                     <ul className="list-none mb-3 mx-auto">
@@ -91,14 +91,14 @@ const CreateExercise: React.FC = () => {
                             Name:
                         </label>
                     </div>
-                    <div className="block mb-2 text-sm font-medium">
+                    <div className="block mb-2 text-sm font-medium bg-[#393b3d] rounded-lg">
                         <input
                             id="name"
                             type="text"
                             value={name}
                             placeholder="Your exercise"
                             onChange={(event) => setName(event.target.value)}
-                            className="border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue:500 block w-full p-2.5" />
+                            className="border border-gray-300 rounded-lg block w-full p-2.5 text-white appearance-none placeholder-white" />
                         {nameError && <p className="text-red-600 text-sm mt-1">{nameError}</p>}
                     </div>
                 </div>
@@ -110,16 +110,16 @@ const CreateExercise: React.FC = () => {
                             Type:
                         </label>
                     </div>
-                    <div className="block mb-2 text-sm font-medium">
+                    <div className="block mb-2 text-sm font-medium bg-[#393b3d] rounded-lg">
                         <select
                             id="type"
                             value={type}
                             onChange={(e) => setType(e.target.value)}
-                            className="border border-gray-300 rounded-lg block w-full p-2.5"
+                            className="border border-gray-300 rounded-lg block w-full p-2.5 text-white appearance-none"
                         >
-                            <option value="" className="bg-mist-500/90">Select a type</option>
-                            <option value="STRENGTH" className="bg-mist-500/90">Strength</option>
-                            <option value="CARDIO" className="bg-mist-500/90">Cardio</option>
+                            <option value="" className="bg-[#393b3d] text-white">Select a type</option>
+                            <option value="STRENGTH" className="bg-[#393b3d] text-white">Strength</option>
+                            <option value="CARDIO" className="bg-[#393b3d] text-white">Cardio</option>
                         </select>
                         {typeError && <p className="text-red-600 text-sm mt-1">{typeError}</p>}
                     </div>

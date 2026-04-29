@@ -86,7 +86,7 @@ const CreateGoal: React.FC<props> = ({ userId }) => {
         }
     };
     return (
-        <div className="max-w-sm m-auto">
+        <div className="max-w-sm m-auto p-3 border-3 border-black   bg-gray-400 rounded-3xl">
             {statusMessages.length > 0 && (
                 <div className="row">
                     <ul className="list-none mb-3 mx-auto">
@@ -110,7 +110,7 @@ const CreateGoal: React.FC<props> = ({ userId }) => {
                             Name:
                         </label>
                     </div>
-                    <div className="block mb-2 text-sm font-medium">
+                    <div className="text-field placeholder-white">
                         <input
                             id="name"
                             type="text"
@@ -129,7 +129,7 @@ const CreateGoal: React.FC<props> = ({ userId }) => {
                             Start date:
                         </label>
                     </div>
-                    <div className="block mb-2 text-sm font-medium">
+                    <div className="text-field placeholder-white">
                         <input
                             id="startdate"
                             type="text"
@@ -148,7 +148,7 @@ const CreateGoal: React.FC<props> = ({ userId }) => {
                             End date:
                         </label>
                     </div>
-                    <div className="block mb-2 text-sm font-medium">
+                    <div className="text-field placeholder-white">
                         <input
                             id="enddate"
                             type="text"

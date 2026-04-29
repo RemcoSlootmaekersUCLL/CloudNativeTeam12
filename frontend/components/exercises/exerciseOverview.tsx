@@ -16,9 +16,9 @@ const ExerciseOverview: React.FC<Props> = ({ exercises }) => {
                 <table className="min-w-full border-collapse border border-gray-300">
                     <thead className="bg-black-100">
                         <tr>
-                            <th className="border border-gray-300 px-4 py-2">name</th>
-                            <th className="border border-gray-300 px-4 py-2">type</th>
-                            <th className="border border-gray-300 px-4 py-2">options</th>
+                            <th className="border border-gray-300 px-4 py-2">Name</th>
+                            <th className="border border-gray-300 px-4 py-2">Type</th>
+                            <th className="border border-gray-300 px-4 py-2">Options</th>
                         </tr>
                     </thead>
                     <tbody>

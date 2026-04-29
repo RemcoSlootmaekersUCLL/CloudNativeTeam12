@@ -27,7 +27,7 @@ body {
 
 .text-field {
   padding: 2px;
-  background-color: #171717;
+  background-color: #393b3d;
   color: rgb(255, 255, 233);
   border: 1px solid rgb(165, 165, 165);
   border-radius: 8px;
@@ -35,7 +35,7 @@ body {
 
 .exercise-selection {
   padding: 2px;
-  background-color: #171717;
+  background-color: #393b3d;
   color: rgb(255, 255, 233);
   border: 1px solid rgb(165, 165, 165);
   border-radius: 8px;

@@ -80,8 +80,6 @@ export default function LoginForm() {
             >
               log in
             </button>
-            <div>IronMan88 : securePass123</div>
-            <div>CardioQueen : runFast99</div>
             <div>{loginErrorMessage}</div>
           </form>
           <Link

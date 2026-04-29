@@ -9,7 +9,7 @@ type Props = {
 
 const ProfileOverview: React.FC<Props> = ({ user, workouts, goals }) => {
   const createButton =
-    "text-white bg-blue-700 border border-black hover:scale-102 duration-300 rounded-2xl p-2 text-center";
+    "justify-center text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center";
   return (
     <>
       <div className="ml-4">
@@ -59,6 +59,8 @@ const ProfileOverview: React.FC<Props> = ({ user, workouts, goals }) => {
               <tr>
                 <th>Date</th>
                 <th>Exercises</th>
+                <th className="text-center">Options</th>
+
               </tr>
             </thead>
             <tbody>
@@ -72,12 +74,15 @@ const ProfileOverview: React.FC<Props> = ({ user, workouts, goals }) => {
                       </div>
                     ))}
                   </td>
-                  <td>
+                  <td className="py-2 flex gap-2">
                     <Link
                       href={`/workouts/${user.id}/edit/${workout.id}`}
                       className={createButton}
                     >
                       Edit Workout
+                    </Link>
+                    <Link href={`/workouts/delete/${workout.id}`} className="text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                      Delete workout
                     </Link>
                   </td>
                 </tr>
@@ -121,13 +126,13 @@ const ProfileOverview: React.FC<Props> = ({ user, workouts, goals }) => {
                   <td className="py-2 flex gap-2">
                     <Link
                       href={`/goals/edit/${goal.id}`}
-                      className="edit-button hover:scale-102 duration-300"
+                      className={createButton}
                     >
                       Edit goal
                     </Link>
                     <Link
                       href={`/goals/delete/${goal.id}`}
-                      className="delete-button hover:scale-102 duration-300"
+                      className="text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                     >
                       Delete goal
                     </Link>

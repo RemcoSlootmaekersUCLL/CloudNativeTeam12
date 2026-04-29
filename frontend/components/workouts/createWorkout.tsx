@@ -59,6 +59,7 @@ const CreateWorkout: React.FC = () => {
     workoutDate: string,
     workoutExercises: WorkoutExercise[],
   ) {
+    let is_valid=true;
     const timeRegex = /^(?:(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/;
 
     if (!workoutDate.trim()) {
@@ -82,7 +83,34 @@ const CreateWorkout: React.FC = () => {
       ]);
       return false;
     }
+    workoutExercises.forEach(exercise => {
+      // Debug console lines
+      // console.log(exercise.caloriesBurned,exercise.duration, exercise.reps);
+      // console.log(exercise.caloriesBurned<=0,exercise.duration<=0, exercise.reps<=0);
+      if(exercise.caloriesBurned<=0){
+        setStatusMessages([
+          { message: "Calories burned must be bigger than 0.", type: "error" },
+        ]);
+        is_valid= false;
+        return;
+      }
+      if(exercise.duration<=0){
+        setStatusMessages([
+          { message: "Duration must be bigger than 0.", type: "error" },
+        ]);
+        is_valid= false;
+        return;
+      }
+      if(exercise.reps<=0){
+        setStatusMessages([
+          { message: "Reps must be bigger than 0.", type: "error" },
+        ]);
+        is_valid= false;
+        return;
+      }
+    });
 
+    if(!is_valid) return false;
     setStatusMessages([{ message: "Creating workout...", type: "success" }]);
     return true;
   }
@@ -101,7 +129,7 @@ const CreateWorkout: React.FC = () => {
       .then(() => {
         setStatusMessages([
           {
-            message: "Workout created, proceeding to workouts page..",
+            message: "Workout created, proceeding to workouts page.",
             type: "success",
           },
         ]);
@@ -110,14 +138,14 @@ const CreateWorkout: React.FC = () => {
       .catch((err) => {
         console.error(err);
         setStatusMessages([
-          { message: "Something went wrong..", type: "error" },
+          { message: "Something went wrong.", type: "error" },
         ]);
       });
   }
 
   return (
     <>
-      <div>
+      <div className="p-3 border-3 border-black   bg-gray-400 rounded-3xl">
         <form>
           <div className="flex flex-col">
             <label htmlFor="workoutDate">Workout Date:</label>
@@ -126,7 +154,7 @@ const CreateWorkout: React.FC = () => {
               id="workoutDate"
               value={workoutDate}
               onChange={(e) => setWorkoutDate(e.target.value)}
-              className="text-field"
+              className="text-field placeholder-white"
               placeholder="YYYY-MM-DD"
             />
           </div>
@@ -165,7 +193,7 @@ const CreateWorkout: React.FC = () => {
                     <td className="p-1">Reps</td>
                     <td className="p-1">
                       <input
-                        className="text-field"
+                        className="text-field placeholder-white"
                         type="number"
                         onChange={(e) =>
                           handleWorkoutExerciseChange(
@@ -181,7 +209,7 @@ const CreateWorkout: React.FC = () => {
                     <td className="p-1">Duration (s)</td>
                     <td className="p-1">
                       <input
-                        className="text-field"
+                        className="text-field placeholder-white"
                         type="number"
                         onChange={(e) =>
                           handleWorkoutExerciseChange(
@@ -197,7 +225,7 @@ const CreateWorkout: React.FC = () => {
                     <td className="p-1">Calories Burned</td>
                     <td className="p-1">
                       <input
-                        className="text-field"
+                        className="text-field placeholder-white"
                         type="number"
                         onChange={(e) =>
                           handleWorkoutExerciseChange(
@@ -228,7 +256,7 @@ const CreateWorkout: React.FC = () => {
           </button>
           {statusMessages.length > 0 &&
             statusMessages[0].type === "success" && (
-              <p className="text-green-500">{statusMessages[0].message}</p>
+              <p className="text-black pt-2">{statusMessages[0].message}</p>
             )}
         </form>
       </div>
