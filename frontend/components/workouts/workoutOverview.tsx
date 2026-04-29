@@ -13,9 +13,10 @@ const WorkoutOverview: React.FC<Props> = ({ workouts,users }) => {
         <table className="min-w-full border-collapse border border-gray-300">
           <thead className="bg-black-100">
             <tr>
-              <th className="border border-gray-300 px-4 py-2">user</th>
-              <th className="border border-gray-300 px-4 py-2">date</th>
-              <th className="border border-gray-300 px-4 py-2">exercises</th>
+              <th className="border border-gray-300 px-4 py-2">User</th>
+              <th className="border border-gray-300 px-4 py-2">Date</th>
+              <th className="border border-gray-300 px-4 py-2">Exercises</th>
+              <th className="border border-gray-300 px-4 py-2">View all of user</th>
             </tr>
           </thead>
           <tbody>

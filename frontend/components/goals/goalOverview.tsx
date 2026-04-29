@@ -21,14 +21,14 @@ const GoalOverview: React.FC<Props> = ({ goals, userIds }) => {
         <table className="min-w-full border-collapse border border-gray-300">
           <thead className="bg-black-100">
             <tr>
-              <th className="border border-gray-300 px-4 py-2">name</th>
-              <th className="border border-gray-300 px-4 py-2">startDate</th>
-              <th className="border border-gray-300 px-4 py-2">endDate</th>
+              <th className="border border-gray-300 px-4 py-2">Name</th>
+              <th className="border border-gray-300 px-4 py-2">StartDate</th>
+              <th className="border border-gray-300 px-4 py-2">EndDate</th>
               <th className="border border-gray-300 px-4 py-2">
-                wasSuccessful
+                WasSuccessful
               </th>
-              <th className="border border-gray-300 px-4 py-2">userId</th>
-              <th className="border border-gray-300 px-4 py-2">options</th>
+              <th className="border border-gray-300 px-4 py-2">User</th>
+              <th className="border border-gray-300 px-4 py-2">Options</th>
             </tr>
           </thead>
           <tbody>

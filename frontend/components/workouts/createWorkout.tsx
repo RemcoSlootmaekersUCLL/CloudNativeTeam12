@@ -154,7 +154,7 @@ const CreateWorkout: React.FC = () => {
               id="workoutDate"
               value={workoutDate}
               onChange={(e) => setWorkoutDate(e.target.value)}
-              className="text-field"
+              className="text-field placeholder-white "
               placeholder="YYYY-MM-DD"
             />
           </div>
