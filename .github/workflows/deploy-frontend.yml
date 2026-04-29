@@ -5,7 +5,7 @@ on:
   push:
     branches: ["main"]
     paths:
-      - "backend/**"
+      - "frontend/**"
 
 env:
   AZURE_WEBAPP_NAME: CNE-GROEP12-WEB-APP # Set this to your application's name
