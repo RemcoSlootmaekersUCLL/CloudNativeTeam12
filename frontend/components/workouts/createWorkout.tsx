@@ -129,7 +129,7 @@ const CreateWorkout: React.FC = () => {
       .then(() => {
         setStatusMessages([
           {
-            message: "Workout created, proceeding to workouts page..",
+            message: "Workout created, proceeding to workouts page.",
             type: "success",
           },
         ]);
@@ -138,7 +138,7 @@ const CreateWorkout: React.FC = () => {
       .catch((err) => {
         console.error(err);
         setStatusMessages([
-          { message: "Something went wrong..", type: "error" },
+          { message: "Something went wrong.", type: "error" },
         ]);
       });
   }
@@ -154,7 +154,7 @@ const CreateWorkout: React.FC = () => {
               id="workoutDate"
               value={workoutDate}
               onChange={(e) => setWorkoutDate(e.target.value)}
-              className="text-field placeholder-white "
+              className="text-field placeholder-white"
               placeholder="YYYY-MM-DD"
             />
           </div>
@@ -256,7 +256,7 @@ const CreateWorkout: React.FC = () => {
           </button>
           {statusMessages.length > 0 &&
             statusMessages[0].type === "success" && (
-              <p className="text-green-500">{statusMessages[0].message}</p>
+              <p className="text-black pt-2">{statusMessages[0].message}</p>
             )}
         </form>
       </div>
