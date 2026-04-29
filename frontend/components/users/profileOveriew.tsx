@@ -16,26 +16,22 @@ const ProfileOverview: React.FC<Props> = ({ user, workouts, goals }) => {
         <h2 className="font-bold text-xl py-2">User Information</h2>
         {user ? (
           <table className="userInfoTable">
+            <thead className="border-amber-100">
+              <tr>
+                <th className="px-4 py-2">Username</th>
+                <th className="px-4 py-2">Age</th>
+                <th className="px-4 py-2">Weight</th>
+                <th className="px-4 py-2">Height</th>
+                <th className="px-4 py-2">BMI</th>
+              </tr>
+            </thead>
             <tbody>
               <tr>
-                <td className="font-bold">Username</td>
-                <td>{user.username}</td>
-              </tr>
-              <tr>
-                <td className="font-bold">Age</td>
-                <td>{user.age}</td>
-              </tr>
-              <tr>
-                <td className="font-bold">Weight</td>
-                <td>{user.weight}</td>
-              </tr>
-              <tr>
-                <td className="font-bold">Height</td>
-                <td>{user.height}</td>
-              </tr>
-              <tr>
-                <td className="font-bold">BMI</td>
-                <td>{user.bmi}</td>
+                <td className="px-4 py-2">{user.username}</td>
+                <td className="px-4 py-2">{user.age}</td>
+                <td className="px-4 py-2">{user.weight}</td>
+                <td className="px-4 py-2">{user.height}</td>
+                <td className="px-4 py-2">{user.bmi}</td>
               </tr>
             </tbody>
           </table>
@@ -50,7 +46,7 @@ const ProfileOverview: React.FC<Props> = ({ user, workouts, goals }) => {
         <div className="flex gap-2 items-center mb-1">
           <h2 className="font-bold text-lg py-2">Your Workouts</h2>
         </div>
-        <div className="pb-3">          
+        <div className="pb-3">
           <Link href={`/workouts/${user.id}/create`} className={createButton}>Create Workout</Link>
         </div>
         {workouts ? (

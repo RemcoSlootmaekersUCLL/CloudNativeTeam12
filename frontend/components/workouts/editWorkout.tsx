@@ -139,7 +139,7 @@ const EditWorkout: React.FC<Props> = ({ userId, workoutId }: Props) => {
         setStatusMessages([
           { message: "Succesfully edited workout.", type: "success" },
         ]);
-        setTimeout(() => router.push("/workouts"), 3000);
+        setTimeout(() => router.push(`/profile/${userId}`), 3000);
       })
       .catch((err) => {
         console.error(err);

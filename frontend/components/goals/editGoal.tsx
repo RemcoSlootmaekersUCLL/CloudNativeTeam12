@@ -85,7 +85,7 @@ const EditGoal: React.FC<props> = ({ goalId, goal }) => {
             }
             setStatusMessage([{ message: "Goal succesfully edited.", type: "success" }])
             setTimeout(() => {
-                router.push("/goals");
+                router.push(`/profile/${userId}`);
             }, 1000);
         } catch (error) {
             setStatusMessage([{ message: (error as Error).message, type: "error" }])
