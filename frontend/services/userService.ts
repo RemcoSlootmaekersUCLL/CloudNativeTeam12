@@ -16,7 +16,7 @@ const getAllUsers = async (): Promise<Users[]> => {
   });
 
   if (!response.ok) {
-    throw new Error("Er is iets mis gegaan. user 1");
+    throw new Error("Could not fetch users");
   }
 
   return response.json();
@@ -63,7 +63,7 @@ const deleteUser = async (id: string) => {
   );
 
   if (!response.ok) {
-    throw new Error("Er is iets mis gegaan. user 2");
+    throw new Error("Could not delete user");
   }
 
   return true;
@@ -80,7 +80,7 @@ const registerUser = async (user: Users) => {
   );
 
   if (!response.ok) {
-    throw new Error("Er is iets mis gegaan. user 3");
+    throw new Error("Could not register user");
   }
 
   return true;
@@ -99,7 +99,7 @@ const getUserById = async (id: string): Promise<Users> => {
   );
 
   if (!response.ok) {
-    throw new Error("Er is iets mis gegaan.");
+    throw new Error("Could not fetch user by id");
   }
 
   return response.json();
