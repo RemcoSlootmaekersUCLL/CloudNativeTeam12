@@ -32,25 +32,23 @@ export default function LoginForm() {
     setPasswordError(null);
 
     if (!validateLogin()) return;
-    
+
     const result = await userService.loginUser(username, password);
 
     if (!result || !("username" in result)) {
       setLoginErrroMessage((result as any)?.message ?? "Something went wrong");
       return;
     }
-    sessionStorage.setItem("username", username);    
+    sessionStorage.setItem("username", username);
     window.dispatchEvent(new Event("session-change"));
     router.push(`/profile/${result.id}`);
   };
 
   return (
     <div className="bg-inherit">
-      <div className="flex justify-center items-center pt-8 pb-10 text-white">
+      <div className="flex justify-center items-center pt-8 pb-10">
         <div className="w-full max-w-xs">
-          <h2 className="m-0 mb-6 text-[22px] font-semibold text-white">
-            LOGIN
-          </h2>
+          <h2 className="m-0 mb-6 text-[22px] font-semibold ">LOGIN</h2>
           <form onSubmit={handleLoginUser}>
             <label className="block text-[13px] text-gray-600 mb-1">
               Username
