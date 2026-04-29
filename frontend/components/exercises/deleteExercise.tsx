@@ -42,7 +42,7 @@ const DeleteExercise: React.FC<props> = ({ exerciseId }) => {
         <div className="max-w-sm m-auto">
             {statusMessages.length > 0 && (
                 <div className="row">
-                    <ul className="list-none mb-3 mx-auto">
+                    <ul className="list-none mb-3 mx-auto text-center">
                         {statusMessages.map(({ message, type }, index) => (
                             <li key={index} className={classNames({
                                 'text-red-800': type === 'error',
