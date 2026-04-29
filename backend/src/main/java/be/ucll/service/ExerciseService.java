@@ -34,8 +34,6 @@ public class ExerciseService {
         return exercises;
     }
 
-    // copied from workout service don't know if this would work
-    // @Cacheable(value = "exercisesByUser", key = "#userId")
     public Exercise getExerciseById(String id) {
         return exerciseRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Exercise with ID '" + id + "' not found."));
