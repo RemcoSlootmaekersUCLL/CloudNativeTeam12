@@ -13,7 +13,6 @@ import be.ucll.dto.WorkoutResponse;
 import be.ucll.model.Exercise;
 import be.ucll.model.User;
 import be.ucll.model.Workout;
-import org.springframework.data.crossstore.ChangeSetPersister;
 
 @Service
 public class WorkoutService {

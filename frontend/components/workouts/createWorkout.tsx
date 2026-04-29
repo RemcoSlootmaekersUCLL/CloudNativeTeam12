@@ -59,6 +59,7 @@ const CreateWorkout: React.FC = () => {
     workoutDate: string,
     workoutExercises: WorkoutExercise[],
   ) {
+    let is_valid=true;
     const timeRegex = /^(?:(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/;
 
     if (!workoutDate.trim()) {
@@ -82,7 +83,34 @@ const CreateWorkout: React.FC = () => {
       ]);
       return false;
     }
+    workoutExercises.forEach(exercise => {
+      // Debug console lines
+      // console.log(exercise.caloriesBurned,exercise.duration, exercise.reps);
+      // console.log(exercise.caloriesBurned<=0,exercise.duration<=0, exercise.reps<=0);
+      if(exercise.caloriesBurned<=0){
+        setStatusMessages([
+          { message: "Calories burned must be bigger than 0.", type: "error" },
+        ]);
+        is_valid= false;
+        return;
+      }
+      if(exercise.duration<=0){
+        setStatusMessages([
+          { message: "Duration must be bigger than 0.", type: "error" },
+        ]);
+        is_valid= false;
+        return;
+      }
+      if(exercise.reps<=0){
+        setStatusMessages([
+          { message: "Reps must be bigger than 0.", type: "error" },
+        ]);
+        is_valid= false;
+        return;
+      }
+    });
 
+    if(!is_valid) return false;
     setStatusMessages([{ message: "Creating workout...", type: "success" }]);
     return true;
   }

@@ -111,6 +111,14 @@ const EditWorkout: React.FC<Props> = ({ userId, workoutId }: Props) => {
       ]);
       return false;
     }
+    workoutExercises.forEach(exercise => {
+      if(exercise.caloriesBurned<=0 || exercise.duration<=0|| exercise.reps<=0){
+        setStatusMessages([
+          { message: "Reps, duration and calories burned must be bigger than 0.", type: "error" },
+        ]);
+        return false;
+      }
+    });
 
     setStatusMessages([{ message: "Creating workout...", type: "success" }]);
     return true;
