@@ -23,12 +23,12 @@ on:
     branches: ["main"]
     paths:
       - "backend/**"
-
 env:
   AZURE_FUNCTIONAPP_NAME: "cne-groep12-functions" # set this to your function app name on Azure
   POM_XML_DIRECTORY: "backend" # set this to the directory which contains pom.xml file
   DISTRIBUTION: "temurin" # set this to the java version to use (e.g. 'zulu', 'temurin', 'microsoft')
   JAVA_VERSION: "21" # set this to the java version to use (e.g. '8', '11', '17')
+  AZURE_RESOURCE_GROUP: "cne-groep12-db" # our recourse group
 
 jobs:
   build-and-deploy:
