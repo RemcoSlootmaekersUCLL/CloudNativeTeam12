@@ -12,7 +12,7 @@ const DeleteWorkoutPage: React.FC<Props> = async ({ params }: Props) => {
     return (
         <div>
             <main>
-                <h1 className="text-center font-bold p-4">Delete workout {workoutId}.</h1>
+                <h1 className="text-center font-bold p-4">Delete workout.</h1>
                 <section className="table-container-style">
                     <DeleteWorkout workoutId={workoutId} />
                 </section>

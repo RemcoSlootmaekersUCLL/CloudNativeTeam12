@@ -46,9 +46,10 @@ export default function LoginForm() {
 
   return (
     <div className="bg-inherit">
+      <div className="flex justify-center items-center pt-8 pb-10 text-black">
       <div className="flex justify-center items-center pt-8 pb-10">
         <div className="w-full max-w-xs">
-          <h2 className="m-0 mb-6 text-[22px] font-semibold ">LOGIN</h2>
+          <h2 className="m-0 mb-6 text-[22px] font-semibold">LOGIN</h2>
           <form onSubmit={handleLoginUser}>
             <label className="block text-[13px] text-gray-600 mb-1">
               Username
