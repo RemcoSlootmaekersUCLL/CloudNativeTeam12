@@ -106,9 +106,9 @@ const RegisterForm: React.FC<Props> = ({ usernames }) => {
                     </ul>
                 </div>
             )}
-            <div className="flex justify-center items-center pt-8 pb-10 text-white">
+            <div className="flex justify-center items-center pt-8 pb-10 text-black">
                 <div className="w-full max-w-xs">
-                    <h2 className="m-0 mb-6 text-[22px] font-semibold text-white">
+                    <h2 className="m-0 mb-6 text-[22px] font-semibold">
                         REGISTER
                     </h2>
                     <form onSubmit={handleSubmit}>
