@@ -10,7 +10,7 @@ const CreateExercisePage: React.FC = async () => {
     return (
         <div>
             <main>
-                <h1 className="font-xl font-bold text-2xl text-center">Create exercise.</h1>
+                <h1 className="font-xl font-bold text-2xl text-center py-2">Create exercise.</h1>
                 <section className="table-container-style">
                     <CreateExercise />
                 </section>
