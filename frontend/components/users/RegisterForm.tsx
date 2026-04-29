@@ -13,9 +13,9 @@ const RegisterForm: React.FC<Props> = ({ usernames }) => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [age, setAge] = useState(0);
-    const [weight, setWeight] = useState(0);
-    const [height, setHeight] = useState(0);
+    const [age, setAge] = useState(null);
+    const [weight, setWeight] = useState(null);
+    const [height, setHeight] = useState(null);
     const [loginErrorMessage, setLoginErrroMessage] = useState("");
     const [usernameError, setUsernameError] = useState<string | null>(null);
     const [passwordError, setPasswordError] = useState<string | null>(null);
@@ -146,7 +146,6 @@ const RegisterForm: React.FC<Props> = ({ usernames }) => {
                                 id="age"
                                 type="number"
                                 value={age}
-                                placeholder="Your goal"
                                 onChange={(event) => setAge(Number(event.target.value))}
                                 className="border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue:500 block w-full p-2.5" />
                             {ageError && <p className="text-red-600 text-sm mt-1">{ageError}</p>}
@@ -163,7 +162,6 @@ const RegisterForm: React.FC<Props> = ({ usernames }) => {
                                 id="weight"
                                 type="number"
                                 value={weight}
-                                placeholder="Your goal"
                                 onChange={(event) => setWeight(Number(event.target.value))}
                                 className="border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue:500 block w-full p-2.5" />
                             {weightError && <p className="text-red-600 text-sm mt-1">{weightError}</p>}
@@ -180,7 +178,6 @@ const RegisterForm: React.FC<Props> = ({ usernames }) => {
                                 id="height"
                                 type="number"
                                 value={height}
-                                placeholder="Your goal"
                                 onChange={(event) => setHeight(Number(event.target.value))}
                                 className="border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue:500 block w-full p-2.5" />
                             {heightError && <p className="text-red-600 text-sm mt-1">{heightError}</p>}

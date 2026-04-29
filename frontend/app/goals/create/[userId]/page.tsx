@@ -18,7 +18,7 @@ const CreateGoalPage: React.FC<Props> = async ({ params }: Props) => {
     return (
         <div>
             <main>
-                <h1 className="text-center font-bold p-4">Create goal for user {userId}.</h1>
+                <h1 className="text-center font-bold p-4">Create goal</h1>
                 <section className="table-container-style">
                     <CreateGoal userId={userId} />
                 </section>
