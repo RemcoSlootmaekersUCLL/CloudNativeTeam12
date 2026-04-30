@@ -11,8 +11,8 @@ const editWorkoutPage: React.FC<Props> = async ({ params }: Props) => {
   return (
     <>
       <div className="flex justify-center">
-        <div className="w-[40%] p-2 mt-4 bg-zinc-800 rounded-xl border border-gray-400">
-          <h1 className="font-xl font-bold text-2xl">Edit Your Workout</h1>
+        <div>
+          <h1 className="font-xl font-bold text-2xl text-center py-2">Edit Your Workout</h1>
           <EditWorkout userId={userId} workoutId={workoutId} />
         </div>
       </div>

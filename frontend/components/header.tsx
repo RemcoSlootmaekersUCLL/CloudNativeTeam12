@@ -10,10 +10,9 @@ const Header: React.FC = () => {
 
   const links = [
     { dest: "Home", uri: "/" },
-    ...(loggedIn ? [] : [{ dest: "Users", uri: "/users" }]),
     { dest: "Exercises", uri: "/exercises" },
+    
     { dest: "Workouts", uri: "/workouts" },
-    ...(loggedIn ? [] : [{ dest: "Goals", uri: "/goals" }]),
     ...(loggedIn
       ? [{ dest: "Profile", uri: `/profile/${sessionStorage.getItem("id")}` }]
       : []),
@@ -51,7 +50,7 @@ const Header: React.FC = () => {
             </div>
 
             <nav className="flex text-xl" aria-label="main">
-              {links.map((link) => (
+              {loggedIn && links.map((link) => (
                 <Link key={link.dest} href={link.uri} className={linkClassname}>
                   {link.dest}
                 </Link>

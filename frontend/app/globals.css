@@ -27,7 +27,7 @@ body {
 
 .text-field {
   padding: 2px;
-  background-color: #171717;
+  background-color: #393b3d;
   color: rgb(255, 255, 233);
   border: 1px solid rgb(165, 165, 165);
   border-radius: 8px;
@@ -35,7 +35,7 @@ body {
 
 .exercise-selection {
   padding: 2px;
-  background-color: #171717;
+  background-color: #393b3d;
   color: rgb(255, 255, 233);
   border: 1px solid rgb(165, 165, 165);
   border-radius: 8px;
@@ -63,18 +63,50 @@ body {
   }
 }
 
-.edit-button {
-  padding: 8px;
-  background-color: rgb(83, 83, 213);
-  color: white;
-  border: 1px solid #222;
-  border-radius: 16px;
+.button {
+  padding: 0.625rem 1.25rem;
+
+  background-color: #000000;
+  border-radius: 0.5rem;
+
+  color: #ffffff;
+  font-size: 0.875rem;
+  text-align: center;
+
+  justify-content: center;
 }
 
-.delete-button {
-  padding: 8px;
-  background-color: rgb(135, 14, 32);
-  color: white;
-  border: 1px solid #222;
-  border-radius: 16px;
+.button:hover {
+  background: #262626;
+}
+
+.redButton {
+  padding: 0.625rem 1.25rem;
+
+  background-color: #be123c;
+  border-radius: 0.5rem;
+
+  color: #ffffff;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.redButton:hover {
+  background-color: #e11d48;
+}
+
+.workoutTable,
+.workoutExerciseTable {
+  background-color: #ddd;
+
+  & th {
+    padding: 0 8px;
+    border: 1px solid #aaa;
+  }
+
+  & td {
+    padding: 1rem;
+    border: 1px solid #aaa;
+    text-align: center;
+  }
 }

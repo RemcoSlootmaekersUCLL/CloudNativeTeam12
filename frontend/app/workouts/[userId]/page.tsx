@@ -1,7 +1,7 @@
 import workoutService from "@/services/workoutService";
 import { Workouts } from "@/types";
 import UserWorkouts from "@/components/workouts/userWorkouts";
-import CreateWorkoutButton from "@/components/ui/createWorkoutButton";
+import userService from "@/services/userService";
 
 type Props = {
   params: Promise<{
@@ -13,28 +13,22 @@ export const metadata = {
   title: "Workouts - Fitness tracker",
 };
 
+
 const WorkoutsOfUserPage: React.FC<Props> = async ({ params }: Props) => {
   const { userId } = await params;
 
-  const workoutsByUser: Workouts[] =
-    await workoutService.getWorkoutsFromUser(userId);
-
+  const workoutsByUser: Workouts[] = await workoutService.getWorkoutsFromUser(userId);
+  const user = await userService.getUserById(userId);
   return (
     <div>
       <main>
         <div className="flex flex-col justify-center">
           <h1 className="text-center font-bold p-4">
-            Workouts by user {userId}.
+            Workouts by user {user.username}.
           </h1>
-          <span className="self-center">
-            <CreateWorkoutButton userId={userId} />
-          </span>
-          <p className="text-sm self-center">
-            Button should be moved to profile page when we have one
-          </p>
         </div>
         <div className="mt-4 table-container-style">
-          <UserWorkouts userWorkouts={workoutsByUser} />
+          <UserWorkouts userWorkouts={workoutsByUser} user={user} />
         </div>
       </main>
     </div>

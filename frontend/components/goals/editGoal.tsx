@@ -85,14 +85,14 @@ const EditGoal: React.FC<props> = ({ goalId, goal }) => {
             }
             setStatusMessage([{ message: "Goal succesfully edited.", type: "success" }])
             setTimeout(() => {
-                router.push("/goals");
+                router.push(`/profile/${userId}`);
             }, 1000);
         } catch (error) {
             setStatusMessage([{ message: (error as Error).message, type: "error" }])
         }
     };
     return (
-        <div className="max-w-sm m-auto">
+        <div className="max-w-sm m-auto p-3 border-3 border-black   bg-gray-400 rounded-3xl">
             {statusMessages.length > 0 && (
                 <div className="row">
                     <ul className="list-none mb-3 mx-auto">
@@ -116,7 +116,7 @@ const EditGoal: React.FC<props> = ({ goalId, goal }) => {
                             Name:
                         </label>
                     </div>
-                    <div className="block mb-2 text-sm font-medium">
+                    <div className="text-field placeholder-white">
                         <input
                             id="name"
                             type="text"
@@ -135,7 +135,7 @@ const EditGoal: React.FC<props> = ({ goalId, goal }) => {
                             Start date:
                         </label>
                     </div>
-                    <div className="block mb-2 text-sm font-medium">
+                    <div className="text-field placeholder-white">
                         <input
                             id="startdate"
                             type="text"
@@ -154,7 +154,7 @@ const EditGoal: React.FC<props> = ({ goalId, goal }) => {
                             End date:
                         </label>
                     </div>
-                    <div className="block mb-2 text-sm font-medium">
+                    <div className="text-field placeholder-white">
                         <input
                             id="enddate"
                             type="text"

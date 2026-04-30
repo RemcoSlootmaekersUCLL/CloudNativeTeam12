@@ -1,13 +1,14 @@
 import workoutService from "@/services/workoutService";
 import WorkoutOverview from "@/components/workouts/workoutOverview";
+import userService from "@/services/userService";
 
 const getData = async () => {
   try {
     const workouts = await workoutService.getAllWorkouts();
-
-    return { data: workouts, error: null };
+    const users = await userService.getAllUsers();
+    return { workouts: workouts,users:users, error: null };
   } catch (error) {
-    return { data: null, error: (error as Error).message };
+    return { workouts: null,users:null, error: (error as Error).message };
   }
 };
 
@@ -16,7 +17,7 @@ export const metadata = {
 };
 
 const WorkoutPage: React.FC = async () => {
-  const { data, error } = await getData();
+  const { workouts,users, error } = await getData();
 
   return (
     <div>
@@ -27,10 +28,10 @@ const WorkoutPage: React.FC = async () => {
             {error}
           </div>
         )}
-        {data && (
+        {workouts && users && (
           <>
             <section className="table-container-style">
-              <WorkoutOverview workouts={data} />
+              <WorkoutOverview workouts={workouts} users={users}/>
             </section>
           </>
         )}

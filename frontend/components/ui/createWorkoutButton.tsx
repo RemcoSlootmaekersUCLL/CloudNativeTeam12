@@ -16,7 +16,7 @@ const CreateWorkoutButton: React.FC<Props> = ({ userId }: Props) => {
     (loggedInUserId === userId ? (
       <span>
         <button
-          className="p-2 border border-slate-400 rounded-lg bg-gradient-to-br from-blue-500 to-sky-700"
+          className="justify-center text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
           onClick={() => router.push(`/workouts/${loggedInUserId}/create`)}
         >
           New Workout

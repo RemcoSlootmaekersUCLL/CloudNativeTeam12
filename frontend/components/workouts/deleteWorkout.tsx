@@ -14,9 +14,7 @@ type props = {
 const DeleteWorkout: React.FC<props> = ({ workoutId }) => {
     const router = useRouter();
 
-
     const [statusMessages, setStatusMessage] = useState<StatusMessage[]>([]);
-
 
     const handleSubmit = async (event: { preventDefault: () => void }) => {
         event.preventDefault();
@@ -42,7 +40,7 @@ const DeleteWorkout: React.FC<props> = ({ workoutId }) => {
         <div className="max-w-sm m-auto">
             {statusMessages.length > 0 && (
                 <div className="row">
-                    <ul className="list-none mb-3 mx-auto">
+                    <ul className="list-none mb-3 mx-auto text-center">
                         {statusMessages.map(({ message, type }, index) => (
                             <li key={index} className={classNames({
                                 'text-red-800': type === 'error',
@@ -56,14 +54,14 @@ const DeleteWorkout: React.FC<props> = ({ workoutId }) => {
             )}
             <form onSubmit={handleSubmit}>
                 <div className="flex gap-x-1 mt-2 justify-center">
-                    <h1>Are you sure you want to delete workout {workoutId}</h1>
+                    <h1>Are you sure you want to delete this workout.</h1>
                 </div>
                 <div className="flex gap-x-1 mt-2 justify-center">
-                    <Link href={`/workouts`} className="text-white bg-gray-700 hover:bg-gray-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                    <Link href={`/workouts`} className="button">
                         Cancel
                     </Link>
                     <button
-                        className="text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                        className="redButton"
                         type="submit">
                         Delete workout.
                     </button>

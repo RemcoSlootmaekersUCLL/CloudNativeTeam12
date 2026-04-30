@@ -22,7 +22,9 @@ public class Exercise {
     @NotNull(message = "Exercise type is required.")
     private Type type;
 
-    protected Exercise(){}
+    public Exercise() {
+    }
+
     public Exercise(String name, Type type) {
         setName(name);
         setType(type);
