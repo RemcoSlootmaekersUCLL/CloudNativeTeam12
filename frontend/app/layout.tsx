@@ -16,9 +16,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Header />
-        <main className="min-h-screen bg-[rgb(238,238,238)] text-black">
-          {children}
-        </main>
+        <main className="min-h-screen text-black">{children}</main>
         {/* <main className="min-h-screen bg-mist-500/50">{children}</main> */}
       </body>
     </html>

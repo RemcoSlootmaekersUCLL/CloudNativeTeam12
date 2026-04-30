@@ -1,4 +1,4 @@
-import ProfileOverview from "@/components/users/profileOveriew";
+import ProfileOverview from "@/components/users/profileOverview";
 import goalService from "@/services/goalService";
 import userService from "@/services/userService";
 import workoutService from "@/services/workoutService";
