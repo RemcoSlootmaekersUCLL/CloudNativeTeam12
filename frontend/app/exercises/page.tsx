@@ -22,7 +22,7 @@ const ExercisePage: React.FC = async () => {
     <div>
       <main>
         <h1 className="text-center font-bold p-4">
-          Overview of all exercises.
+          Overview of all exercises
         </h1>
         {error && (
           <div className="text-red-800" role="alert">
