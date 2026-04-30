@@ -47,7 +47,7 @@ const ProfileOverview: React.FC<Props> = ({ user, workouts, goals }) => {
           <h2 className="font-bold text-lg py-2">Your Workouts</h2>
         </div>
         <div className="pb-3">
-          <Link href={`/workouts/${user.id}/create`} className={createButton}>Create Workout</Link>
+          <Link href={`/workouts/${user.id}/create`} className="button">Create Workout</Link>
         </div>
         {workouts ? (
           <table className="userWorkoutsTable">
@@ -72,19 +72,19 @@ const ProfileOverview: React.FC<Props> = ({ user, workouts, goals }) => {
                   <td className="py-2 flex gap-2">
                     <Link
                       href={`/workouts/view/${workout.id}`}
-                      className={createButton}
+                      className="button"
                     >
                       View Workout
                     </Link>
                     <Link
                       href={`/workouts/${user.id}/edit/${workout.id}`}
-                      className={createButton}
+                      className="button"
                     >
                       Edit Workout
                     </Link>
                     <Link
                       href={`/workouts/delete/${workout.id}`}
-                      className="text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                      className="redButton"
                     >
                       Delete workout
                     </Link>
@@ -105,7 +105,7 @@ const ProfileOverview: React.FC<Props> = ({ user, workouts, goals }) => {
           <h2 className="font-bold text-lg py-2">Your Goals</h2>
         </div>
         <div className="pb-3">
-          <Link href={`/goals/create/${user.id}`} className={createButton}> Create Goal</Link>
+          <Link href={`/goals/create/${user.id}`} className="button"> Create Goal</Link>
         </div>
         {goals ? (
           <table className="userGoalsTable">
@@ -130,13 +130,13 @@ const ProfileOverview: React.FC<Props> = ({ user, workouts, goals }) => {
                   <td className="py-2 flex gap-2">
                     <Link
                       href={`/goals/edit/${goal.id}`}
-                      className={createButton}
+                      className="button"
                     >
                       Edit goal
                     </Link>
                     <Link
                       href={`/goals/delete/${goal.id}`}
-                      className="text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                      className="redButton"
                     >
                       Delete goal
                     </Link>
