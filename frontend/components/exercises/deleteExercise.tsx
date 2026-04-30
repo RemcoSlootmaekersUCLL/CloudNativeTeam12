@@ -3,7 +3,7 @@
 import { StatusMessage } from "@/types";
 import Link from "next/link";
 import classNames from "classnames";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import exerciseService from "@/services/exerciseService";
 
@@ -14,9 +14,14 @@ type props = {
 const DeleteExercise: React.FC<props> = ({ exerciseId }) => {
     const router = useRouter();
 
-
+    const [name, setName] = useState<string>("")
     const [statusMessages, setStatusMessage] = useState<StatusMessage[]>([]);
 
+
+    useEffect(() => {
+        exerciseService.getAllExercises()
+            .then((data) => setName(data.find(ex => ex.id === exerciseId)!.name))
+    })
 
     const handleSubmit = async (event: { preventDefault: () => void }) => {
         event.preventDefault();
@@ -54,9 +59,11 @@ const DeleteExercise: React.FC<props> = ({ exerciseId }) => {
                     </ul>
                 </div>
             )}
+
+            <h1 className="text-center font-bold p-4">Delete exercise {name}.</h1>
             <form onSubmit={handleSubmit}>
-                <div className="flex gap-x-1 mt-2 justify-center">
-                    <h1>Are you sure you want to delete exercise {exerciseId}</h1>
+                <div className="flex gap-x-1 mt-2 justify-center text-center">
+                    <h1>Are you sure you want to delete exercise {name}?</h1>
                 </div>
                 <div className="flex gap-x-1 mt-2 justify-center">
                     <Link href={`/exercises`} className="button">
