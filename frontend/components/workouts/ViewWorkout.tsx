@@ -20,8 +20,10 @@ const ViewWorkout: React.FC<Props> = ({ workoutId }: Props) => {
   const [username, setUsername] = useState<string>("");
   const [viewExDetails, setViewExDetails] = useState<boolean>(false);
 
+  const [loading, setLoading] = useState<boolean>(false)
+
   useEffect(() => {
-    if (!sessionStorage.getItem("id")) return;
+    setLoading(true)
 
     workoutService
       .getById(workoutId)
@@ -42,6 +44,7 @@ const ViewWorkout: React.FC<Props> = ({ workoutId }: Props) => {
         );
       })
       .catch((err) => console.error(err));
+      setLoading(false)
   }, []);
 
   useEffect(() => {
@@ -49,7 +52,7 @@ const ViewWorkout: React.FC<Props> = ({ workoutId }: Props) => {
   });
 
   return (
-    <div className="min-h-screen bg-white text-black">
+    loading ? <p className="text-center font-bold text-lg">Loading...</p> : <div className="min-h-screen bg-white text-black">
       <table className="workoutTable">
         <thead>
           <tr>
@@ -67,7 +70,7 @@ const ViewWorkout: React.FC<Props> = ({ workoutId }: Props) => {
             <td>
               <button
                 onClick={() => setViewExDetails(!viewExDetails)}
-                className="justify-center text-white bg-black hover:bg-neutral-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                className="button"
               >
                 {viewExDetails
                   ? "Hide exercise details"

@@ -253,7 +253,7 @@ const EditWorkout: React.FC<Props> = ({ userId, workoutId }: Props) => {
           <p className="text-red-400">{statusMessages[0].message}</p>
         )}
         <button
-          className="p-2 mt-4 rounded-xl bg-gradient-to-br from-blue-500 to-sky-700 border border-slate-400"
+          className="button"
           onClick={(e) => {
             e.preventDefault();
             if (validateWorkout(workoutDate, workoutExercises)) editWorkout();

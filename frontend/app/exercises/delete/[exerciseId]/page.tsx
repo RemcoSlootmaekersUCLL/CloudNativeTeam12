@@ -13,7 +13,6 @@ const DeleteExercisePage: React.FC<Props> = async ({ params }: Props) => {
         <div>
 
             <main>
-                <h1 className="text-center font-bold p-4">Delete exercise {exerciseId}.</h1>
                 <section className="table-container-style">
                     <DeleteExercise exerciseId={exerciseId} />
                 </section>

@@ -13,9 +13,9 @@ const RegisterForm: React.FC<Props> = ({ usernames }) => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [age, setAge] = useState(null);
-    const [weight, setWeight] = useState(null);
-    const [height, setHeight] = useState(null);
+    const [age, setAge] = useState<number>(0);
+    const [weight, setWeight] = useState<number>(0);
+    const [height, setHeight] = useState<number>(0);
     const [loginErrorMessage, setLoginErrroMessage] = useState("");
     const [usernameError, setUsernameError] = useState<string | null>(null);
     const [passwordError, setPasswordError] = useState<string | null>(null);

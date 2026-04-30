@@ -57,11 +57,11 @@ const DeleteWorkout: React.FC<props> = ({ workoutId }) => {
                     <h1>Are you sure you want to delete this workout.</h1>
                 </div>
                 <div className="flex gap-x-1 mt-2 justify-center">
-                    <Link href={`/workouts`} className="text-white bg-gray-700 hover:bg-gray-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                    <Link href={`/workouts`} className="button">
                         Cancel
                     </Link>
                     <button
-                        className="text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                        className="redButton"
                         type="submit">
                         Delete workout.
                     </button>
