@@ -12,7 +12,7 @@ const getAllWorkouts = async (): Promise<Workouts[]> => {
   });
 
   if (!response.ok) {
-    throw new Error("Er is iets mis gegaan. workout 1");
+    throw new Error("Could not fetch workouts");
   }
 
   return response.json();
@@ -27,7 +27,7 @@ const getById = async (id: string) => {
     cache: "no-store",
   });
 
-  if (!res.ok) throw new Error("Couldn't get workout.");
+  if (!res.ok) throw new Error("Could not fetch workout.");
 
   return res.json();
 };
@@ -42,7 +42,7 @@ const getWorkoutsFromUser = async (id: string): Promise<Workouts[]> => {
   });
 
   if (!response.ok) {
-    throw new Error("Something went wrong.");
+    throw new Error("Could not fetch workouts from user.");
   }
 
   return response.json();
@@ -58,7 +58,7 @@ const createWorkoutByUserId = async (workout: any, userId: string) => {
     cache: "no-store",
   });
   console.log(res.text);
-  if (!res.ok) throw new Error("Something went wrong.");
+  if (!res.ok) throw new Error("Could not create workout.");
 
   const data = res.json();
   console.log(data);
@@ -74,7 +74,7 @@ const editWorkout = async (workout: any, workoutId: string) => {
     body: JSON.stringify(workout),
     cache: "no-store",
   });
-  if (!res.ok) throw new Error("Couldn't update workout.");
+  if (!res.ok) throw new Error("Could not update workout.");
 
   return res.json();
 };
@@ -92,7 +92,7 @@ const deleteWorkout = async (id: string) => {
   );
 
   if (!response.ok) {
-    throw new Error("Something went wrong.");
+    throw new Error("Could not delete workout.");
   }
 
   return true;

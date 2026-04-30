@@ -10,7 +10,7 @@ const WorkoutOverview: React.FC<Props> = ({ workouts, users }) => {
   return (
     <>
       {workouts && (
-        <table className="min-w-full border-collapse border border-gray-300">
+        <table className="mx-auto min-w-250 border-collapse border border-gray-300">
           <thead className="bg-black-100">
             <tr>
               <th className="border border-gray-300 px-4 py-2">User</th>
@@ -27,8 +27,10 @@ const WorkoutOverview: React.FC<Props> = ({ workouts, users }) => {
                 <td className="border border-gray-300 px-4 py-2 text-right">
                   {users.find((user) => user.id == w.userId)?.username}
                 </td>
-                <td className="border border-gray-300 px-4 py-2">{w.date}</td>
-                <td className="border border-gray-300 px-4 py-2">
+                <td className="border border-gray-300 px-4 py-2 text-left">
+                  {w.date}
+                </td>
+                <td className="border border-gray-300 px-4 py-2 text-left">
                   {w.exercises.map((exercise, index) => (
                     <div key={index}>
                       {exercise.name}, {exercise.type}

@@ -19,7 +19,7 @@ const GoalOverview: React.FC<Props> = ({ goals, userIds }) => {
       )}
       {goals && (
         <table className="min-w-full border-collapse border border-gray-300">
-          <thead className="bg-black-100">
+          <thead>
             <tr>
               <th className="border border-gray-300 px-4 py-2">Name</th>
               <th className="border border-gray-300 px-4 py-2">StartDate</th>

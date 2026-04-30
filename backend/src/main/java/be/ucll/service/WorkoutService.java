@@ -60,7 +60,7 @@ public class WorkoutService {
 
     // We can also use cache for every user but this still needs to be decided.(it
     // should be good to just uncomment the line below)
-    // @Cacheable(value = "workoutsByUser", key = "#userId")
+    @Cacheable(value = "workoutsByUser", key = "#userId")
     public List<WorkoutResponse> getWorkoutsByUser(String userId) {
         return convertWorkoutToDTO(workoutRepository.findByUserId(userId));
     }

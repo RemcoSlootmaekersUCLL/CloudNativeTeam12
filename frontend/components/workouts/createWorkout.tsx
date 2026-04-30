@@ -133,7 +133,7 @@ const CreateWorkout: React.FC = () => {
             type: "success",
           },
         ]);
-        setTimeout(() => router.push("/workouts"), 3000);
+        setTimeout(() => router.push(`/profile/${userId}`), 3000);
       })
       .catch((err) => {
         console.error(err);

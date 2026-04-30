@@ -12,30 +12,26 @@ const ProfileOverview: React.FC<Props> = ({ user, workouts, goals }) => {
     "justify-center text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center";
   return (
     <>
-      <div className="ml-4">
-        <h2 className="font-bold text-xl">User Information</h2>
+      <div className="flex flex-col items-center py-2">
+        <h2 className="font-bold text-xl py-2">User Information</h2>
         {user ? (
           <table className="userInfoTable">
+            <thead className="border-amber-100">
+              <tr>
+                <th className="px-4 py-2">Username</th>
+                <th className="px-4 py-2">Age</th>
+                <th className="px-4 py-2">Weight</th>
+                <th className="px-4 py-2">Height</th>
+                <th className="px-4 py-2">BMI</th>
+              </tr>
+            </thead>
             <tbody>
               <tr>
-                <td className="font-bold">Username</td>
-                <td>{user.username}</td>
-              </tr>
-              <tr>
-                <td className="font-bold">Age</td>
-                <td>{user.age}</td>
-              </tr>
-              <tr>
-                <td className="font-bold">Weight</td>
-                <td>{user.weight}</td>
-              </tr>
-              <tr>
-                <td className="font-bold">Height</td>
-                <td>{user.height}</td>
-              </tr>
-              <tr>
-                <td className="font-bold">BMI</td>
-                <td>{user.bmi}</td>
+                <td className="px-4 py-2">{user.username}</td>
+                <td className="px-4 py-2">{user.age}</td>
+                <td className="px-4 py-2">{user.weight}</td>
+                <td className="px-4 py-2">{user.height}</td>
+                <td className="px-4 py-2">{user.bmi}</td>
               </tr>
             </tbody>
           </table>
@@ -46,12 +42,12 @@ const ProfileOverview: React.FC<Props> = ({ user, workouts, goals }) => {
         )}
       </div>
 
-      <div className="mt-4 ml-4">
+      <div className="flex flex-col items-center py-2">
         <div className="flex gap-2 items-center mb-1">
-          <h2 className="font-bold text-lg">Your Workouts</h2>
-          <Link href={`/workouts/${user.id}/create`} className={createButton}>
-            Create Workout
-          </Link>
+          <h2 className="font-bold text-lg py-2">Your Workouts</h2>
+        </div>
+        <div className="pb-3">
+          <Link href={`/workouts/${user.id}/create`} className={createButton}>Create Workout</Link>
         </div>
         {workouts ? (
           <table className="userWorkoutsTable">
@@ -104,12 +100,12 @@ const ProfileOverview: React.FC<Props> = ({ user, workouts, goals }) => {
         )}
       </div>
 
-      <div className="ml-4 mt-4">
+      <div className="flex flex-col items-center py-2">
         <div className="flex gap-2 items-center mb-1">
-          <h2 className="font-bold text-lg">Your Goals</h2>
-          <Link href={`/goals/create/${user.id}`} className={createButton}>
-            Create Goal
-          </Link>
+          <h2 className="font-bold text-lg py-2">Your Goals</h2>
+        </div>
+        <div className="pb-3">
+          <Link href={`/goals/create/${user.id}`} className={createButton}> Create Goal</Link>
         </div>
         {goals ? (
           <table className="userGoalsTable">
