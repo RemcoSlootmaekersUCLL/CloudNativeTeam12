@@ -60,7 +60,6 @@ const ProfileOverview: React.FC<Props> = ({ user, workouts, goals }) => {
                 <th>Date</th>
                 <th>Exercises</th>
                 <th className="text-center">Options</th>
-
               </tr>
             </thead>
             <tbody>
@@ -76,12 +75,21 @@ const ProfileOverview: React.FC<Props> = ({ user, workouts, goals }) => {
                   </td>
                   <td className="py-2 flex gap-2">
                     <Link
+                      href={`/workouts/view/${workout.id}`}
+                      className={createButton}
+                    >
+                      View Workout
+                    </Link>
+                    <Link
                       href={`/workouts/${user.id}/edit/${workout.id}`}
                       className={createButton}
                     >
                       Edit Workout
                     </Link>
-                    <Link href={`/workouts/delete/${workout.id}`} className="text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                    <Link
+                      href={`/workouts/delete/${workout.id}`}
+                      className="text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                    >
                       Delete workout
                     </Link>
                   </td>

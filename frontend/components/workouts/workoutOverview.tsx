@@ -3,10 +3,10 @@ import Link from "next/link";
 
 type Props = {
   workouts: Workouts[];
-  users:Users[];
+  users: Users[];
 };
 
-const WorkoutOverview: React.FC<Props> = ({ workouts,users }) => {
+const WorkoutOverview: React.FC<Props> = ({ workouts, users }) => {
   return (
     <>
       {workouts && (
@@ -16,14 +16,16 @@ const WorkoutOverview: React.FC<Props> = ({ workouts,users }) => {
               <th className="border border-gray-300 px-4 py-2">User</th>
               <th className="border border-gray-300 px-4 py-2">Date</th>
               <th className="border border-gray-300 px-4 py-2">Exercises</th>
-              <th className="border border-gray-300 px-4 py-2">View all of user</th>
+              <th className="border border-gray-300 px-4 py-2">
+                View all of user
+              </th>
             </tr>
           </thead>
           <tbody>
             {workouts.map((w, i) => (
               <tr key={i}>
                 <td className="border border-gray-300 px-4 py-2 text-right">
-                  {users.find(user => user.id == w.userId)?.username}
+                  {users.find((user) => user.id == w.userId)?.username}
                 </td>
                 <td className="border border-gray-300 px-4 py-2">{w.date}</td>
                 <td className="border border-gray-300 px-4 py-2">
@@ -38,7 +40,13 @@ const WorkoutOverview: React.FC<Props> = ({ workouts,users }) => {
                     href={`/workouts/${w.userId}`}
                     className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                   >
-                    all workouts of user
+                    All workouts of user
+                  </Link>
+                  <Link
+                    href={`/workouts/view/${w.id}`}
+                    className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                  >
+                    View workout
                   </Link>
                 </td>
               </tr>

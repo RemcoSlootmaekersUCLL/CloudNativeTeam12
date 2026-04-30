@@ -78,3 +78,19 @@ body {
   border: 1px solid #222;
   border-radius: 16px;
 }
+
+.workoutTable,
+.workoutExerciseTable {
+  background-color: #ddd;
+
+  & th {
+    padding: 0 8px;
+    border: 1px solid #aaa;
+  }
+
+  & td {
+    padding: 1rem;
+    border: 1px solid #aaa;
+    text-align: center;
+  }
+}
