@@ -147,7 +147,7 @@ const CreateExercise: React.FC<Props> = ({ exercises }) => {
         </div>
         <div className="flex gap-x-1 mt-2">
           <Link
-            href={`/goals`}
+            href={`/exercises`}
             className="text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
           >
             Cancel
