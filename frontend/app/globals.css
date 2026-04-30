@@ -80,6 +80,21 @@ body {
   background: #262626;
 }
 
+.redButton {
+  padding: 0.625rem 1.25rem;
+
+  background-color: #be123c;
+  border-radius: 0.5rem;
+
+  color: #ffffff;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.redButton:hover {
+  background-color: #e11d48;
+}
+
 .workoutTable,
 .workoutExerciseTable {
   background-color: #ddd;
