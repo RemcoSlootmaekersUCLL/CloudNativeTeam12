@@ -20,8 +20,10 @@ const ViewWorkout: React.FC<Props> = ({ workoutId }: Props) => {
   const [username, setUsername] = useState<string>("");
   const [viewExDetails, setViewExDetails] = useState<boolean>(false);
 
+  const [loading, setLoading] = useState<boolean>(false)
+
   useEffect(() => {
-    if (!sessionStorage.getItem("id")) return;
+    setLoading(true)
 
     workoutService
       .getById(workoutId)
@@ -42,6 +44,7 @@ const ViewWorkout: React.FC<Props> = ({ workoutId }: Props) => {
         );
       })
       .catch((err) => console.error(err));
+      setLoading(false)
   }, []);
 
   useEffect(() => {
@@ -49,7 +52,7 @@ const ViewWorkout: React.FC<Props> = ({ workoutId }: Props) => {
   });
 
   return (
-    <div className="min-h-screen bg-white text-black">
+    loading ? <p className="text-center font-bold text-lg">Loading...</p> : <div className="min-h-screen bg-white text-black">
       <table className="workoutTable">
         <thead>
           <tr>
