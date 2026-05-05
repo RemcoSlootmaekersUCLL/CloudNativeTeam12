@@ -74,10 +74,13 @@ body {
   text-align: center;
 
   justify-content: center;
+
+  transition: all;
 }
 
 .button:hover {
   background: #262626;
+  transition-duration: 300ms;
 }
 
 .redButton {
@@ -89,10 +92,13 @@ body {
   color: #ffffff;
   font-size: 0.875rem;
   text-align: center;
+
+  transition: all;
 }
 
 .redButton:hover {
   background-color: #e11d48;
+  transition-duration: 300ms;
 }
 
 .workoutTable,

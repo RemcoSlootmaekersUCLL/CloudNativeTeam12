@@ -33,27 +33,27 @@ const RegisterForm: React.FC<Props> = ({ usernames }) => {
         setHeightError(null);
         let result = true;
         if (username.trim() === "") {
-            setUsernameError("Username cannot be empty");
+            setUsernameError("Username cannot be empty.");
             result = false;
         }
         if (usernames.includes(username)) {
-            setUsernameError("Username already in use");
+            setUsernameError("Username already in use.");
             result = false;
         }
         if (password.trim() === "") {
-            setPasswordError("password cannot be empty");
+            setPasswordError("Password cannot be empty.");
             result = false;
         }
         if (age <= 0) {
-            setAgeError("age must be positive and larger than 0");
+            setAgeError("Age must be above 0.");
             result = false;
         }
         if (weight <= 0) {
-            setWeightError("weight must be positive and larger than 0");
+            setWeightError("Weight must be above 0.");
             result = false;
         }
         if (height <= 0) {
-            setHeightError("height must be positive and larger than 0");
+            setHeightError("Height must be above 0.");
             result = false;
         }
 
