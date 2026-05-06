@@ -33,15 +33,12 @@ const loginUser = async (username: string, password: string) => {
       },
     );
 
-    if (response.status === 400) {
-      throw new Error(await response.text());
+    if (!response.ok) {
+      const errorText = await response.text();
+      return { message: errorText || "Username or password is incorrect" };
     }
 
     const data: LoginResponse = await response.json();
-
-    if (!response.ok) {
-      return { message: "Username or password is incorrect" };
-    }
     sessionStorage.setItem("username", data.username);
     sessionStorage.setItem("id", data.id);
     return data;
