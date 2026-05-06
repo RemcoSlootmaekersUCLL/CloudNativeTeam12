@@ -40,7 +40,7 @@ const loginUser = async (username: string, password: string) => {
     const data: LoginResponse = await response.json();
 
     if (!response.ok) {
-      return { message: data || "Login failed" };
+      return { message: "Username or password is incorrect" };
     }
     sessionStorage.setItem("username", data.username);
     sessionStorage.setItem("id", data.id);
