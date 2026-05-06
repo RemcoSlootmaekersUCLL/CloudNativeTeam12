@@ -44,17 +44,20 @@ public class ExerciseService {
         // Get the exercise
         Exercise exercise = exerciseRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Exercise with ID '" + id + "' not found."));
-        // Delete exercise from workouts
-        List<Workout> workouts = workoutRepository.findByExercisesExerciseId(id);
-        workouts.forEach(workout -> workout.getExercises()
-                .removeIf(workoutExercise -> workoutExercise.getExerciseId().equals(id)));
-        workoutRepository.saveAll(workouts);
 
-        // Update workout in users as well
-        List<User> users = (List<User>) userRepository.findAll();
-        users.forEach(user -> user.getWorkouts()
-                .forEach(workout -> workout.getExercises().removeIf(e -> e.getExerciseId().equals(id))));
-        userRepository.saveAll(users);
+        // See if exercise is in workouts
+        List<Workout> allWorkouts = new ArrayList<>();
+        workoutRepository.findAll().forEach(allWorkouts::add);
+        List<Workout> workoutsWithExercise = allWorkouts.stream()
+                .filter(workout -> workout.getExercises().stream()
+                        .anyMatch(e -> e.getExerciseId().equals(id)))
+                .toList();
+
+        System.out.println("Workouts with exercise: " + workoutsWithExercise);
+
+        if (!workoutsWithExercise.isEmpty()) {
+            throw new RuntimeException("You are not allowed to delete exercise because it is in use in someone's workout.");
+        }
 
         // Delete exercise
         exerciseRepository.delete(exercise);

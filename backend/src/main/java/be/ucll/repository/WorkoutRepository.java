@@ -8,6 +8,4 @@ import be.ucll.model.Workout;
 
 public interface WorkoutRepository extends CosmosRepository<Workout, String> {
     List<Workout> findByUserId(String userId);
-
-    List<Workout> findByExercisesExerciseId(String id);
 }
