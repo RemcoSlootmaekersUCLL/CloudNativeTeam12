@@ -16,9 +16,7 @@ const WorkoutOverview: React.FC<Props> = ({ workouts, users }) => {
               <th className="border border-gray-300 px-4 py-2">User</th>
               <th className="border border-gray-300 px-4 py-2">Date</th>
               <th className="border border-gray-300 px-4 py-2">Exercises</th>
-              <th className="border border-gray-300 px-4 py-2">
-                View all of user
-              </th>
+              <th className="border border-gray-300 px-4 py-2">View all workouts of user</th>
             </tr>
           </thead>
           <tbody>
