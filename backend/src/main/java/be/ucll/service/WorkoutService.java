@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import be.ucll.dto.WorkoutExerciseResponse;
@@ -73,7 +74,10 @@ public class WorkoutService {
         return convertWorkoutToDTO(list).getFirst();
     }
 
-    @CacheEvict(value = "workouts", allEntries = true)
+    @Caching(evict = {
+            @CacheEvict(value = "workouts", allEntries = true),
+            @CacheEvict(value = "workoutsByUser", allEntries = true)
+    })
     public Workout createWorkoutByUserId(Workout workout, String userId) {
         // Check if path variable and body parameter userId are the same.
         if (!workout.getUserId().equals(userId)) {
@@ -91,7 +95,10 @@ public class WorkoutService {
         return result;
     }
 
-    @CacheEvict(value = "workouts", allEntries = true)
+    @Caching(evict = {
+            @CacheEvict(value = "workouts", allEntries = true),
+            @CacheEvict(value = "workoutsByUser", allEntries = true)
+    })
     public void deleteWorkoutById(String id) {
         // Get Workout by id
         Workout deleted_workout = workoutRepository.findById(id)
@@ -105,7 +112,10 @@ public class WorkoutService {
         workoutRepository.delete(deleted_workout);
     }
 
-    @CacheEvict(value = "workouts", allEntries = true)
+    @Caching(evict = {
+            @CacheEvict(value = "workouts", allEntries = true),
+            @CacheEvict(value = "workoutsByUser", allEntries = true)
+    })
     public Workout editWorkout(Workout changed_workout, String id) {
         Workout old_workout = workoutRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Workout with id " + id + " not found."));
