@@ -1,25 +1,42 @@
 "use client";
 
 import goalService from "@/services/goalService";
-import { StatusMessage } from "@/types";
+import { Goals, StatusMessage } from "@/types";
 import Link from "next/link";
 import classNames from "classnames";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-type props = {
+type Props = {
   goalId: string;
 };
 
-const DeleteGoal: React.FC<props> = ({ goalId }) => {
+const DeleteGoal: React.FC<Props> = ({ goalId }) => {
   const router = useRouter();
+  const [goal, setGoal] = useState<Goals | null>(null);
+  const [statusMessages, setStatusMessages] = useState<StatusMessage[]>([]);
+  const [fetchError, setFetchError] = useState<string | null>(null);
 
-  const [statusMessages, setStatusMessage] = useState<StatusMessage[]>([]);
+  useEffect(() => {
+    const fetchGoal = async () => {
+      try {
+        const fetchedGoal = await goalService.getGoal(goalId);
+        if (!fetchedGoal) {
+          setFetchError("Goal not found");
+          return;
+        }
+        setGoal(fetchedGoal);
+      } catch (error) {
+        setFetchError((error as Error).message);
+      }
+    };
+
+    fetchGoal();
+  }, [goalId]);
 
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-
-    setStatusMessage([]);
+    setStatusMessages([]);
 
     try {
       const response = await goalService.deleteGoal(goalId);
@@ -27,16 +44,20 @@ const DeleteGoal: React.FC<props> = ({ goalId }) => {
         console.log("API returned error");
         return;
       }
-      setStatusMessage([
-        { message: "Goal succesfully deleted.", type: "success" },
+      setStatusMessages([
+        { message: "Goal successfully deleted.", type: "success" },
       ]);
       setTimeout(() => {
         router.push("/goals");
       }, 1000);
     } catch (error) {
-      setStatusMessage([{ message: (error as Error).message, type: "error" }]);
+      setStatusMessages([{ message: (error as Error).message, type: "error" }]);
     }
   };
+
+  if (fetchError) return <div>Error: {fetchError}</div>;
+  if (!goal) return <div>Loading...</div>;
+
   return (
     <div className="max-w-sm m-auto">
       {statusMessages.length > 0 && (
@@ -57,8 +78,9 @@ const DeleteGoal: React.FC<props> = ({ goalId }) => {
         </div>
       )}
       <form onSubmit={handleSubmit}>
+        <h1 className="text-center font-bold p-4">Delete goal.</h1>
         <div className="flex gap-x-1 mt-2 justify-center">
-          <h1>Are you sure you want to delete goal {goalId}</h1>
+          <h1>Are you sure you want to delete goal {goal.name}?</h1>
         </div>
         <div className="flex gap-x-1 mt-2 justify-center">
           <Link
@@ -71,7 +93,7 @@ const DeleteGoal: React.FC<props> = ({ goalId }) => {
             className="text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
             type="submit"
           >
-            Delete goal.
+            Delete goal
           </button>
         </div>
       </form>
