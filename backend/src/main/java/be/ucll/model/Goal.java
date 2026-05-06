@@ -27,8 +27,10 @@ public class Goal {
     private boolean wasSuccessful;
     private String userId;
 
-    protected Goal(){}
-    public Goal(String userId,String name, LocalDate endDate, LocalDate startDate, boolean wasSuccessful) {
+    protected Goal() {
+    }
+
+    public Goal(String userId, String name, LocalDate endDate, LocalDate startDate, boolean wasSuccessful) {
         setUserId(userId);
         setName(name);
         setStartDate(startDate);
@@ -65,6 +67,9 @@ public class Goal {
     }
 
     public void setEndDate(LocalDate endDate) {
+        if (startDate.isAfter(endDate)) {
+            throw new IllegalArgumentException("End date must be after start date.");
+        }
         this.endDate = endDate;
     }
 

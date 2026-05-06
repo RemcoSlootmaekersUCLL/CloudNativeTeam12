@@ -38,7 +38,9 @@ const UserPage: React.FC<Props> = async ({ params }: Props) => {
 
   return (
     <div>
-      <h1 className="text-center text-2xl font-bold p-4">Your Profile</h1>
+      <h1 className="text-center text-2xl font-bold p-4">
+        {data?.user?.username || "User"}'s Profile
+      </h1>
       {error && (
         <div className="text-red-800" role="alert">
           {error}

@@ -8,150 +8,211 @@ type Props = {
 };
 
 const ProfileOverview: React.FC<Props> = ({ user, workouts, goals }) => {
-  const createButton =
-    "justify-center text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center";
   return (
-    <>
-      <div className="flex flex-col items-center py-2">
-        <h2 className="font-bold text-xl py-2">User Information</h2>
-        {user ? (
-          <table className="userInfoTable">
-            <thead className="border-amber-100">
-              <tr>
-                <th className="px-4 py-2">Username</th>
-                <th className="px-4 py-2">Age</th>
-                <th className="px-4 py-2">Weight</th>
-                <th className="px-4 py-2">Height</th>
-                <th className="px-4 py-2">BMI</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="px-4 py-2">{user.username}</td>
-                <td className="px-4 py-2">{user.age}</td>
-                <td className="px-4 py-2">{user.weight}</td>
-                <td className="px-4 py-2">{user.height}</td>
-                <td className="px-4 py-2">{user.bmi}</td>
-              </tr>
-            </tbody>
-          </table>
-        ) : (
-          <p className="text-red-400">
-            Something went wrong displaying your user information...
-          </p>
-        )}
+    <div className="max-w-7xl mx-auto px-4 py-8 flex flex-col gap-6">
+      <div className="flex justify-center">
+        <section className="bg-white border-2 border-gray-300 p-6 w-full max-w-2xl rounded-2xl">
+          <h2 className="font-bold text-gray-800 text-lg mb-4 border-b-2 border-gray-200 pb-2">
+            User Information
+          </h2>
+          {user ? (
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm text-left">
+                <thead>
+                  <tr className="border-b-2 border-gray-200">
+                    <th className="px-4 py-2 font-semibold text-gray-600">
+                      Username
+                    </th>
+                    <th className="px-4 py-2 font-semibold text-gray-600">
+                      Age
+                    </th>
+                    <th className="px-4 py-2 font-semibold text-gray-600">
+                      Weight
+                    </th>
+                    <th className="px-4 py-2 font-semibold text-gray-600">
+                      Height
+                    </th>
+                    <th className="px-4 py-2 font-semibold text-gray-600">
+                      BMI
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-gray-100">
+                    <td className="px-4 py-3 font-medium text-gray-800">
+                      {user.username}
+                    </td>
+                    <td className="px-4 py-3 text-gray-600">{user.age}</td>
+                    <td className="px-4 py-3 text-gray-600">{user.weight}</td>
+                    <td className="px-4 py-3 text-gray-600">{user.height}</td>
+                    <td className="px-4 py-3 text-gray-600">{user.bmi}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <p className="text-sm text-red-400">
+              Something went wrong displaying your user information...
+            </p>
+          )}
+        </section>
       </div>
 
-      <div className="flex flex-col items-center py-2">
-        <div className="flex gap-2 items-center mb-1">
-          <h2 className="font-bold text-lg py-2">Your Workouts</h2>
-        </div>
-        <div className="pb-3">
-          <Link href={`/workouts/${user.id}/create`} className="button">Create Workout</Link>
-        </div>
-        {workouts ? (
-          <table className="userWorkoutsTable">
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Exercises</th>
-                <th className="text-center">Options</th>
-              </tr>
-            </thead>
-            <tbody>
-              {workouts.map((workout, index) => (
-                <tr key={index}>
-                  <td>{workout.date}</td>
-                  <td>
-                    {workout.exercises.map((ex, index) => (
-                      <div key={index} className="capitalize">
-                        {ex.name} - {ex.type}
-                      </div>
-                    ))}
-                  </td>
-                  <td className="py-2 flex gap-2">
-                    <Link
-                      href={`/workouts/view/${workout.id}`}
-                      className="button"
+      <div className="flex gap-6 items-start">
+        <section className="bg-white border-2 border-gray-300 p-6 flex-1 min-w-0 rounded-2xl">
+          <div className="flex items-center justify-between mb-4 border-b-2 border-gray-200 pb-2">
+            <h2 className="font-bold text-gray-800 text-lg">Your Workouts</h2>
+            <Link href={`/workouts/${user.id}/create`} className="button">
+              + Create Workout
+            </Link>
+          </div>
+          {workouts ? (
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm text-left">
+                <thead>
+                  <tr className="border-b-2 border-gray-200">
+                    <th className="px-4 py-2 font-semibold text-gray-600">
+                      Date
+                    </th>
+                    <th className="px-4 py-2 font-semibold text-gray-600">
+                      Exercises
+                    </th>
+                    <th className="px-4 py-2 font-semibold text-gray-600">
+                      Options
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  {workouts.map((workout, index) => (
+                    <tr
+                      key={index}
+                      className="hover:bg-gray-50 transition-colors"
                     >
-                      View Workout
-                    </Link>
-                    <Link
-                      href={`/workouts/${user.id}/edit/${workout.id}`}
-                      className="button"
-                    >
-                      Edit Workout
-                    </Link>
-                    <Link
-                      href={`/workouts/delete/${workout.id}`}
-                      className="redButton"
-                    >
-                      Delete workout
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        ) : (
-          <p className="text-red-400">
-            Something went wrong displaying your workouts...
-          </p>
-        )}
-      </div>
+                      <td className="px-4 py-3 text-gray-700 whitespace-nowrap">
+                        {workout.date}
+                      </td>
+                      <td className="px-4 py-3 text-gray-600">
+                        {workout.exercises.map((ex, index) => (
+                          <div key={index} className="capitalize text-sm">
+                            {ex.name} <span className="text-gray-400">·</span>{" "}
+                            {ex.type}
+                          </div>
+                        ))}
+                      </td>
+                      <td className="px-4 py-3">
+                        <div className="flex gap-2">
+                          <Link
+                            href={`/workouts/view/${workout.id}`}
+                            className="button"
+                          >
+                            View
+                          </Link>
+                          <Link
+                            href={`/workouts/${user.id}/edit/${workout.id}`}
+                            className="button"
+                          >
+                            Edit
+                          </Link>
+                          <Link
+                            href={`/workouts/delete/${workout.id}`}
+                            className="redButton"
+                          >
+                            Delete
+                          </Link>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <p className="text-sm text-red-400">
+              Something went wrong displaying your workouts...
+            </p>
+          )}
+        </section>
 
-      <div className="flex flex-col items-center py-2">
-        <div className="flex gap-2 items-center mb-1">
-          <h2 className="font-bold text-lg py-2">Your Goals</h2>
-        </div>
-        <div className="pb-3">
-          <Link href={`/goals/create/${user.id}`} className="button"> Create Goal</Link>
-        </div>
-        {goals ? (
-          <table className="userGoalsTable">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Start date</th>
-                <th>End date</th>
-                <th>Completion</th>
-                <th>Options</th>
-              </tr>
-            </thead>
-            <tbody>
-              {goals.map((goal, index) => (
-                <tr key={index}>
-                  <td>{goal.name}</td>
-                  <td>{goal.startDate}</td>
-                  <td>{goal.endDate}</td>
-                  <td className="text-center">
-                    {goal.wasSuccessful ? "✔️" : "❌"}
-                  </td>
-                  <td className="py-2 flex gap-2">
-                    <Link
-                      href={`/goals/edit/${goal.id}`}
-                      className="button"
+        <section className="bg-white border-2 border-gray-300 p-6 flex-1 min-w-0 rounded-2xl">
+          <div className="flex items-center justify-between mb-4 border-b-2 border-gray-200 pb-2">
+            <h2 className="font-bold text-gray-800 text-lg">Your Goals</h2>
+            <Link href={`/goals/create/${user.id}`} className="button">
+              + Create Goal
+            </Link>
+          </div>
+          {goals ? (
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm text-left">
+                <thead>
+                  <tr className="border-b-2 border-gray-200">
+                    <th className="px-4 py-2 font-semibold text-gray-600">
+                      Name
+                    </th>
+                    <th className="px-4 py-2 font-semibold text-gray-600">
+                      Start date
+                    </th>
+                    <th className="px-4 py-2 font-semibold text-gray-600">
+                      End date
+                    </th>
+                    <th className="px-4 py-2 font-semibold text-gray-600 text-center">
+                      Done
+                    </th>
+                    <th className="px-4 py-2 font-semibold text-gray-600">
+                      Options
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  {goals.map((goal, index) => (
+                    <tr
+                      key={index}
+                      className="hover:bg-gray-50 transition-colors"
                     >
-                      Edit goal
-                    </Link>
-                    <Link
-                      href={`/goals/delete/${goal.id}`}
-                      className="redButton"
-                    >
-                      Delete goal
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        ) : (
-          <p className="text-red-400">
-            Something went wrong displaying your goals...
-          </p>
-        )}
+                      <td className="px-4 py-3 font-medium text-gray-800">
+                        {goal.name}
+                      </td>
+                      <td className="px-4 py-3 text-gray-600">
+                        {goal.startDate}
+                      </td>
+                      <td className="px-4 py-3 text-gray-600">
+                        {goal.endDate}
+                      </td>
+                      <td className="px-4 py-3 text-center">
+                        {goal.wasSuccessful ? (
+                          <span className="text-green-500 font-bold">✓</span>
+                        ) : (
+                          <span className="text-gray-300 font-bold">✗</span>
+                        )}
+                      </td>
+                      <td className="px-4 py-3">
+                        <div className="flex gap-2">
+                          <Link
+                            href={`/goals/edit/${goal.id}`}
+                            className="button"
+                          >
+                            Edit
+                          </Link>
+                          <Link
+                            href={`/goals/delete/${goal.id}`}
+                            className="redButton"
+                          >
+                            Delete
+                          </Link>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <p className="text-sm text-red-400">
+              Something went wrong displaying your goals...
+            </p>
+          )}
+        </section>
       </div>
-    </>
+    </div>
   );
 };
 
