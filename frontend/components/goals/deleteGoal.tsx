@@ -31,7 +31,7 @@ const DeleteGoal: React.FC<props> = ({ goalId }) => {
         { message: "Goal succesfully deleted.", type: "success" },
       ]);
       setTimeout(() => {
-        router.push("/goals");
+        router.push(`/profile/${sessionStorage.getItem("id")}`);
       }, 1000);
     } catch (error) {
       setStatusMessage([{ message: (error as Error).message, type: "error" }]);
