@@ -105,7 +105,7 @@ const EditGoal: React.FC<props> = ({ goalId, goal }) => {
                 key={index}
                 className={classNames({
                   "text-red-800": type === "error",
-                  "text-green-800": type === "success",
+                  "text-black": type === "success",
                 })}
               >
                 {message}

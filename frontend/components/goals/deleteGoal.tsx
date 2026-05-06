@@ -47,7 +47,7 @@ const DeleteGoal: React.FC<props> = ({ goalId }) => {
                 key={index}
                 className={classNames({
                   "text-red-800": type === "error",
-                  "text-green-800": type === "success",
+                  "text-black": type === "success",
                 })}
               >
                 {message}

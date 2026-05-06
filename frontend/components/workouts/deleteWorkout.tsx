@@ -44,7 +44,7 @@ const DeleteWorkout: React.FC<props> = ({ workoutId }) => {
                         {statusMessages.map(({ message, type }, index) => (
                             <li key={index} className={classNames({
                                 'text-red-800': type === 'error',
-                                'text-green-800': type === 'success',
+                                'text-black': type === 'success',
                             })}>
                                 {message}
                             </li>
