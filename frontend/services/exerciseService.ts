@@ -29,8 +29,14 @@ const deleteExercise = async (id: string) => {
   );
 
   if (!response.ok) {
-    const error = await response.json();
-    throw new Error(error.error || "Could not delete exercise");
+    const text = await response.text();
+    let message = text;
+    try {
+      const json = JSON.parse(text);
+      message = json.error || text;
+    } catch {
+    }
+    throw new Error(message || "Could not delete exercise");
   }
 
   return true;
