@@ -102,7 +102,7 @@ const ProfileOverview: React.FC<Props> = ({ user, workouts, goals }) => {
                       <td className="px-4 py-3">
                         <div className="flex gap-2">
                           <Link
-                            href={`/workouts/view/${workout.id}`}
+                            href={`/workouts`}
                             className="button"
                           >
                             View
