@@ -19,7 +19,7 @@ export default function LoginForm() {
       result = false;
     }
     if (password.trim() === "") {
-      setPasswordError("password cannot be empty");
+      setPasswordError("Password cannot be empty");
       result = false;
     }
     return result;
