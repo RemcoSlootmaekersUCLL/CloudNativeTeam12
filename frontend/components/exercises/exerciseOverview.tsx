@@ -27,7 +27,7 @@ const ExerciseOverview: React.FC<Props> = ({ exercises }) => {
                                 <td className="border border-gray-300 px-4 py-2 max-w-20 text-left">{e.name}</td>
                                 <td className="border border-gray-300 px-4 py-2 max-w-20 text-left">{e.type}</td>
                                 <td className="text-center max-w-20">
-                                    <Link href={`/exercises/delete/${e.id}`} className="redButton">delete exercise</Link>
+                                    <Link href={`/exercises/delete/${e.id}`} className="redButton">Delete exercise</Link>
                                 </td>
                             </tr>
                         ))}
