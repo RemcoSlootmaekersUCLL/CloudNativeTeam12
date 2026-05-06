@@ -178,7 +178,7 @@ const EditGoal: React.FC<props> = ({ goalId, goal }) => {
             )}
           </div>
         </div>
-        <div className="mt-2">
+        <div className="mt-2 flex">
           <div>
             <label
               htmlFor="wasSuccessful"
@@ -205,10 +205,7 @@ const EditGoal: React.FC<props> = ({ goalId, goal }) => {
             Cancel
           </Link>
 
-          <button
-            className="button"
-            type="submit"
-          >
+          <button className="button" type="submit">
             Edit goal
           </button>
         </div>
