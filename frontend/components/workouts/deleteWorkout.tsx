@@ -8,10 +8,11 @@ import { useRouter } from "next/navigation";
 import workoutService from "@/services/workoutService";
 
 type props = {
+    userId:string;
     workoutId: string;
 }
 
-const DeleteWorkout: React.FC<props> = ({ workoutId }) => {
+const DeleteWorkout: React.FC<props> = ({ userId, workoutId }) => {
     const router = useRouter();
 
     const [statusMessages, setStatusMessage] = useState<StatusMessage[]>([]);
@@ -30,7 +31,7 @@ const DeleteWorkout: React.FC<props> = ({ workoutId }) => {
             }
             setStatusMessage([{ message: "Workout succesfully deleted.", type: "success" }])
             setTimeout(() => {
-                router.push("/workouts");
+                router.push(`/profile/${userId}`);
             }, 1000);
         } catch (error) {
             setStatusMessage([{ message: (error as Error).message, type: "error" }])
@@ -57,7 +58,7 @@ const DeleteWorkout: React.FC<props> = ({ workoutId }) => {
                     <h1>Are you sure you want to delete this workout.</h1>
                 </div>
                 <div className="flex gap-x-1 mt-2 justify-center">
-                    <Link href={`/workouts`} className="button">
+                    <Link href={`/profile/${userId}`} className="button">
                         Cancel
                     </Link>
                     <button

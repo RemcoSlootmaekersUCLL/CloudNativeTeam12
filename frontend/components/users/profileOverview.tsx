@@ -114,7 +114,7 @@ const ProfileOverview: React.FC<Props> = ({ user, workouts, goals }) => {
                             Edit
                           </Link>
                           <Link
-                            href={`/workouts/delete/${workout.id}`}
+                            href={`/workouts/${user.id}/delete/${workout.id}`}
                             className="redButton"
                           >
                             Delete
