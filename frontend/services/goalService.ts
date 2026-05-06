@@ -26,8 +26,21 @@ const addGoal = async (goal: Goals): Promise<Goals[]> => {
     body: JSON.stringify(goal),
   });
 
+  // all this work just to show en error is insane.
   if (!response.ok) {
-    throw new Error("Could not add goal");
+    const text = await response.text();
+    let message = text;
+    const match = text.match(/"error"\s*:\s*"(.+)/i);
+    if (match) {
+      message = match[1];
+    }
+
+    message = message
+      .replace(/^JSON parse error:\s*/i, "")
+      .replace(/["}]+$/, "")
+      .trim();
+
+    throw new Error(message);
   }
 
   return response.json();
