@@ -76,7 +76,7 @@ export default function LoginForm() {
               className="w-full py-2 bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
               type="submit"
             >
-              log in
+              Log in
             </button>
             <div>{loginErrorMessage}</div>
           </form>
@@ -84,7 +84,7 @@ export default function LoginForm() {
             href="/login/register"
             className="block mt-5 w-full text-white bg-emerald-600 hover:bg-emerald-800 rounded-lg text-sm px-5 py-2.5 text-center"
           >
-            Register user
+            Register
           </Link>
         </div>
       </div>
