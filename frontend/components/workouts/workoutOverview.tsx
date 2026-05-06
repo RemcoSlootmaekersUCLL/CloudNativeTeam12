@@ -33,7 +33,9 @@ const WorkoutOverview: React.FC<Props> = ({ workouts, users }) => {
               <th className="border border-gray-300 px-4 py-2">User</th>
               <th className="border border-gray-300 px-4 py-2">Date</th>
               <th className="border border-gray-300 px-4 py-2">Exercises</th>
-              <th className="border border-gray-300 px-4 py-2">View all workouts of user</th>
+              <th className="border border-gray-300 px-4 py-2">
+                View all workouts of user
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -57,12 +59,6 @@ const WorkoutOverview: React.FC<Props> = ({ workouts, users }) => {
                     <Link href={`/workouts/${w.userId}`} className="button">
                       All workouts of user
                     </Link>
-                    {/* <Link
-                    href={`/workouts/view/${w.id}`}
-                    className="button"
-                  >
-                    View workout
-                  </Link> */}
                     <button
                       className="button"
                       onClick={() => {
