@@ -262,7 +262,7 @@ const EditWorkout: React.FC<Props> = ({ userId, workoutId }: Props) => {
           Edit Workout
         </button>
         {statusMessages.length > 0 && statusMessages[0].type === "success" && (
-          <p className="text-green-500">{statusMessages[0].message}</p>
+          <p className="text-black">{statusMessages[0].message}</p>
         )}
       </form>
     </div>
