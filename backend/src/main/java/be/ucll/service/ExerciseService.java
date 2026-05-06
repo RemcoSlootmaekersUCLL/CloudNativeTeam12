@@ -56,7 +56,7 @@ public class ExerciseService {
         System.out.println("Workouts with exercise: " + workoutsWithExercise);
 
         if (!workoutsWithExercise.isEmpty()) {
-            throw new RuntimeException("You are not allowed to delete exercise because it is in use in someone's workout.");
+            throw new RuntimeException("You are not allowed to delete exercise because it is in use by someone's workout.");
         }
 
         // Delete exercise
